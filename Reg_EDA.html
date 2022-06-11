@@ -1,0 +1,1204 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Exploratory Data Analysis (EDA) Auktion &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Was beeinflusst den Verkaufspreis?" href="Reg_Modell2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Das Projekt von JL132 im Modul Data Science & MLOps</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooksh
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mymarkdownfile.html">
+   Here’s my sample title
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Reg_Modell1.html">
+   Regressionsmodell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Reg_Modell2.html">
+   Was beeinflusst den Verkaufspreis?
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Exploratory Data Analysis (EDA) Auktion
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Jermaine-Ley/demo-page/main?urlpath=tree/docs/Reg_EDA.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Jermaine-Ley/demo-page"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Jermaine-Ley/demo-page/issues/new?title=Issue%20on%20page%20%2FReg_EDA.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Reg_EDA.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Exploratory Data Analysis (EDA) Auktion
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussfolgerung">
+   Schlussfolgerung
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Exploratory Data Analysis (EDA) Auktion</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Exploratory Data Analysis (EDA) Auktion
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussfolgerung">
+   Schlussfolgerung
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis-eda-auktion">
+<h1>Exploratory Data Analysis (EDA) Auktion<a class="headerlink" href="#exploratory-data-analysis-eda-auktion" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Libraries</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>             <span class="c1">#visualisation</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>                       <span class="c1">#visualisation</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading the Data into the Data Frame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;car_prices.csv&#39;</span><span class="p">,</span><span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn_bad_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># To display the top 5 rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\3220115651.py:2: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+
+
+  df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\3220115651.py:2: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+
+
+  df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
+b&#39;Skipping line 408163: expected 16 fields, saw 17\nSkipping line 417837: expected 16 fields, saw 17\nSkipping line 421291: expected 16 fields, saw 17\nSkipping line 424163: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 427042: expected 16 fields, saw 17\nSkipping line 427045: expected 16 fields, saw 17\nSkipping line 434426: expected 16 fields, saw 17\nSkipping line 444503: expected 16 fields, saw 17\nSkipping line 453796: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 461599: expected 16 fields, saw 17\nSkipping line 461614: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 492486: expected 16 fields, saw 17\nSkipping line 497010: expected 16 fields, saw 17\nSkipping line 497013: expected 16 fields, saw 17\nSkipping line 499085: expected 16 fields, saw 17\nSkipping line 501457: expected 16 fields, saw 17\nSkipping line 505301: expected 16 fields, saw 17\nSkipping line 505308: expected 16 fields, saw 17\nSkipping line 520463: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 528998: expected 16 fields, saw 17\nSkipping line 529011: expected 16 fields, saw 17\nSkipping line 529015: expected 16 fields, saw 17\nSkipping line 529624: expected 16 fields, saw 17\nSkipping line 548786: expected 16 fields, saw 17\nSkipping line 551224: expected 16 fields, saw 17\nSkipping line 554712: expected 16 fields, saw 17\n&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>make</th>
+      <th>model</th>
+      <th>trim</th>
+      <th>body</th>
+      <th>transmission</th>
+      <th>vin</th>
+      <th>state</th>
+      <th>condition</th>
+      <th>odometer</th>
+      <th>color</th>
+      <th>interior</th>
+      <th>seller</th>
+      <th>mmr</th>
+      <th>sellingprice</th>
+      <th>saledate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015</td>
+      <td>Kia</td>
+      <td>Sorento</td>
+      <td>LX</td>
+      <td>SUV</td>
+      <td>automatic</td>
+      <td>5xyktca69fg566472</td>
+      <td>ca</td>
+      <td>5.0</td>
+      <td>16639.0</td>
+      <td>white</td>
+      <td>black</td>
+      <td>kia motors america, inc</td>
+      <td>20500</td>
+      <td>21500</td>
+      <td>Tue Dec 16 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015</td>
+      <td>Kia</td>
+      <td>Sorento</td>
+      <td>LX</td>
+      <td>SUV</td>
+      <td>automatic</td>
+      <td>5xyktca69fg561319</td>
+      <td>ca</td>
+      <td>5.0</td>
+      <td>9393.0</td>
+      <td>white</td>
+      <td>beige</td>
+      <td>kia motors america, inc</td>
+      <td>20800</td>
+      <td>21500</td>
+      <td>Tue Dec 16 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014</td>
+      <td>BMW</td>
+      <td>3 Series</td>
+      <td>328i SULEV</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>wba3c1c51ek116351</td>
+      <td>ca</td>
+      <td>4.5</td>
+      <td>1331.0</td>
+      <td>gray</td>
+      <td>black</td>
+      <td>financial services remarketing (lease)</td>
+      <td>31900</td>
+      <td>30000</td>
+      <td>Thu Jan 15 2015 04:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015</td>
+      <td>Volvo</td>
+      <td>S60</td>
+      <td>T5</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>yv1612tb4f1310987</td>
+      <td>ca</td>
+      <td>4.1</td>
+      <td>14282.0</td>
+      <td>white</td>
+      <td>black</td>
+      <td>volvo na rep/world omni</td>
+      <td>27500</td>
+      <td>27750</td>
+      <td>Thu Jan 29 2015 04:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014</td>
+      <td>BMW</td>
+      <td>6 Series Gran Coupe</td>
+      <td>650i</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>wba6b2c57ed129731</td>
+      <td>ca</td>
+      <td>4.3</td>
+      <td>2641.0</td>
+      <td>gray</td>
+      <td>black</td>
+      <td>financial services remarketing (lease)</td>
+      <td>66000</td>
+      <td>67000</td>
+      <td>Thu Dec 18 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To display the botton 5 rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>make</th>
+      <th>model</th>
+      <th>trim</th>
+      <th>body</th>
+      <th>transmission</th>
+      <th>vin</th>
+      <th>state</th>
+      <th>condition</th>
+      <th>odometer</th>
+      <th>color</th>
+      <th>interior</th>
+      <th>seller</th>
+      <th>mmr</th>
+      <th>sellingprice</th>
+      <th>saledate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>558808</th>
+      <td>2012</td>
+      <td>BMW</td>
+      <td>X5</td>
+      <td>xDrive35d</td>
+      <td>SUV</td>
+      <td>automatic</td>
+      <td>5uxzw0c58cl668465</td>
+      <td>ca</td>
+      <td>4.8</td>
+      <td>50561.0</td>
+      <td>black</td>
+      <td>black</td>
+      <td>financial services remarketing (lease)</td>
+      <td>29800</td>
+      <td>34000</td>
+      <td>Wed Jul 08 2015 09:30:00 GMT-0700 (PDT)</td>
+    </tr>
+    <tr>
+      <th>558809</th>
+      <td>2015</td>
+      <td>Nissan</td>
+      <td>Altima</td>
+      <td>2.5 S</td>
+      <td>sedan</td>
+      <td>automatic</td>
+      <td>1n4al3ap0fc216050</td>
+      <td>ga</td>
+      <td>3.8</td>
+      <td>16658.0</td>
+      <td>white</td>
+      <td>black</td>
+      <td>enterprise vehicle exchange / tra / rental / t...</td>
+      <td>15100</td>
+      <td>11100</td>
+      <td>Thu Jul 09 2015 06:45:00 GMT-0700 (PDT)</td>
+    </tr>
+    <tr>
+      <th>558810</th>
+      <td>2014</td>
+      <td>Ford</td>
+      <td>F-150</td>
+      <td>XLT</td>
+      <td>SuperCrew</td>
+      <td>automatic</td>
+      <td>1ftfw1et2eke87277</td>
+      <td>ca</td>
+      <td>3.4</td>
+      <td>15008.0</td>
+      <td>gray</td>
+      <td>gray</td>
+      <td>ford motor credit company,llc pd</td>
+      <td>29600</td>
+      <td>26700</td>
+      <td>Thu May 28 2015 05:30:00 GMT-0700 (PDT)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To check the types of data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year              int64
+make             object
+model            object
+trim             object
+body             object
+transmission     object
+vin              object
+state            object
+condition       float64
+odometer        float64
+color            object
+interior         object
+seller           object
+mmr               int64
+sellingprice      int64
+saledate         object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hier werde ich einige Zeilen löschen, die für die Daten unerheblich sind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To drop the irrelevant columns</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;vin&#39;</span><span class="p">,</span> <span class="s1">&#39;mmr&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>make</th>
+      <th>model</th>
+      <th>trim</th>
+      <th>body</th>
+      <th>transmission</th>
+      <th>state</th>
+      <th>condition</th>
+      <th>odometer</th>
+      <th>color</th>
+      <th>interior</th>
+      <th>seller</th>
+      <th>sellingprice</th>
+      <th>saledate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015</td>
+      <td>Kia</td>
+      <td>Sorento</td>
+      <td>LX</td>
+      <td>SUV</td>
+      <td>automatic</td>
+      <td>ca</td>
+      <td>5.0</td>
+      <td>16639.0</td>
+      <td>white</td>
+      <td>black</td>
+      <td>kia motors america, inc</td>
+      <td>21500</td>
+      <td>Tue Dec 16 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015</td>
+      <td>Kia</td>
+      <td>Sorento</td>
+      <td>LX</td>
+      <td>SUV</td>
+      <td>automatic</td>
+      <td>ca</td>
+      <td>5.0</td>
+      <td>9393.0</td>
+      <td>white</td>
+      <td>beige</td>
+      <td>kia motors america, inc</td>
+      <td>21500</td>
+      <td>Tue Dec 16 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014</td>
+      <td>BMW</td>
+      <td>3 Series</td>
+      <td>328i SULEV</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>ca</td>
+      <td>4.5</td>
+      <td>1331.0</td>
+      <td>gray</td>
+      <td>black</td>
+      <td>financial services remarketing (lease)</td>
+      <td>30000</td>
+      <td>Thu Jan 15 2015 04:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015</td>
+      <td>Volvo</td>
+      <td>S60</td>
+      <td>T5</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>ca</td>
+      <td>4.1</td>
+      <td>14282.0</td>
+      <td>white</td>
+      <td>black</td>
+      <td>volvo na rep/world omni</td>
+      <td>27750</td>
+      <td>Thu Jan 29 2015 04:30:00 GMT-0800 (PST)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014</td>
+      <td>BMW</td>
+      <td>6 Series Gran Coupe</td>
+      <td>650i</td>
+      <td>Sedan</td>
+      <td>automatic</td>
+      <td>ca</td>
+      <td>4.3</td>
+      <td>2641.0</td>
+      <td>gray</td>
+      <td>black</td>
+      <td>financial services remarketing (lease)</td>
+      <td>67000</td>
+      <td>Thu Dec 18 2014 12:30:00 GMT-0800 (PST)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Manchmal können Daten doppelte Zeilen enthalten. Hier habe ich die Anzahl der doppelten Zeilen überprüft, aber es gab keine doppelten Zeilen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To find the number of duplicate rows</span>
+
+<span class="n">duplicate_rows_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of duplicate rows: &quot;</span><span class="p">,</span> <span class="n">duplicate_rows_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of duplicate rows:  (0, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Diese Daten enthalten mehrere Nullwerte. Ich zeige die Nullwerte im Dataset an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  To Drop the missing or null values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>     <span class="c1"># Finding the number of Null values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year                0
+make            10301
+model           10399
+trim            10651
+body            13195
+transmission    65353
+state               0
+condition       11794
+odometer           94
+color             749
+interior          749
+seller              0
+sellingprice        0
+saledate            0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hier lasse ich die Nullwerte weg und lösche sie. Da es sich um einen sehr großen Datensatz handelt, wirkt sich das Löschen einiger Werte nicht auf die gesamten Daten aus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>    <span class="c1"># Dropping the missing values.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            472336
+make            472336
+model           472336
+trim            472336
+body            472336
+transmission    472336
+state           472336
+condition       472336
+odometer        472336
+color           472336
+interior        472336
+seller          472336
+sellingprice    472336
+saledate        472336
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>   <span class="c1"># After dropping the values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            0
+make            0
+model           0
+trim            0
+body            0
+transmission    0
+state           0
+condition       0
+odometer        0
+color           0
+interior        0
+seller          0
+sellingprice    0
+saledate        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Auffinden der Ausreißer in den Daten. Hier habe ich die Ausreißer in Kilometerzähler und Preis aufgezeichnet. Da die Ausreißer bei Kilometerzähler und Preis einen gewissen Einfluss auf die Daten haben, lösche ich die Ausreißer nicht. Denn der Preis eines Fahrzeugs und die gefahrene Strecke hängen von vielen anderen Faktoren ab.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Box Plot</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;odometer&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;odometer&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_15_1.png" src="_images/Reg_EDA_15_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Box Plot</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_16_1.png" src="_images/Reg_EDA_16_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
+<span class="c1"># These are the steps for Box Plot</span>
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">IQR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year                5.0
+condition           1.5
+odometer        68452.0
+sellingprice    11000.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es wurde ein Diagramm mit der Anzahl der Fahrzeuge im Vergleich zu den Marken erstellt, um die wichtigsten Marken in der Auktion zu ermitteln. Und Ford war am meisten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Bar Diagram</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of cars by Brands (make)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of cars&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Brands&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Reg_EDA_19_0.png" src="_images/Reg_EDA_19_0.png" />
+</div>
+</div>
+<p>Insights finden</p>
+<p>Hier habe ich ein Diagramm erstellt, das die Anzahl der verkauften Fahrzeuge in Abhängigkeit von ihrem Preis zeigt. Die meisten Fahrzeuge wurden in einem Bereich von 10 000 bis 20 000 verkauft.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
+<span class="c1"># These are for plotting Histogram</span>
+<span class="c1"># Comment if you have any doubts</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">],</span><span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Selling Price&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Selling Price&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Freq&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Freq&#39;)
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_21_1.png" src="_images/Reg_EDA_21_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>   <span class="c1"># Describing the above graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    472336.000000
+mean      13690.403670
+std        9612.962279
+min           1.000000
+25%        7200.000000
+50%       12200.000000
+75%       18200.000000
+max      230000.000000
+Name: sellingprice, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Erstellung eines Diagramms, das zeigt, wie der Kilometerstand den Verkaufspreis von Gebrauchtwagen beeinflusst. Fahrzeuge mit einem Kilometerstand von weniger als 20 Kilometern erzielen den höchsten Preis beim Verkauf. Mit zunehmender Fahrleistung sinkt der Verkaufspreis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
+<span class="c1"># These are for plotting Scatter Plot</span>
+<span class="c1"># Comment if you have any doubts</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;odometer&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Odometer vS Selling Price Correlation&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Odometer&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Selling Price&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">xlabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;k&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()</span><span class="o">/</span><span class="mf">10e3</span><span class="p">]</span>
+<span class="n">ylabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;k&#39;</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span><span class="o">/</span><span class="mf">10e3</span><span class="p">]</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xlabels</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ylabels</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\2329879420.py:12: UserWarning: FixedFormatter should only be used together with FixedLocator
+  g.set_xticklabels(xlabels);
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\2329879420.py:13: UserWarning: FixedFormatter should only be used together with FixedLocator
+  g.set_yticklabels(ylabels);
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_24_1.png" src="_images/Reg_EDA_24_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Bar Diagram</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of Cars Sold by year of Brands&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Cars&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Total Cars&#39;)
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_25_1.png" src="_images/Reg_EDA_25_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
+<span class="c1"># These are for plotting Bar Plot</span>
+<span class="c1"># Comment if you have any doubts</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Models by Selling Price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Selling Price&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Selling Price&#39;)
+</pre></div>
+</div>
+<img alt="_images/Reg_EDA_26_1.png" src="_images/Reg_EDA_26_1.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="schlussfolgerung">
+<h1>Schlussfolgerung<a class="headerlink" href="#schlussfolgerung" title="Permalink to this headline">#</a></h1>
+<p>In diesem Notizbuch habe ich EDA auf dem Datensatz für Autoauktionen durchgeführt, um die Faktoren zu verstehen, die die Versteigerung von Gebrauchtwagen beeinflussen. Es handelte sich um einen großen Datensatz mit etwa 558T Zeilen. Ich habe die Nullwerte und irrelevanten Spalten gelöscht, um ein besseres Verständnis der Daten zu erhalten.</p>
+<p>In dieser Analyse habe ich einige Diagramme erstellt, um die Verteilung des Verkaufspreises nach verschiedenen Faktoren wie Kilometerstand, Baujahr des Modells und Marken des Fahrzeugs zu zeigen.</p>
+<p>Aus dieser Analyse konnte ich entnehmen, dass Faktoren wie Kilometerstand (die vom Fahrzeug zurückgelegte Strecke), Fahrzeugmarken und Baujahr des Modells die Versteigerung von Gebrauchtwagen hauptsächlich beeinflussen. Autos mit geringem Kilometerstand erzielen bei der Versteigerung einen guten Preis.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Reg_Modell2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Was beeinflusst den Verkaufspreis?</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Jermaine Ley<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
