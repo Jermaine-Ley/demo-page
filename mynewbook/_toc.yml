@@ -4,10 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
-- file: mymarkdownfile
 - file: Reg_Modell1
 - file: Reg_Modell2
 - file: Reg_EDA
