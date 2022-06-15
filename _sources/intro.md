@@ -1,11 +1,24 @@
-# Welcome to your Jupyter Book
+# Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Ziel:
+Das entwickeln von einen Prototyp für ein Dashboard, das eine Sensitivitätsanalyse enthält, die von einem Geschäftsanwender genutzt werden kann, um
+verschiedene Szenarien einfach zu simulieren und die Auswirkungen modellunabhängig zu verstehen.
 
-Check out the content pages bundled with this sample book to see more.
+Herausforderung: 
+
+Die Leistung der Simulation ist entscheidend für den Erfolg dieses Projekts. Bei langwierigen Simulationen leidet das Nutzererlebnis.
+
+Fokus: 
+- Geschäftliches Verständnis: Erkunden Sie das Thema Simulation, Was-wäre-wenn
+Szenarien, erklärbare KI im Bereich Data Science und Business
+Planung
+- Datenverständnis & -aufbereitung: Vorverarbeiten der Daten für
+Modellkompatibilität auf und schaffen die Möglichkeit, Preis- und
+und Volumenänderungen zu simulieren
+- Modellierung: Implementierung von 3 überwachten maschinellen Lernmodellen
+- Auswertung und Visualisierung: Aufbereitung der Ergebnisse und
+Simulation in einem Dashboard
+
 
 ```{tableofcontents}
 ```
