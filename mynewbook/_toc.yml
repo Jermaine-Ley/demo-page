@@ -3,6 +3,8 @@
 
 format: jb-book
 root: intro
+parts:
+  -caption: Modelle
 chapters:
 - file: Reg_Modell1
 - file: Reg_Modell2
