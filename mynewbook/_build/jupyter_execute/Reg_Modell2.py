@@ -65,6 +65,7 @@ df.duplicated().sum()
 
 # Dies gibt eine Serie mit dem Datentyp jeder Spalte zurück. Der Index des Ergebnisses entspricht den Spalten des ursprünglichen DataFrame. 
 # Spalten mit gemischten Typen werden mit dem Objekt dtype gespeichert.
+
 df.dtypes
 
 
@@ -87,7 +88,6 @@ df['sellingprice'].describe()
 
 # Die Verteilung scheint schräg nach rechts zu verlaufen, wobei der Großteil der Verkaufspreise zwischen 15000 und 30000 liegt. Es gibt Ausreißer > 60000. 75 % der Daten haben einen Verkaufspreis < 200K. Ich gehe davon aus, dass es sich bei den teuersten Marken um Oldtimer oder High-End-Modelle wie Ferrari, BMW usw. handeln sollte. Das wird vielleicht klar, wenn wir dies mit der Marke vergleichen. Werfen wir einen groben Blick auf die Top-End-Marken
 # 
-# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 # In[17]:
 
@@ -97,7 +97,7 @@ df.loc[df['sellingprice']>60000,'make'].value_counts()
 
 # Unsere Vermutung war richtig. Die Liste wird von BMW, Benz, Jaguar und Ferrari dominiert. Ein weiterer interessanter Punkt bei unserer Analyse ist die Tatsache, dass die Spalte "Marke" möglicherweise etwas bereinigt werden muss, da sich einige Marken zu wiederholen scheinen (BMW, bmw, Land Rover, land rover usw.). Der Einfachheit halber werden wir dies nicht tun und uns stattdessen auf die Gesamtanalyse konzentrieren
 # 
-# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
+# 
 
 # In[18]:
 
@@ -406,7 +406,7 @@ plt.subplots_adjust(hspace=0.45)
 # - Bei den insgesamt verkauften Einheiten dominieren Nissan, Ford, Hyundai und Chevrolet die Liste.
 # 
 # 
-# # Conclusion:
+# # Schlussfolgerung:
 # 
 # In this notebook, we have done an exploratory analytics on the car auction dataset - briefly we have seen what is the distribution of selling price look like , type & model of cars sold, how does each of the parameters like odometer,transmission affect the value of selling price.
 # 

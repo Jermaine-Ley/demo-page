@@ -3,9 +3,12 @@
 
 format: jb-book
 root: intro
-parts:
-  -caption: Modelle
 chapters:
-- file: Reg_Modell1
-- file: Reg_Modell2
-- file: Reg_EDA
+- file: Reg_EDA.ipynb
+- file: Reg_Modell1.ipynb
+- file: Reg_Modell2.ipynb
+- file: Struc_Keras_T.ipynb
+- file: Struc_Classifi.ipynb
+- file: Struc_SHAP.ipynb
+- file: Prüfungsleistung.md
+- file: Car_Classification.ipynb

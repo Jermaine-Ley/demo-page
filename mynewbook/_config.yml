@@ -3,7 +3,7 @@
 
 title: Das Projekt von JL132 im Modul Data Science & MLOps
 author: Jermaine Ley
-logo: logo.png
+logo: hdm-logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

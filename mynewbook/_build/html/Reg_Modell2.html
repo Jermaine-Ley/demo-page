@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exploratory Data Analysis (EDA) Auktion" href="Reg_EDA.html" />
+    <link rel="next" title="Keras" href="Struc_Keras_T.html" />
     <link rel="prev" title="Regressionsmodell" href="Reg_Modell1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
         
       
       
-      <img src="_static/logo.png" class="logo" alt="logo">
+      <img src="_static/hdm-logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Das Projekt von JL132 im Modul Data Science & MLOps</h1>
@@ -109,29 +109,14 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooksh
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mymarkdownfile.html">
-   Here’s my sample title
+  <a class="reference internal" href="Reg_EDA.html">
+   Exploratory Data Analysis (EDA) Auktion
   </a>
  </li>
  <li class="toctree-l1">
@@ -145,8 +130,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+  <a class="reference internal" href="Struc_Keras_T.html">
+   Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Struc_Classifi.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Struc_SHAP.html">
+   SHAP with structured data classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pr%C3%BCfungsleistung.html">
+   Prüfungsleistung
   </a>
  </li>
 </ul>
@@ -366,8 +366,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+  <a class="reference internal nav-link" href="#schlussfolgerung">
+   Schlussfolgerung:
   </a>
  </li>
 </ul>
@@ -400,8 +400,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+  <a class="reference internal nav-link" href="#schlussfolgerung">
+   Schlussfolgerung:
   </a>
  </li>
 </ul>
@@ -718,6 +718,7 @@ Der Einfachheit halber lassen wir diese Nullwerte weg und führen unsere Analyse
 
 <span class="c1"># Dies gibt eine Serie mit dem Datentyp jeder Spalte zurück. Der Index des Ergebnisses entspricht den Spalten des ursprünglichen DataFrame. </span>
 <span class="c1"># Spalten mit gemischten Typen werden mit dem Objekt dtype gespeichert.</span>
+
 <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
@@ -783,7 +784,6 @@ Name: sellingprice, dtype: float64
 </div>
 </div>
 <p>Die Verteilung scheint schräg nach rechts zu verlaufen, wobei der Großteil der Verkaufspreise zwischen 15000 und 30000 liegt. Es gibt Ausreißer &gt; 60000. 75 % der Daten haben einen Verkaufspreis &lt; 200K. Ich gehe davon aus, dass es sich bei den teuersten Marken um Oldtimer oder High-End-Modelle wie Ferrari, BMW usw. handeln sollte. Das wird vielleicht klar, wenn wir dies mit der Marke vergleichen. Werfen wir einen groben Blick auf die Top-End-Marken</p>
-<p>Übersetzt mit <a class="reference external" href="http://www.DeepL.com/Translator">www.DeepL.com/Translator</a> (kostenlose Version)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">60000</span><span class="p">,</span><span class="s1">&#39;make&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -822,7 +822,6 @@ Name: make, dtype: int64
 </div>
 </div>
 <p>Unsere Vermutung war richtig. Die Liste wird von BMW, Benz, Jaguar und Ferrari dominiert. Ein weiterer interessanter Punkt bei unserer Analyse ist die Tatsache, dass die Spalte “Marke” möglicherweise etwas bereinigt werden muss, da sich einige Marken zu wiederholen scheinen (BMW, bmw, Land Rover, land rover usw.). Der Einfachheit halber werden wir dies nicht tun und uns stattdessen auf die Gesamtanalyse konzentrieren</p>
-<p>Übersetzt mit <a class="reference external" href="http://www.DeepL.com/Translator">www.DeepL.com/Translator</a> (kostenlose Version)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;make&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
@@ -1439,8 +1438,8 @@ Welche Marken waren bei der Auktion am begehrtesten?</p>
 <li><p>Bei den insgesamt verkauften Einheiten dominieren Nissan, Ford, Hyundai und Chevrolet die Liste.</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
-<h1>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="schlussfolgerung">
+<h1>Schlussfolgerung:<a class="headerlink" href="#schlussfolgerung" title="Permalink to this headline">#</a></h1>
 <p>In this notebook, we have done an exploratory analytics on the car auction dataset - briefly we have seen what is the distribution of selling price look like , type &amp; model of cars sold, how does each of the parameters like odometer,transmission affect the value of selling price.</p>
 </section>
 
@@ -1478,10 +1477,10 @@ Welche Marken waren bei der Auktion am begehrtesten?</p>
             <p class="prev-next-title">Regressionsmodell</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="Reg_EDA.html" title="next page">
+    <a class='right-next' id="next-link" href="Struc_Keras_T.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exploratory Data Analysis (EDA) Auktion</p>
+        <p class="prev-next-title">Keras</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
