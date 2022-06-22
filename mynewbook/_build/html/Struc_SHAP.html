@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>SHAP with structured data classification &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <title>SHAP mit strukturierten Daten (Classification) &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -109,19 +109,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_Keras_T.html">
-   Keras
+   Keras Tuner
   </a>
  </li>
  <li class="toctree-l1">
@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   SHAP with structured data classification
+   SHAP mit strukturierten Daten (Classification)
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,7 +345,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>SHAP with structured data classification</h1>
+                <h1>SHAP mit strukturierten Daten (Classification)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -357,8 +357,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="shap-with-structured-data-classification">
-<h1>SHAP with structured data classification<a class="headerlink" href="#shap-with-structured-data-classification" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="shap-mit-strukturierten-daten-classification">
+<h1>SHAP mit strukturierten Daten (Classification)<a class="headerlink" href="#shap-mit-strukturierten-daten-classification" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -424,78 +424,58 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;car_prices.csv&#39;</span><span class="p">,</span><span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn_bad_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Mobile_Price_train.csv&#39;</span><span class="p">,</span><span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn_bad_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="c1"># Ausgabe </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      battery_power  blue  clock_speed  dual_sim  fc  four_g  int_memory  \
+0               842     0          2.2         0   1       0           7   
+1              1021     1          0.5         1   0       1          53   
+2               563     1          0.5         1   2       1          41   
+3               615     1          2.5         0   0       0          10   
+4              1821     1          1.2         0  13       1          44   
+...             ...   ...          ...       ...  ..     ...         ...   
+1995            794     1          0.5         1   0       1           2   
+1996           1965     1          2.6         1   0       0          39   
+1997           1911     0          0.9         1   1       1          36   
+1998           1512     0          0.9         0   4       1          46   
+1999            510     1          2.0         1   5       1          45   
+
+      m_dep  mobile_wt  n_cores  ...  px_height  px_width   ram  sc_h  sc_w  \
+0       0.6        188        2  ...         20       756  2549     9     7   
+1       0.7        136        3  ...        905      1988  2631    17     3   
+2       0.9        145        5  ...       1263      1716  2603    11     2   
+3       0.8        131        6  ...       1216      1786  2769    16     8   
+4       0.6        141        2  ...       1208      1212  1411     8     2   
+...     ...        ...      ...  ...        ...       ...   ...   ...   ...   
+1995    0.8        106        6  ...       1222      1890   668    13     4   
+1996    0.2        187        4  ...        915      1965  2032    11    10   
+1997    0.7        108        8  ...        868      1632  3057     9     1   
+1998    0.1        145        5  ...        336       670   869    18    10   
+1999    0.9        168        6  ...        483       754  3919    19     4   
+
+      talk_time  three_g  touch_screen  wifi  price_range  
+0            19        0             0     1            1  
+1             7        1             1     0            2  
+2             9        1             1     0            2  
+3            11        1             0     0            2  
+4            15        1             1     0            1  
+...         ...      ...           ...   ...          ...  
+1995         19        1             1     0            0  
+1996         16        1             1     1            2  
+1997          5        1             1     0            3  
+1998         19        1             1     1            0  
+1999          2        1             1     1            3  
+
+[2000 rows x 21 columns]
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
 The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
-
-
-b&#39;Skipping line 408163: expected 16 fields, saw 17\nSkipping line 417837: expected 16 fields, saw 17\nSkipping line 421291: expected 16 fields, saw 17\nSkipping line 424163: expected 16 fields, saw 17\n&#39;
-b&#39;Skipping line 427042: expected 16 fields, saw 17\nSkipping line 427045: expected 16 fields, saw 17\nSkipping line 434426: expected 16 fields, saw 17\nSkipping line 444503: expected 16 fields, saw 17\nSkipping line 453796: expected 16 fields, saw 17\n&#39;
-b&#39;Skipping line 461599: expected 16 fields, saw 17\nSkipping line 461614: expected 16 fields, saw 17\n&#39;
-b&#39;Skipping line 492486: expected 16 fields, saw 17\nSkipping line 497010: expected 16 fields, saw 17\nSkipping line 497013: expected 16 fields, saw 17\nSkipping line 499085: expected 16 fields, saw 17\nSkipping line 501457: expected 16 fields, saw 17\nSkipping line 505301: expected 16 fields, saw 17\nSkipping line 505308: expected 16 fields, saw 17\nSkipping line 520463: expected 16 fields, saw 17\n&#39;
-b&#39;Skipping line 528998: expected 16 fields, saw 17\nSkipping line 529011: expected 16 fields, saw 17\nSkipping line 529015: expected 16 fields, saw 17\nSkipping line 529624: expected 16 fields, saw 17\nSkipping line 548786: expected 16 fields, saw 17\nSkipping line 551224: expected 16 fields, saw 17\nSkipping line 554712: expected 16 fields, saw 17\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        year    make                model         trim       body  \
-0       2015     Kia              Sorento           LX        SUV   
-1       2015     Kia              Sorento           LX        SUV   
-2       2014     BMW             3 Series   328i SULEV      Sedan   
-3       2015   Volvo                  S60           T5      Sedan   
-4       2014     BMW  6 Series Gran Coupe         650i      Sedan   
-...      ...     ...                  ...          ...        ...   
-558806  2015     Kia                 K900       Luxury      Sedan   
-558807  2012     Ram                 2500  Power Wagon   Crew Cab   
-558808  2012     BMW                   X5    xDrive35d        SUV   
-558809  2015  Nissan               Altima        2.5 S      sedan   
-558810  2014    Ford                F-150          XLT  SuperCrew   
-
-       transmission                vin state  condition  odometer   color  \
-0         automatic  5xyktca69fg566472    ca        5.0   16639.0   white   
-1         automatic  5xyktca69fg561319    ca        5.0    9393.0   white   
-2         automatic  wba3c1c51ek116351    ca        4.5    1331.0    gray   
-3         automatic  yv1612tb4f1310987    ca        4.1   14282.0   white   
-4         automatic  wba6b2c57ed129731    ca        4.3    2641.0    gray   
-...             ...                ...   ...        ...       ...     ...   
-558806          NaN  knalw4d4xf6019304    in        4.5   18255.0  silver   
-558807    automatic  3c6td5et6cg112407    wa        5.0   54393.0   white   
-558808    automatic  5uxzw0c58cl668465    ca        4.8   50561.0   black   
-558809    automatic  1n4al3ap0fc216050    ga        3.8   16658.0   white   
-558810    automatic  1ftfw1et2eke87277    ca        3.4   15008.0    gray   
-
-       interior                                             seller    mmr  \
-0         black                            kia motors america, inc  20500   
-1         beige                            kia motors america, inc  20800   
-2         black             financial services remarketing (lease)  31900   
-3         black                            volvo na rep/world omni  27500   
-4         black             financial services remarketing (lease)  66000   
-...         ...                                                ...    ...   
-558806    black                                   avis corporation  35300   
-558807    black                                    i -5 uhlmann rv  30200   
-558808    black             financial services remarketing (lease)  29800   
-558809    black  enterprise vehicle exchange / tra / rental / t...  15100   
-558810     gray                   ford motor credit company,llc pd  29600   
-
-        sellingprice                                 saledate  
-0              21500  Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
-1              21500  Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
-2              30000  Thu Jan 15 2015 04:30:00 GMT-0800 (PST)  
-3              27750  Thu Jan 29 2015 04:30:00 GMT-0800 (PST)  
-4              67000  Thu Dec 18 2014 12:30:00 GMT-0800 (PST)  
-...              ...                                      ...  
-558806         33000  Thu Jul 09 2015 07:00:00 GMT-0700 (PDT)  
-558807         30800  Wed Jul 08 2015 09:30:00 GMT-0700 (PDT)  
-558808         34000  Wed Jul 08 2015 09:30:00 GMT-0700 (PDT)  
-558809         11100  Thu Jul 09 2015 06:45:00 GMT-0700 (PDT)  
-558810         26700  Thu May 28 2015 05:30:00 GMT-0700 (PDT)  
-
-[558811 rows x 16 columns]
 </pre></div>
 </div>
 </div>
@@ -508,28 +488,33 @@ b&#39;Skipping line 528998: expected 16 fields, saw 17\nSkipping line 529011: ex
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 558811 entries, 0 to 558810
-Data columns (total 16 columns):
- #   Column        Non-Null Count   Dtype  
----  ------        --------------   -----  
- 0   year          558811 non-null  int64  
- 1   make          548510 non-null  object 
- 2   model         548412 non-null  object 
- 3   trim          548160 non-null  object 
- 4   body          545616 non-null  object 
- 5   transmission  493458 non-null  object 
- 6   vin           558811 non-null  object 
- 7   state         558811 non-null  object 
- 8   condition     547017 non-null  float64
- 9   odometer      558717 non-null  float64
- 10  color         558062 non-null  object 
- 11  interior      558062 non-null  object 
- 12  seller        558811 non-null  object 
- 13  mmr           558811 non-null  int64  
- 14  sellingprice  558811 non-null  int64  
- 15  saledate      558811 non-null  object 
-dtypes: float64(2), int64(3), object(11)
-memory usage: 68.2+ MB
+RangeIndex: 2000 entries, 0 to 1999
+Data columns (total 21 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   battery_power  2000 non-null   int64  
+ 1   blue           2000 non-null   int64  
+ 2   clock_speed    2000 non-null   float64
+ 3   dual_sim       2000 non-null   int64  
+ 4   fc             2000 non-null   int64  
+ 5   four_g         2000 non-null   int64  
+ 6   int_memory     2000 non-null   int64  
+ 7   m_dep          2000 non-null   float64
+ 8   mobile_wt      2000 non-null   int64  
+ 9   n_cores        2000 non-null   int64  
+ 10  pc             2000 non-null   int64  
+ 11  px_height      2000 non-null   int64  
+ 12  px_width       2000 non-null   int64  
+ 13  ram            2000 non-null   int64  
+ 14  sc_h           2000 non-null   int64  
+ 15  sc_w           2000 non-null   int64  
+ 16  talk_time      2000 non-null   int64  
+ 17  three_g        2000 non-null   int64  
+ 18  touch_screen   2000 non-null   int64  
+ 19  wifi           2000 non-null   int64  
+ 20  price_range    2000 non-null   int64  
+dtypes: float64(2), int64(19)
+memory usage: 328.2 KB
 </pre></div>
 </div>
 </div>
@@ -537,7 +522,7 @@ memory usage: 68.2+ MB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make target variable</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +530,7 @@ memory usage: 68.2+ MB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare features</span>
-<span class="n">list_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;mmr&#39;</span><span class="p">]</span>
+<span class="n">list_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ram&#39;</span><span class="p">,</span> <span class="s1">&#39;battery_power&#39;</span><span class="p">,</span> <span class="s1">&#39;touch_screen&#39;</span><span class="p">]</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">list_numerical</span><span class="p">]</span>
 </pre></div>
@@ -601,38 +586,38 @@ memory usage: 68.2+ MB
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/15
-34389/34389 [==============================] - 126s 4ms/step - loss: -21376061440.0000 - accuracy: 8.9476e-06 - val_loss: -77342007296.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 2s 6ms/step - loss: -0.0750 - accuracy: 0.3425 - val_loss: -1.1525 - val_accuracy: 0.3100
 Epoch 2/15
-34389/34389 [==============================] - 247s 7ms/step - loss: -250417594368.0000 - accuracy: 8.9476e-06 - val_loss: -507227013120.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -2.9759 - accuracy: 0.3512 - val_loss: -6.1641 - val_accuracy: 0.3750
 Epoch 3/15
-34389/34389 [==============================] - 185s 5ms/step - loss: -978811224064.0000 - accuracy: 8.9476e-06 - val_loss: -1578237427712.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -10.2374 - accuracy: 0.4050 - val_loss: -17.8598 - val_accuracy: 0.3925
 Epoch 4/15
-34389/34389 [==============================] - 101s 3ms/step - loss: -2484117700608.0000 - accuracy: 8.9476e-06 - val_loss: -3568974168064.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -26.2784 - accuracy: 0.4238 - val_loss: -42.2560 - val_accuracy: 0.4075
 Epoch 5/15
-34389/34389 [==============================] - 98s 3ms/step - loss: -5068060360704.0000 - accuracy: 8.9476e-06 - val_loss: -6768350986240.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -56.1923 - accuracy: 0.4300 - val_loss: -83.5196 - val_accuracy: 0.4075
 Epoch 6/15
-34389/34389 [==============================] - 95s 3ms/step - loss: -8977401249792.0000 - accuracy: 8.9476e-06 - val_loss: -11444355596288.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -104.1307 - accuracy: 0.4319 - val_loss: -146.4846 - val_accuracy: 0.4175
 Epoch 7/15
-34389/34389 [==============================] - 109s 3ms/step - loss: -14532391993344.0000 - accuracy: 8.9476e-06 - val_loss: -17892022157312.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 4ms/step - loss: -171.9253 - accuracy: 0.4369 - val_loss: -231.9781 - val_accuracy: 0.4225
 Epoch 8/15
-34389/34389 [==============================] - 107s 3ms/step - loss: -21965744111616.0000 - accuracy: 8.9476e-06 - val_loss: -26358168158208.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -261.8923 - accuracy: 0.4369 - val_loss: -342.2440 - val_accuracy: 0.4275
 Epoch 9/15
-34389/34389 [==============================] - 70s 2ms/step - loss: -31563299422208.0000 - accuracy: 8.9476e-06 - val_loss: -37168814751744.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -376.6342 - accuracy: 0.4387 - val_loss: -481.0874 - val_accuracy: 0.4275
 Epoch 10/15
-34389/34389 [==============================] - 69s 2ms/step - loss: -43661156941824.0000 - accuracy: 8.9476e-06 - val_loss: -50556496248832.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 4ms/step - loss: -517.0664 - accuracy: 0.4406 - val_loss: -646.4553 - val_accuracy: 0.4275
 Epoch 11/15
-34389/34389 [==============================] - 71s 2ms/step - loss: -58503737638912.0000 - accuracy: 8.9476e-06 - val_loss: -66872837931008.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 4ms/step - loss: -685.0467 - accuracy: 0.4387 - val_loss: -846.1766 - val_accuracy: 0.4275
 Epoch 12/15
-34389/34389 [==============================] - 71s 2ms/step - loss: -76361934831616.0000 - accuracy: 8.9476e-06 - val_loss: -86309624348672.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -883.3968 - accuracy: 0.4381 - val_loss: -1074.9296 - val_accuracy: 0.4275
 Epoch 13/15
-34389/34389 [==============================] - 71s 2ms/step - loss: -97484852428800.0000 - accuracy: 8.9476e-06 - val_loss: -109171433275392.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -1113.0900 - accuracy: 0.4381 - val_loss: -1344.2678 - val_accuracy: 0.4275
 Epoch 14/15
-34389/34389 [==============================] - 68s 2ms/step - loss: -122114040397824.0000 - accuracy: 8.9476e-06 - val_loss: -135722694606848.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -1373.2003 - accuracy: 0.4375 - val_loss: -1641.4926 - val_accuracy: 0.4275
 Epoch 15/15
-34389/34389 [==============================] - 68s 2ms/step - loss: -150738168709120.0000 - accuracy: 8.9476e-06 - val_loss: -166283769282560.0000 - val_accuracy: 0.0000e+00
+124/124 [==============================] - 0s 3ms/step - loss: -1667.8933 - accuracy: 0.4387 - val_loss: -1980.9962 - val_accuracy: 0.4300
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x2275a298fa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x226b9edcf10&gt;
 </pre></div>
 </div>
 </div>
@@ -657,27 +642,27 @@ Epoch 15/15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3493/3493 [==============================] - 6s 2ms/step - loss: -166284104826880.0000 - accuracy: 0.0000e+00
-Accuracy 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 0s 2ms/step - loss: -1980.9960 - accuracy: 0.4300
+Accuracy 0.4300000071525574
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;classifier_hd&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;classifier_mobile_hd&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Assets written to: classifier_hd\assets
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Assets written to: classifier_mobile_hd\assets
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reloaded_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;classifier_hd&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reloaded_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;classifier_mobile_hd&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -695,6 +680,11 @@ Accuracy 0.0
     <span class="s2">&quot;This particular patient had a </span><span class="si">%.1f</span><span class="s2"> percent probability &quot;</span>
     <span class="s2">&quot;of having a heart disease, as evaluated by our model.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],)</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This particular patient had a 100.0 percent probability of having a heart disease, as evaluated by our model.
 </pre></div>
 </div>
 </div>
@@ -721,7 +711,7 @@ Accuracy 0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id='iWRF8VS982SME9OLLTIHQ'>
+<div id='iP1CL3RJEUH9KTJQANABD'>
 <div style='color: #900; text-align: center;'>
   <b>Visualization omitted, Javascript library not loaded!</b><br>
   Have you run `initjs()` in this notebook? If this notebook was from another
@@ -731,8 +721,8 @@ Accuracy 0.0
 </div></div>
  <script>
    if (window.SHAP) SHAP.ReactDom.render(
-    SHAP.React.createElement(SHAP.AdditiveForceVisualizer, {"outNames": ["f(x)"], "baseValue": 1.0, "outValue": 1.0, "link": "identity", "featureNames": ["year", "mmr"], "features": {}, "plot_cmap": "RdBu", "labelMargin": 20}),
-    document.getElementById('iWRF8VS982SME9OLLTIHQ')
+    SHAP.React.createElement(SHAP.AdditiveForceVisualizer, {"outNames": ["f(x)"], "baseValue": 0.740000028253837, "outValue": 1.000000011682304, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen"], "features": {"0": {"effect": 0.24333959031249225, "value": 1.0754324267188273}, "1": {"effect": 0.003324926731086947, "value": 0.16839081553631144}, "2": {"effect": 0.013335466384887695, "value": -1.0100505037878158}}, "plot_cmap": "RdBu", "labelMargin": 20}),
+    document.getElementById('iP1CL3RJEUH9KTJQANABD')
   );
 </script></div></div>
 </div>
@@ -743,7 +733,7 @@ Accuracy 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 50/50 [00:01&lt;00:00, 35.39it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 50/50 [00:02&lt;00:00, 22.91it/s]
 </pre></div>
 </div>
 </div>
@@ -756,7 +746,7 @@ Accuracy 0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id='iUQTGIEWSW88NTX82QKC3'>
+<div id='iA9OXV4S5EYLVS5AZ6E4D'>
 <div style='color: #900; text-align: center;'>
   <b>Visualization omitted, Javascript library not loaded!</b><br>
   Have you run `initjs()` in this notebook? If this notebook was from another
@@ -766,8 +756,8 @@ Accuracy 0.0
 </div></div>
  <script>
    if (window.SHAP) SHAP.ReactDom.render(
-    SHAP.React.createElement(SHAP.AdditiveForceArrayVisualizer, {"outNames": ["f(x)"], "baseValue": 1.0, "link": "identity", "featureNames": ["year", "mmr"], "explanations": [{"outValue": 1.0, "simIndex": 25.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.1567706719240417}}}, {"outValue": 1.0, "simIndex": 26.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": -0.1825809516572311}}}, {"outValue": 1.0, "simIndex": 27.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.2187153432836962}}}, {"outValue": 1.0, "simIndex": 24.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": -0.3735770216828324}}}, {"outValue": 1.0, "simIndex": 28.0, "features": {"0": {"effect": 0.0, "value": -0.0088946460906741}, "1": {"effect": 0.0, "value": -0.3787390776294703}}}, {"outValue": 1.0, "simIndex": 23.0, "features": {"0": {"effect": 0.0, "value": -2.781088282861904}, "1": {"effect": 0.0, "value": -1.2175731689581246}}}, {"outValue": 1.0, "simIndex": 29.0, "features": {"0": {"effect": 0.0, "value": -0.5129298527763523}, "1": {"effect": 0.0, "value": 0.16327679676750642}}}, {"outValue": 1.0, "simIndex": 22.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": 1.6551109653458518}}}, {"outValue": 1.0, "simIndex": 30.0, "features": {"0": {"effect": 0.0, "value": -0.7649474561191913}, "1": {"effect": 0.0, "value": -0.8123517771470516}}}, {"outValue": 1.0, "simIndex": 21.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.3749210905796592}}}, {"outValue": 1.0, "simIndex": 31.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": 1.7377038604920578}}}, {"outValue": 1.0, "simIndex": 20.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.06385366488456}}}, {"outValue": 1.0, "simIndex": 32.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": -0.34260468600300514}}}, {"outValue": 1.0, "simIndex": 19.0, "features": {"0": {"effect": 0.0, "value": 1.2511933706235214}, "1": {"effect": 0.0, "value": 1.355711720440855}}}, {"outValue": 1.0, "simIndex": 33.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.39556931436621073}}}, {"outValue": 1.0, "simIndex": 18.0, "features": {"0": {"effect": 0.0, "value": -0.0088946460906741}, "1": {"effect": 0.0, "value": -0.5981264553615799}}}, {"outValue": 1.0, "simIndex": 34.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": -0.5000473923754603}}}, {"outValue": 1.0, "simIndex": 17.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.3233005311132805}}}, {"outValue": 1.0, "simIndex": 35.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.3167944062698158}}}, {"outValue": 1.0, "simIndex": 16.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.4613319727756762}}}, {"outValue": 1.0, "simIndex": 36.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.9427472447098253}}}, {"outValue": 1.0, "simIndex": 15.0, "features": {"0": {"effect": 0.0, "value": -0.5129298527763523}, "1": {"effect": 0.0, "value": -0.5465058958952012}}}, {"outValue": 1.0, "simIndex": 37.0, "features": {"0": {"effect": 0.0, "value": -1.2689826628048695}, "1": {"effect": 0.0, "value": -0.2961461824832643}}}, {"outValue": 1.0, "simIndex": 14.0, "features": {"0": {"effect": 0.0, "value": 1.2511933706235214}, "1": {"effect": 0.0, "value": 4.9794749949806425}}}, {"outValue": 1.0, "simIndex": 38.0, "features": {"0": {"effect": 0.0, "value": -3.7891586962332604}, "1": {"effect": 0.0, "value": -1.367272791410623}}}, {"outValue": 1.0, "simIndex": 13.0, "features": {"0": {"effect": 0.0, "value": -1.0169650594620305}, "1": {"effect": 0.0, "value": -1.32597634383752}}}, {"outValue": 1.0, "simIndex": 39.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": 1.603490405879473}}}, {"outValue": 1.0, "simIndex": 12.0, "features": {"0": {"effect": 0.0, "value": -1.0169650594620305}, "1": {"effect": 0.0, "value": -1.039482238799118}}}, {"outValue": 1.0, "simIndex": 40.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": 0.7052926711644831}}}, {"outValue": 1.0, "simIndex": 11.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.5504309927653469}}}, {"outValue": 1.0, "simIndex": 41.0, "features": {"0": {"effect": 0.0, "value": -1.5210002661477087}, "1": {"effect": 0.0, "value": -1.1401423297585567}}}, {"outValue": 1.0, "simIndex": 10.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 2.584281035740669}}}, {"outValue": 1.0, "simIndex": 42.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": 0.426541650046038}}}, {"outValue": 1.0, "simIndex": 9.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": 0.6639962235913801}}}, {"outValue": 1.0, "simIndex": 43.0, "features": {"0": {"effect": 0.0, "value": 0.24312295725216498}, "1": {"effect": 0.0, "value": 0.02390128620828385}}}, {"outValue": 1.0, "simIndex": 8.0, "features": {"0": {"effect": 0.0, "value": -0.0088946460906741}, "1": {"effect": 0.0, "value": 0.5968894962850878}}}, {"outValue": 1.0, "simIndex": 44.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.21489735623388517}}}, {"outValue": 1.0, "simIndex": 7.0, "features": {"0": {"effect": 0.0, "value": -0.2609122494335132}, "1": {"effect": 0.0, "value": -0.6807193505077859}}}, {"outValue": 1.0, "simIndex": 45.0, "features": {"0": {"effect": 0.0, "value": 0.9991757672806822}, "1": {"effect": 0.0, "value": 0.21489735623388517}}}, {"outValue": 1.0, "simIndex": 6.0, "features": {"0": {"effect": 0.0, "value": -0.0088946460906741}, "1": {"effect": 0.0, "value": 0.17360090866078218}}}, {"outValue": 1.0, "simIndex": 46.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.1567706719240417}}}, {"outValue": 1.0, "simIndex": 5.0, "features": {"0": {"effect": 0.0, "value": -3.2851234895475825}, "1": {"effect": 0.0, "value": -1.129818217865281}}}, {"outValue": 1.0, "simIndex": 47.0, "features": {"0": {"effect": 0.0, "value": -2.529070679519065}, "1": {"effect": 0.0, "value": -1.3208142878908822}}}, {"outValue": 1.0, "simIndex": 4.0, "features": {"0": {"effect": 0.0, "value": -0.5129298527763523}, "1": {"effect": 0.0, "value": -1.0059288751459718}}}, {"outValue": 1.0, "simIndex": 48.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": 0.4213795940994001}}}, {"outValue": 1.0, "simIndex": 3.0, "features": {"0": {"effect": 0.0, "value": -0.0088946460906741}, "1": {"effect": 0.0, "value": 0.00841511836837023}}}, {"outValue": 1.0, "simIndex": 49.0, "features": {"0": {"effect": 0.0, "value": -2.529070679519065}, "1": {"effect": 0.0, "value": -0.8588102806667925}}}, {"outValue": 1.0, "simIndex": 2.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": 1.4589528393736126}}}, {"outValue": 1.0, "simIndex": 50.0, "features": {"0": {"effect": 0.0, "value": 0.7471581639378432}, "1": {"effect": 0.0, "value": 0.3800831465262971}}}, {"outValue": 1.0, "simIndex": 1.0, "features": {"0": {"effect": 0.0, "value": 0.4951405605950041}, "1": {"effect": 0.0, "value": -0.4793991685889088}}}], "plot_cmap": "RdBu", "ordering_keys": null, "ordering_keys_time_format": null}),
-    document.getElementById('iUQTGIEWSW88NTX82QKC3')
+    SHAP.React.createElement(SHAP.AdditiveForceArrayVisualizer, {"outNames": ["f(x)"], "baseValue": 0.740000028253837, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen"], "explanations": [{"outValue": 4.231059924642011e-08, "simIndex": 1.0, "features": {"0": {"effect": -0.7035897908111413, "value": -1.5903122100572478}, "1": {"effect": -0.06300495316584903, "value": -0.05176869258657626}, "2": {"effect": 0.02659475803375244, "value": -1.0100505037878158}}}, {"outValue": 1.000000018096212, "simIndex": 27.0, "features": {"0": {"effect": 0.23684363129238284, "value": 0.24608965083293727}, "1": {"effect": 0.009820892165104567, "value": 0.2228632711543455}, "2": {"effect": 0.013335466384887695, "value": -1.0100505037878158}}}, {"outValue": 1.0000000112665133, "simIndex": 46.0, "features": {"0": {"effect": 0.3551481291651726, "value": 0.4506485274744347}, "1": {"effect": -0.08774548768997195, "value": -1.538412793828756}, "2": {"effect": -0.007402658462524414, "value": 0.9900495037128095}}}, {"outValue": 1.0000000072307822, "simIndex": 33.0, "features": {"0": {"effect": 0.28435453431059915, "value": -0.1463671984702071}, "1": {"effect": -0.012177266801397024, "value": 0.05036716169723762}, "2": {"effect": -0.01217728853225708, "value": 0.9900495037128095}}}, {"outValue": 1.0000000044368145, "simIndex": 32.0, "features": {"0": {"effect": 0.2800031894197067, "value": 0.948624435316632}, "1": {"effect": -0.010001404831806837, "value": 0.08441244645850891}, "2": {"effect": -0.010001808404922485, "value": 0.9900495037128095}}}, {"outValue": 1.0000000286512014, "simIndex": 35.0, "features": {"0": {"effect": 0.3072283466657003, "value": -0.07694676522083015}, "1": {"effect": -0.03445671002070111, "value": -0.4171880823575548}, "2": {"effect": -0.012771636247634888, "value": 0.9900495037128095}}}, {"outValue": 1.0000000323764917, "simIndex": 22.0, "features": {"0": {"effect": 0.22999324773748717, "value": -0.1648793140033743}, "1": {"effect": 0.04000674684842426, "value": 0.7244637999704092}, "2": {"effect": -0.009999990463256836, "value": 0.9900495037128095}}}, {"outValue": -3.6346479159732326e-09, "simIndex": 50.0, "features": {"0": {"effect": -0.4532613232731819, "value": -1.047907224935449}, "1": {"effect": -0.3133708387613296, "value": -1.1525662332010147}, "2": {"effect": 0.02663213014602661, "value": -1.0100505037878158}}}, {"outValue": 1.0000000286512014, "simIndex": 26.0, "features": {"0": {"effect": 0.22660933931668598, "value": -0.24355580501933483}, "1": {"effect": 0.026693721612294524, "value": 0.3885503236591991}, "2": {"effect": 0.006696939468383789, "value": -1.0100505037878158}}}, {"outValue": 1.0000000149918036, "simIndex": 20.0, "features": {"0": {"effect": 0.2099992148578167, "value": 1.4142041409757868}, "1": {"effect": 0.03999863564968109, "value": 0.53381020530729}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000062994594, "simIndex": 6.0, "features": {"0": {"effect": -0.2691900084416071, "value": -1.397786208512309}, "1": {"effect": 0.554594946404298, "value": 1.7049680010950226}, "2": {"effect": -0.02540495991706848, "value": 0.9900495037128095}}}, {"outValue": -3.6346479159732326e-09, "simIndex": 5.0, "features": {"0": {"effect": -0.8204947188496589, "value": -1.647699768210066}, "1": {"effect": 0.06049083173274988, "value": 1.4938872355751405}, "2": {"effect": 0.020003855228424072, "value": -1.0100505037878158}}}, {"outValue": 1.000000016233567, "simIndex": 11.0, "features": {"0": {"effect": 0.13800996045271552, "value": 0.6977852698422166}, "1": {"effect": 0.11199334512154263, "value": 1.6595742880799942}, "2": {"effect": 0.009996682405471802, "value": -1.0100505037878158}}}, {"outValue": 1.0000000199588572, "simIndex": 16.0, "features": {"0": {"effect": 0.19999901826183, "value": -0.4286769603510067}, "1": {"effect": 0.04999888191620508, "value": 1.0286016771710995}, "2": {"effect": 0.010002091526985168, "value": -1.0100505037878158}}}, {"outValue": 1.0000000149918036, "simIndex": 7.0, "features": {"0": {"effect": -0.023046676069498034, "value": -0.9849660321226806}, "1": {"effect": 0.3065046370029449, "value": 0.5179224057520301}, "2": {"effect": -0.023457974195480347, "value": 0.9900495037128095}}}, {"outValue": 4.1068835665569736e-08, "simIndex": 48.0, "features": {"0": {"effect": -0.35766229033470154, "value": -0.8387203194106598}, "1": {"effect": -0.36568195372819895, "value": -1.159375290153269}, "2": {"effect": -0.01665574312210083, "value": 0.9900495037128095}}}, {"outValue": 1.0000000311347281, "simIndex": 23.0, "features": {"0": {"effect": 0.23011556516091025, "value": 1.4595588240320463}, "1": {"effect": 0.039942214886347444, "value": 0.592822032226827}, "2": {"effect": -0.010057777166366577, "value": 0.9900495037128095}}}, {"outValue": 1.0000000236841475, "simIndex": 21.0, "features": {"0": {"effect": 0.22000017265478772, "value": 0.23775919884301203}, "1": {"effect": 0.04999981323877967, "value": 0.7902846838422004}, "2": {"effect": -0.009999990463256836, "value": 0.9900495037128095}}}, {"outValue": 1.0000000212006208, "simIndex": 13.0, "features": {"0": {"effect": 0.16512421270211539, "value": 1.4697404875752882}, "1": {"effect": 0.07974834491809207, "value": 1.4757297503691291}, "2": {"effect": 0.015127435326576233, "value": -1.0100505037878158}}}, {"outValue": 1.0000000062994596, "simIndex": 45.0, "features": {"0": {"effect": 0.3537929182251295, "value": 0.296997968549147}, "1": {"effect": -0.0869341144959132, "value": -1.4952887664644792}, "2": {"effect": -0.00685882568359375, "value": 0.9900495037128095}}}, {"outValue": 2.9892964881206296e-08, "simIndex": 4.0, "features": {"0": {"effect": -0.7466677241027354, "value": -1.506082084381337}, "1": {"effect": -0.006667740643024445, "value": 0.8334087112064774}, "2": {"effect": 0.013335466384887695, "value": -1.0100505037878158}}}, {"outValue": 1.0000000149918036, "simIndex": 29.0, "features": {"0": {"effect": 0.27996839955449104, "value": 0.9597317046365323}, "1": {"effect": -0.029985807836055756, "value": -0.1493651755688873}, "2": {"effect": 0.01001739501953125, "value": -1.0100505037878158}}}, {"outValue": 1.0000000038159327, "simIndex": 40.0, "features": {"0": {"effect": 0.32953628897666926, "value": -0.42960256612766506}, "1": {"effect": -0.0597681254148483, "value": -0.7326743878120021}, "2": {"effect": -0.009768187999725342, "value": 0.9900495037128095}}}, {"outValue": -4.876411385801305e-09, "simIndex": 2.0, "features": {"0": {"effect": -0.7171652975181739, "value": -1.6949056628196422}, "1": {"effect": -0.03570725272099173, "value": -0.1516348612196387}, "2": {"effect": 0.012872517108917236, "value": -1.0100505037878158}}}, {"outValue": 1.0000000143709218, "simIndex": 34.0, "features": {"0": {"effect": 0.30666655736664933, "value": -0.439784229670907}, "1": {"effect": -0.033333131422599166, "value": -0.26284945810645827}, "2": {"effect": -0.013333439826965332, "value": 0.9900495037128095}}}, {"outValue": 1.0000000143709218, "simIndex": 30.0, "features": {"0": {"effect": 0.27999918597439927, "value": 0.6005966632930889}, "1": {"effect": -0.030001336087783187, "value": -0.3445581415335094}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000236841475, "simIndex": 39.0, "features": {"0": {"effect": 0.33043911556402844, "value": 1.3614446117062602}, "1": {"effect": -0.08044127126534781, "value": -1.3227926570073711}, "2": {"effect": 0.010002151131629944, "value": -1.0100505037878158}}}, {"outValue": 1.0000000212006208, "simIndex": 38.0, "features": {"0": {"effect": 0.3133318399389585, "value": 0.5719028842166798}, "1": {"effect": -0.06666667262713116, "value": -1.1026331488844836}, "2": {"effect": 0.01333482563495636, "value": -1.0100505037878158}}}, {"outValue": 1.0000000298929648, "simIndex": 17.0, "features": {"0": {"effect": 0.20662507787346837, "value": -0.48236209539719155}, "1": {"effect": 0.046685852110385895, "value": 0.8402177681587316}, "2": {"effect": 0.0066890716552734375, "value": -1.0100505037878158}}}, {"outValue": 6.29945962060674e-09, "simIndex": 49.0, "features": {"0": {"effect": -0.3716406549016635, "value": -0.8812981851369444}, "1": {"effect": -0.34836707512537635, "value": -1.1956902605652917}, "2": {"effect": -0.019992291927337646, "value": 0.9900495037128095}}}, {"outValue": 3.237649170984014e-08, "simIndex": 3.0, "features": {"0": {"effect": -0.7197882669667403, "value": -1.7134177783528095}, "1": {"effect": -0.030213865141073826, "value": -0.39903059715154343}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000087829863, "simIndex": 42.0, "features": {"0": {"effect": 0.33666739861170447, "value": -0.416644085254448}, "1": {"effect": -0.06333406766255698, "value": -0.9278673537766242}, "2": {"effect": -0.013333350419998169, "value": 0.9900495037128095}}}, {"outValue": 1.000000005057696, "simIndex": 41.0, "features": {"0": {"effect": 0.3319898980359236, "value": 0.8051555399345863}, "1": {"effect": -0.060994950433572115, "value": -0.7894165290807876}, "2": {"effect": -0.010994970798492432, "value": 0.9900495037128095}}}, {"outValue": 1.000000020579739, "simIndex": 28.0, "features": {"0": {"effect": 0.2799287121742964, "value": 0.36549279602186563}, "1": {"effect": -0.02996596321463585, "value": -0.14255611861663303}, "2": {"effect": 0.010037243366241455, "value": -1.0100505037878158}}}, {"outValue": 1.0000000286512014, "simIndex": 9.0, "features": {"0": {"effect": 0.030750152965386718, "value": -0.7776303381512082}, "1": {"effect": 0.2392498378952344, "value": 1.280536784404507}, "2": {"effect": -0.009999990463256836, "value": 0.9900495037128095}}}, {"outValue": 1.0000000323764917, "simIndex": 43.0, "features": {"0": {"effect": 0.3366677624483903, "value": -0.38147106574143036}, "1": {"effect": -0.06333443770805994, "value": -0.9301370394273756}, "2": {"effect": -0.013333320617675781, "value": 0.9900495037128095}}}, {"outValue": 1.000000005057696, "simIndex": 44.0, "features": {"0": {"effect": 0.33700668687621754, "value": -0.07139313056088}, "1": {"effect": -0.06367335965236029, "value": -0.9619126385378955}, "2": {"effect": -0.013333350419998169, "value": 0.9900495037128095}}}, {"outValue": 1.000000016233567, "simIndex": 25.0, "features": {"0": {"effect": 0.24666912357012433, "value": 1.2716608513703993}, "1": {"effect": 0.026665436724821717, "value": 0.39308969496070195}, "2": {"effect": -0.013334572315216064, "value": 0.9900495037128095}}}, {"outValue": 1.000000016233567, "simIndex": 18.0, "features": {"0": {"effect": 0.20999892304340997, "value": -0.17506097754661623}, "1": {"effect": 0.03999892870585123, "value": 0.5792039183223184}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000323764917, "simIndex": 24.0, "features": {"0": {"effect": 0.23666034017999968, "value": 0.7912714532847109}, "1": {"effect": 0.036669825514157595, "value": 0.5474283192117985}, "2": {"effect": -0.013330161571502686, "value": 0.9900495037128095}}}, {"outValue": 1.0000000257020132, "simIndex": 12.0, "features": {"0": {"effect": 0.15801191423088312, "value": -0.7137635395617814}, "1": {"effect": 0.09163433918729424, "value": -0.4058396541037977}, "2": {"effect": 0.01035374402999878, "value": -1.0100505037878158}}}, {"outValue": 1.0000000236841475, "simIndex": 14.0, "features": {"0": {"effect": 0.16666557143131894, "value": 0.8375517421176288}, "1": {"effect": 0.076665627459685, "value": 1.4416844656078578}, "2": {"effect": 0.01666879653930664, "value": -1.0100505037878158}}}, {"outValue": 1.0000000137500402, "simIndex": 31.0, "features": {"0": {"effect": 0.2800003488858541, "value": 1.0476642534190765}, "1": {"effect": -0.03000249962011975, "value": -0.3581762554380179}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000187170939, "simIndex": 37.0, "features": {"0": {"effect": 0.31332218647003174, "value": 1.6382007389271096}, "1": {"effect": -0.06664760410785675, "value": -1.0527000645679523}, "2": {"effect": 0.013325408101081848, "value": -1.0100505037878158}}}, {"outValue": 1.0000000174753305, "simIndex": 8.0, "features": {"0": {"effect": -0.016537046680847794, "value": -0.9534954357162965}, "1": {"effect": 0.2532670696576436, "value": 0.8606449390154944}, "2": {"effect": 0.02326996624469757, "value": -1.0100505037878158}}}, {"outValue": 3.361825506864591e-08, "simIndex": 47.0, "features": {"0": {"effect": -0.20326752215623856, "value": -0.6600784045155965}, "1": {"effect": -0.3634656444191932, "value": -1.1525662332010147}, "2": {"effect": -0.17326682806015015, "value": 0.9900495037128095}}}, {"outValue": 0.9999752374651467, "simIndex": 15.0, "features": {"0": {"effect": 0.18312549094359076, "value": -0.7045074817951977}, "1": {"effect": 0.10342233317593735, "value": -0.4988967657846059}, "2": {"effect": -0.026572614908218384, "value": 0.9900495037128095}}}, {"outValue": 1.000000016233567, "simIndex": 19.0, "features": {"0": {"effect": 0.20999892304340997, "value": 0.6385465001360816}, "1": {"effect": 0.03999892870585123, "value": 0.5973614035283298}, "2": {"effect": 0.01000213623046875, "value": -1.0100505037878158}}}, {"outValue": 1.0000000125082766, "simIndex": 36.0, "features": {"0": {"effect": 0.31000009799997014, "value": 1.4234601987423703}, "1": {"effect": -0.04000021268924078, "value": -0.5442904787996343}, "2": {"effect": -0.009999901056289673, "value": 0.9900495037128095}}}, {"outValue": 1.0000000213800944, "simIndex": 10.0, "features": {"0": {"effect": 0.08236980171932373, "value": -0.7544901937347492}, "1": {"effect": 0.1587058209988754, "value": 0.15704238728255435}, "2": {"effect": 0.018924370408058167, "value": -1.0100505037878158}}}], "plot_cmap": "RdBu", "ordering_keys": null, "ordering_keys_time_format": null}),
+    document.getElementById('iA9OXV4S5EYLVS5AZ6E4D')
   );
 </script></div></div>
 </div>

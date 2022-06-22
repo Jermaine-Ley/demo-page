@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SHAP with structured data classification" href="Struc_SHAP.html" />
-    <link rel="prev" title="Keras" href="Struc_Keras_T.html" />
+    <link rel="next" title="SHAP mit strukturierten Daten (Classification)" href="Struc_SHAP.html" />
+    <link rel="prev" title="Keras Tuner" href="Struc_Keras_T.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,19 +109,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_Keras_T.html">
-   Keras
+   Keras Tuner
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_SHAP.html">
-   SHAP with structured data classification
+   SHAP mit strukturierten Daten (Classification)
   </a>
  </li>
  <li class="toctree-l1">
@@ -385,11 +385,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_2988\814460106.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_29632\814460106.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
-C:\Users\Jerma\AppData\Local\Temp\ipykernel_2988\814460106.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_29632\814460106.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
@@ -636,6 +636,21 @@ memory usage: 68.2+ MB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To find the number of duplicate rows</span>
+
+<span class="n">duplicate_rows_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of duplicate rows: &quot;</span><span class="p">,</span> <span class="n">duplicate_rows_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of duplicate rows:  (0, 16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Fehlende Werte erkennen. Gibt ein boolesches Objekt zurück, das angibt, ob die Werte NA sind </span>
 <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -658,6 +673,92 @@ seller              0
 mmr                 0
 sellingprice        0
 saledate            0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  To Drop the missing or null values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>     <span class="c1"># Finding the number of Null values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year                0
+make            10301
+model           10399
+trim            10651
+body            13195
+transmission    65353
+vin                 0
+state               0
+condition       11794
+odometer           94
+color             749
+interior          749
+seller              0
+mmr                 0
+sellingprice        0
+saledate            0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>    <span class="c1"># Dropping the missing values.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            472336
+make            472336
+model           472336
+trim            472336
+body            472336
+transmission    472336
+vin             472336
+state           472336
+condition       472336
+odometer        472336
+color           472336
+interior        472336
+seller          472336
+mmr             472336
+sellingprice    472336
+saledate        472336
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>   <span class="c1"># After dropping the values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            0
+make            0
+model           0
+trim            0
+body            0
+transmission    0
+vin             0
+state           0
+condition       0
+odometer        0
+color           0
+interior        0
+seller          0
+mmr             0
+sellingprice    0
+saledate        0
 dtype: int64
 </pre></div>
 </div>
@@ -703,9 +804,10 @@ dtype: int64
 </div>
 </div>
 </div>
+<p>Define label</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;make&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;sellingprice&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -738,82 +840,14 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to categorical</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to numeric</span>
 
 <span class="c1"># make a list of all categorical variables</span>
-<span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;odometer&#39;</span><span class="p">,</span> <span class="s1">&#39;condition&#39;</span><span class="p">]</span>
+<span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;condition&#39;</span><span class="p">,</span> <span class="s1">&#39;odometer&#39;</span><span class="p">,</span> <span class="s1">&#39;mmr&#39;</span><span class="p">]</span>
 
 <span class="c1"># convert variables</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_convert</span><span class="p">:</span>
     <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IntCastingNaNError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_2988\2365395605.py</span> in <span class="ni">&lt;cell line: 7&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># convert variables</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_convert</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\generic.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5918</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5919</span>             <span class="c1"># else, only a single dtype is given</span>
-<span class="ne">-&gt; </span><span class="mi">5920</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5921</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5922</span> 
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\internals\managers.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span> 
-<span class="g g-Whitespace">    </span><span class="mi">418</span>     <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">419</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">420</span> 
-<span class="g g-Whitespace">    </span><span class="mi">421</span>     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\internals\managers.py</span> in <span class="ni">apply</span><span class="nt">(self, f, align_keys, ignore_failures, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>                     <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>                 <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">304</span>                     <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span>             <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">NotImplementedError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_failures</span><span class="p">:</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\internals\blocks.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>         <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
-<span class="g g-Whitespace">    </span><span class="mi">579</span> 
-<span class="ne">--&gt; </span><span class="mi">580</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array_safe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">581</span> 
-<span class="g g-Whitespace">    </span><span class="mi">582</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">maybe_coerce_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\dtypes\cast.py</span> in <span class="ni">astype_array_safe</span><span class="nt">(values, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1290</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1291</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1292</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1293</span>     <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1294</span>         <span class="c1"># e.g. astype_nansafe can fail on object-dtype of strings</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\dtypes\cast.py</span> in <span class="ni">astype_array</span><span class="nt">(values, dtype, copy)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1235</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1236</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1237</span>         <span class="n">values</span> <span class="o">=</span> <span class="n">astype_nansafe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1238</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1239</span>     <span class="c1"># in pandas we don&#39;t store numpy str dtypes, so convert to object</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\dtypes\cast.py</span> in <span class="ni">astype_nansafe</span><span class="nt">(arr, dtype, copy, skipna)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1146</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1148</span>         <span class="k">return</span> <span class="n">astype_float_to_int_nansafe</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1149</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1150</span>     <span class="k">elif</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">):</span>
-
-<span class="nn">c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\pandas\core\dtypes\cast.py</span> in <span class="ni">astype_float_to_int_nansafe</span><span class="nt">(values, dtype, copy)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1191</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1192</span><span class="s2">     if not np.isfinite(values).all():</span>
-<span class="ne">-&gt; </span><span class="mi">1193</span><span class="s2">         raise IntCastingNaNError(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1194</span><span class="s2">             &quot;Cannot convert non-finite values (NA or inf) to integer&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1195</span><span class="s2">         )</span>
-
-<span class="ne">IntCastingNaNError</span>: Cannot convert non-finite values (NA or inf) to integer
 </pre></div>
 </div>
 </div>
@@ -840,28 +874,28 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 558811 entries, 0 to 558810
+Int64Index: 472336 entries, 0 to 558810
 Data columns (total 16 columns):
- #   Column        Non-Null Count   Dtype  
----  ------        --------------   -----  
- 0   year          558811 non-null  int32  
- 1   make          548510 non-null  object 
- 2   model         548412 non-null  object 
- 3   trim          548160 non-null  object 
- 4   body          545616 non-null  object 
- 5   transmission  493458 non-null  object 
- 6   vin           558811 non-null  object 
- 7   state         558811 non-null  object 
- 8   condition     547017 non-null  float32
- 9   odometer      558717 non-null  float32
- 10  color         558062 non-null  object 
- 11  interior      558062 non-null  object 
- 12  seller        558811 non-null  object 
- 13  mmr           558811 non-null  int32  
- 14  sellingprice  558811 non-null  int32  
- 15  saledate      558811 non-null  object 
-dtypes: float32(2), int32(3), object(11)
-memory usage: 57.6+ MB
+ #   Column        Non-Null Count   Dtype 
+---  ------        --------------   ----- 
+ 0   year          472336 non-null  int32 
+ 1   make          472336 non-null  object
+ 2   model         472336 non-null  object
+ 3   trim          472336 non-null  object
+ 4   body          472336 non-null  object
+ 5   transmission  472336 non-null  object
+ 6   vin           472336 non-null  object
+ 7   state         472336 non-null  object
+ 8   condition     472336 non-null  int32 
+ 9   odometer      472336 non-null  int32 
+ 10  color         472336 non-null  object
+ 11  interior      472336 non-null  object
+ 12  seller        472336 non-null  object
+ 13  mmr           472336 non-null  int32 
+ 14  sellingprice  472336 non-null  int32 
+ 15  saledate      472336 non-null  object
+dtypes: int32(5), object(11)
+memory usage: 52.3+ MB
 </pre></div>
 </div>
 </div>
@@ -896,7 +930,7 @@ memory usage: 57.6+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 447049 samples for training and 111762 for validation
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 377869 samples for training and 94467 for validation
 </pre></div>
 </div>
 </div>
@@ -928,119 +962,292 @@ memory usage: 57.6+ MB
 </pre></div>
 </div>
 </div>
+</div>
+<p>Numerical preprocessing function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define numerical preprocessing function</span>
+<span class="k">def</span> <span class="nf">get_normalization_layer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+    
+    <span class="c1"># Create a Normalization layer for our feature</span>
+    <span class="n">normalizer</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Normalization</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Prepare a dataset that only yields our feature</span>
+    <span class="n">feature_ds</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+    <span class="c1"># Learn the statistics of the data</span>
+    <span class="n">normalizer</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">feature_ds</span><span class="p">)</span>
+
+    <span class="c1"># Normalize the input feature</span>
+    <span class="k">return</span> <span class="n">normalizer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Categorical preprocessing functions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_category_encoding_layer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+  
+  <span class="c1"># Create a layer that turns strings into integer indices.</span>
+  <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span><span class="p">:</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">StringLookup</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">)</span>
+  <span class="c1"># Otherwise, create a layer that turns integer values into integer indices.</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">IntegerLookup</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">)</span>
+
+  <span class="c1"># Prepare a `tf.data.Dataset` that only yields the feature.</span>
+  <span class="n">feature_ds</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+  <span class="c1"># Learn the set of possible values and assign them a fixed integer index.</span>
+  <span class="n">index</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">feature_ds</span><span class="p">)</span>
+
+  <span class="c1"># Encode the integer indices.</span>
+  <span class="n">encoder</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">CategoryEncoding</span><span class="p">(</span><span class="n">num_tokens</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">vocabulary_size</span><span class="p">())</span>
+
+  <span class="c1"># Apply multi-hot encoding to the indices. The lambda function captures the</span>
+  <span class="c1"># layer, so you can use them, or include them in the Keras Functional model later.</span>
+  <span class="k">return</span> <span class="k">lambda</span> <span class="n">feature</span><span class="p">:</span> <span class="n">encoder</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="n">feature</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data preprocessing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_inputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">encoded_features</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numerical preprocessing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical features</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">list_num</span><span class="p">:</span>
+  <span class="n">numeric_feature</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">)</span>
+  <span class="n">normalization_layer</span> <span class="o">=</span> <span class="n">get_normalization_layer</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">ds_train</span><span class="p">)</span>
+  <span class="n">encoded_numeric_feature</span> <span class="o">=</span> <span class="n">normalization_layer</span><span class="p">(</span><span class="n">numeric_feature</span><span class="p">)</span>
+  <span class="n">all_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numeric_feature</span><span class="p">)</span>
+  <span class="n">encoded_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encoded_numeric_feature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Categorical preprocessing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">list_cat_int</span><span class="p">:</span>
+  <span class="n">categorical_feature</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
+  <span class="n">encoding_layer</span> <span class="o">=</span> <span class="n">get_category_encoding_layer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span>
+                                               <span class="n">dataset</span><span class="o">=</span><span class="n">ds_train</span><span class="p">,</span>
+                                               <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span>
+                                               <span class="n">max_tokens</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+  <span class="n">encoded_categorical_feature</span> <span class="o">=</span> <span class="n">encoding_layer</span><span class="p">(</span><span class="n">categorical_feature</span><span class="p">)</span>
+  <span class="n">all_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">categorical_feature</span><span class="p">)</span>
+  <span class="n">encoded_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encoded_categorical_feature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">list_cat_string</span><span class="p">:</span>
+  <span class="n">categorical_feature</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+  <span class="n">encoding_layer</span> <span class="o">=</span> <span class="n">get_category_encoding_layer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span>
+                                               <span class="n">dataset</span><span class="o">=</span><span class="n">ds_train</span><span class="p">,</span>
+                                               <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                                               <span class="n">max_tokens</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+  <span class="n">encoded_categorical_feature</span> <span class="o">=</span> <span class="n">encoding_layer</span><span class="p">(</span><span class="n">categorical_feature</span><span class="p">)</span>
+  <span class="n">all_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">categorical_feature</span><span class="p">)</span>
+  <span class="n">encoded_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encoded_categorical_feature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input</span>
+<span class="n">all_features</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">encoded_features</span><span class="p">)</span>
+
+<span class="c1"># First layer</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">)(</span><span class="n">all_features</span><span class="p">)</span>
+
+<span class="c1"># Dropout to prevent overvitting</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Output layer</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Group all layers </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">all_inputs</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model.compile(optimizer=&quot;adam&quot;, </span>
+<span class="c1">#               loss =&quot;binary_crossentropy&quot;, </span>
+<span class="c1">#               metrics=[&quot;accuracy&quot;])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `rankdir=&#39;LR&#39;` is to make the graph horizontal.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">show_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rankdir</span><span class="o">=</span><span class="s2">&quot;LR&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-TypeError                                 Traceback (most recent call last)
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\data\util\structure.py in normalize_element(element, element_signature)
-    105         if spec is None:
---&gt; 106           spec = type_spec_from_value(t, use_fallback=False)
-    107       except TypeError:
+<img alt="_images/Struc_Classifi_42_0.png" src="_images/Struc_Classifi_42_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 472336 entries, 0 to 558810
+Data columns (total 16 columns):
+ #   Column        Non-Null Count   Dtype 
+---  ------        --------------   ----- 
+ 0   year          472336 non-null  int32 
+ 1   make          472336 non-null  object
+ 2   model         472336 non-null  object
+ 3   trim          472336 non-null  object
+ 4   body          472336 non-null  object
+ 5   transmission  472336 non-null  object
+ 6   vin           472336 non-null  object
+ 7   state         472336 non-null  object
+ 8   condition     472336 non-null  int32 
+ 9   odometer      472336 non-null  int32 
+ 10  color         472336 non-null  object
+ 11  interior      472336 non-null  object
+ 12  seller        472336 non-null  object
+ 13  mmr           472336 non-null  int32 
+ 14  sellingprice  472336 non-null  int32 
+ 15  saledate      472336 non-null  object
+dtypes: int32(5), object(11)
+memory usage: 68.4+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">ds_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\keras\engine\functional.py:559: UserWarning: Input dict contained keys [&#39;make&#39;, &#39;model&#39;, &#39;trim&#39;, &#39;body&#39;, &#39;transmission&#39;, &#39;vin&#39;, &#39;state&#39;, &#39;color&#39;, &#39;interior&#39;, &#39;seller&#39;, &#39;saledate&#39;] which did not match any model input. They will be ignored by the model.
+  inputs = self._flatten_to_reference_inputs(inputs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11809/11809 [==============================] - 56s 4ms/step - loss: -60236968.0000 - accuracy: 5.2928e-06 - val_loss: -165083168.0000 - val_accuracy: 0.0000e+00
+Epoch 2/10
+11809/11809 [==============================] - 58s 5ms/step - loss: -357960032.0000 - accuracy: 5.2928e-06 - val_loss: -584527552.0000 - val_accuracy: 0.0000e+00
+Epoch 3/10
+11809/11809 [==============================] - 53s 4ms/step - loss: -904861952.0000 - accuracy: 5.2928e-06 - val_loss: -1247565312.0000 - val_accuracy: 0.0000e+00
+Epoch 4/10
+11809/11809 [==============================] - 61s 5ms/step - loss: -1694651008.0000 - accuracy: 5.2928e-06 - val_loss: -2149872896.0000 - val_accuracy: 0.0000e+00
+Epoch 5/10
+11809/11809 [==============================] - 55s 4ms/step - loss: -2729165824.0000 - accuracy: 5.2928e-06 - val_loss: -3291284480.0000 - val_accuracy: 0.0000e+00
+Epoch 6/10
+11809/11809 [==============================] - 59s 5ms/step - loss: -4005803008.0000 - accuracy: 5.2928e-06 - val_loss: -4671780352.0000 - val_accuracy: 0.0000e+00
+Epoch 7/10
+11809/11809 [==============================] - 63s 5ms/step - loss: -5520462336.0000 - accuracy: 5.2928e-06 - val_loss: -6286677504.0000 - val_accuracy: 0.0000e+00
+Epoch 8/10
+11809/11809 [==============================] - 65s 5ms/step - loss: -7267454464.0000 - accuracy: 5.2928e-06 - val_loss: -8137814016.0000 - val_accuracy: 0.0000e+00
+Epoch 9/10
+11809/11809 [==============================] - 65s 5ms/step - loss: -9259351040.0000 - accuracy: 5.2928e-06 - val_loss: -10227587072.0000 - val_accuracy: 0.0000e+00
+Epoch 10/10
+11809/11809 [==============================] - 62s 5ms/step - loss: -11484283904.0000 - accuracy: 5.2928e-06 - val_loss: -12555604992.0000 - val_accuracy: 0.0000e+00
+Wall time: 9min 57s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x233c8a3f6d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span><span class="p">,</span> <span class="n">mean_squared_error</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">ds_val</span><span class="p">)</span>
 
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\data\util\structure.py in type_spec_from_value(element, use_fallback)
-    488 
---&gt; 489   raise TypeError(&quot;Could not build a `TypeSpec` for {} with type {}&quot;.format(
-    490       element,
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean_squared_error&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">ds_val</span><span class="p">)</span>
 
-TypeError: Could not build a `TypeSpec` for 0           SUV
-3         Sedan
-4         Sedan
-5         Sedan
-6         Sedan
-          ...  
-558804    Sedan
-558805    Sedan
-558806    Sedan
-558808      SUV
-558809    sedan
-Name: body, Length: 447049, dtype: object with type Series
-
-During handling of the above exception, another exception occurred:
-
-ValueError                                Traceback (most recent call last)
-~\AppData\Local\Temp\ipykernel_2988\4265319245.py in &lt;cell line: 3&gt;()
-      1 batch_size = 32
-      2 
-----&gt; 3 ds_train = dataframe_to_dataset(df_train, shuffle=True, batch_size=batch_size)
-      4 ds_val = dataframe_to_dataset(df_val, shuffle=True, batch_size=batch_size)
-
-~\AppData\Local\Temp\ipykernel_2988\1178748779.py in dataframe_to_dataset(dataframe, shuffle, batch_size)
-      4     df = dataframe.copy()
-      5     labels = df.pop(y_label)
-----&gt; 6     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
-      7     if shuffle:
-      8         ds = ds.shuffle(buffer_size=len(dataframe))
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py in from_tensor_slices(tensors, name)
-    779       Dataset: A `Dataset`.
-    780     &quot;&quot;&quot;
---&gt; 781     return TensorSliceDataset(tensors, name=name)
-    782 
-    783   class _GeneratorState(object):
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py in __init__(self, element, is_files, name)
-   4659   def __init__(self, element, is_files=False, name=None):
-   4660     &quot;&quot;&quot;See `Dataset.from_tensor_slices()` for details.&quot;&quot;&quot;
--&gt; 4661     element = structure.normalize_element(element)
-   4662     batched_spec = structure.type_spec_from_value(element)
-   4663     self._tensors = structure.to_batched_tensor_list(batched_spec, element)
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\data\util\structure.py in normalize_element(element, element_signature)
-    109         # the value. As a fallback try converting the value to a tensor.
-    110         normalized_components.append(
---&gt; 111             ops.convert_to_tensor(t, name=&quot;component_%d&quot; % i))
-    112       else:
-    113         if isinstance(spec, sparse_tensor.SparseTensorSpec):
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\profiler\trace.py in wrapped(*args, **kwargs)
-    161         with Trace(trace_name, **trace_kwargs):
-    162           return func(*args, **kwargs)
---&gt; 163       return func(*args, **kwargs)
-    164 
-    165     return wrapped
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\ops.py in convert_to_tensor(value, dtype, name, as_ref, preferred_dtype, dtype_hint, ctx, accepted_result_types)
-   1619 
-   1620     if ret is None:
--&gt; 1621       ret = conversion_func(value, dtype=dtype, name=name, as_ref=as_ref)
-   1622 
-   1623     if ret is NotImplemented:
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\constant_op.py in _constant_tensor_conversion_function(v, dtype, name, as_ref)
-    345                                          as_ref=False):
-    346   _ = as_ref
---&gt; 347   return constant(v, dtype=dtype, name=name)
-    348 
-    349 
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\constant_op.py in constant(value, dtype, shape, name)
-    269     ValueError: if called on a symbolic tensor.
-    270   &quot;&quot;&quot;
---&gt; 271   return _constant_impl(value, dtype, shape, name, verify_shape=False,
-    272                         allow_broadcast=True)
-    273 
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\constant_op.py in _constant_impl(value, dtype, shape, name, verify_shape, allow_broadcast)
-    281       with trace.Trace(&quot;tf.constant&quot;):
-    282         return _constant_eager_impl(ctx, value, dtype, shape, verify_shape)
---&gt; 283     return _constant_eager_impl(ctx, value, dtype, shape, verify_shape)
-    284 
-    285   g = ops.get_default_graph()
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\constant_op.py in _constant_eager_impl(ctx, value, dtype, shape, verify_shape)
-    306 def _constant_eager_impl(ctx, value, dtype, shape, verify_shape):
-    307   &quot;&quot;&quot;Creates a constant on the current device.&quot;&quot;&quot;
---&gt; 308   t = convert_to_eager_tensor(value, ctx, dtype)
-    309   if shape is None:
-    310     return t
-
-c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\tensorflow\python\framework\constant_op.py in convert_to_eager_tensor(value, ctx, dtype)
-    104       dtype = dtypes.as_dtype(dtype).as_datatype_enum
-    105   ctx.ensure_initialized()
---&gt; 106   return ops.EagerTensor(value, ctx.device_name, dtype)
-    107 
-    108 
-
-ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type float).
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2953/2953 [==============================] - 12s 4ms/step - loss: -12555608064.0000 - accuracy: 0.0000e+00
+Accuracy 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perform inference</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;my_hd_classifier&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Assets written to: my_hd_classifier\assets
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reloaded_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;my_hd_classifier&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+    <span class="s2">&quot;make&quot;</span><span class="p">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;3 Series&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trim&quot;</span><span class="p">:</span> <span class="s2">&quot;328i SULEV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;sedan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vin&quot;</span><span class="p">:</span> <span class="s2">&quot;wba3c1c51ek116351&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;ca&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+    <span class="s2">&quot;odometer&quot;</span><span class="p">:</span> <span class="mi">1300</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1078,13 +1285,13 @@ ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Keras</p>
+            <p class="prev-next-title">Keras Tuner</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Struc_SHAP.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SHAP with structured data classification</p>
+        <p class="prev-next-title">SHAP mit strukturierten Daten (Classification)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

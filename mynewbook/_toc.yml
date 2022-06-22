@@ -8,7 +8,6 @@ chapters:
 - file: Reg_Modell1.ipynb
 - file: Reg_Modell2.ipynb
 - file: Struc_Keras_T.ipynb
-- file: Struc_Classifi.ipynb
+- file: Mobile_Classification.ipynb
 - file: Struc_SHAP.ipynb
 - file: Prüfungsleistung.md
-- file: Car_Classification.ipynb

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Keras &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <title>Keras Tuner &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -109,19 +109,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Keras
+   Keras Tuner
   </a>
  </li>
  <li class="toctree-l1">
@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_SHAP.html">
-   SHAP with structured data classification
+   SHAP mit strukturierten Daten (Classification)
   </a>
  </li>
  <li class="toctree-l1">
@@ -316,7 +316,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Keras</h1>
+                <h1>Keras Tuner</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -328,8 +328,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="keras">
-<h1>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="keras-tuner">
+<h1>Keras Tuner<a class="headerlink" href="#keras-tuner" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keras_tuner</span> <span class="k">as</span> <span class="nn">kt</span>
@@ -371,6 +371,49 @@ title="Print to PDF"
         <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span>
     
     <span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">build_model</span><span class="p">(</span><span class="n">kt</span><span class="o">.</span><span class="n">HyperParameters</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">())</span>
+    
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span>
+            <span class="c1"># Tune number of units.</span>
+            <span class="n">units</span><span class="o">=</span><span class="n">hp</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span>
+            <span class="c1"># Tune the activation function to use.</span>
+            <span class="n">activation</span><span class="o">=</span><span class="n">hp</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span><span class="s2">&quot;activation&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span> <span class="s2">&quot;tanh&quot;</span><span class="p">]),</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Tune whether to use dropout.</span>
+    <span class="k">if</span> <span class="n">hp</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="s2">&quot;dropout&quot;</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.25</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="p">))</span>
+    
+    <span class="c1"># Define the optimizer learning rate as a hyperparameter.</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">Float</span><span class="p">(</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">sampling</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+    
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">),</span>
+        <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">model</span>
 </pre></div>
 </div>

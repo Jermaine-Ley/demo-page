@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Regressionsmodell
+# # Regressionsmodell 1
 
 # In[1]:
 
@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 # In[2]:
 
 
-df = pd.read_csv("car_prices.csv",nrows=400000)
+df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
 print(df) # Ausgabe 
 
 
@@ -318,34 +318,4 @@ sns.scatterplot(x=Y_test,y=Y_pred)
 
 
 sns.distplot(Y_test-Y_pred)
-
-
-# In[ ]:
-
-
-# #print first five rows of dataset
-# print(df.head())
-
-# #print shape of dataframe
-# print("Shape of data frame: ",df.shape)
-
-# #print descriptive statistics of this dataset
-# print("\n",df.describe())
-
-# #Show unique values for "method" using "unique" method
-# print("\nUnique values for method: ",df['state'].unique())
-
-
-# In[ ]:
-
-
-# #Calculate correlation between all attributs
-# corr = df[['year', 'make', 'model', 'trim', 'body', 'transmission', 'vin', 'state', 'condition', 'odometer', 'color', 'interior', 'seller', 'mmr', 'sellingprice', 'saledate']].corr()
-
-# #generate a custom diverging colormap
-# cmap = sns.diverging_palette(230, 20, as_cmap=True)
-
-# #draw Heatmap with correlations
-# sns.heatmap(corr,cmap=cmap)
-# plt.show()
 

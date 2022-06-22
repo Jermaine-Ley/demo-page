@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Exploratory Data Analysis (EDA) Auktion &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <title>Explorative Datenanalyse (EDA) &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regressionsmodell" href="Reg_Modell1.html" />
-    <link rel="prev" title="Herzlich Willkommen zu meinem Projekt im Data Science &amp; MLOps!" href="intro.html" />
+    <link rel="next" title="Regressionsmodell 1" href="Reg_Modell1.html" />
+    <link rel="prev" title="Herzlich Willkommen zu meinem Projekt im Modul Data Science &amp; MLOps!" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,19 +109,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_Keras_T.html">
-   Keras
+   Keras Tuner
   </a>
  </li>
  <li class="toctree-l1">
@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Struc_SHAP.html">
-   SHAP with structured data classification
+   SHAP mit strukturierten Daten (Classification)
   </a>
  </li>
  <li class="toctree-l1">
@@ -357,7 +357,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -374,7 +374,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exploratory Data Analysis (EDA) Auktion</h1>
+                <h1>Explorative Datenanalyse (EDA)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -386,7 +386,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Exploratory Data Analysis (EDA) Auktion
+   Explorative Datenanalyse (EDA)
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -404,8 +404,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis-eda-auktion">
-<h1>Exploratory Data Analysis (EDA) Auktion<a class="headerlink" href="#exploratory-data-analysis-eda-auktion" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="explorative-datenanalyse-eda">
+<h1>Explorative Datenanalyse (EDA)<a class="headerlink" href="#explorative-datenanalyse-eda" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Libraries</span>
@@ -722,7 +722,6 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To drop the irrelevant columns</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;vin&#39;</span><span class="p">,</span> <span class="s1">&#39;mmr&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -869,7 +868,7 @@ dtype: object
 </div>
 </div>
 </div>
-<p>Diese Daten enthalten mehrere Nullwerte. Ich zeige die Nullwerte im Dataset an.</p>
+<p>Diese Daten enthalten mehrere Nullwerte. Hier werden die Nullwerte im Dataset veranschaulicht.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  To Drop the missing or null values</span>
@@ -951,7 +950,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Auffinden der Ausreißer in den Daten. Hier habe ich die Ausreißer in Kilometerzähler und Preis aufgezeichnet. Da die Ausreißer bei Kilometerzähler und Preis einen gewissen Einfluss auf die Daten haben, lösche ich die Ausreißer nicht. Denn der Preis eines Fahrzeugs und die gefahrene Strecke hängen von vielen anderen Faktoren ab.</p>
+<p>Auffinden der Ausreißer in den Daten. Hier habe ich die Ausreißer in Kilometerzähler und Preis dargestellt. Da die Ausreißer bei Kilometerzähler und Preis einen gewissen Einfluss auf die Daten haben, lösche ich die Ausreißer nicht. Denn der Preis eines Fahrzeugs und die gefahrene Strecke hängen von vielen anderen Faktoren ab.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Box Plot</span>
@@ -984,8 +983,7 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
-<span class="c1"># These are the steps for Box Plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vorbereitung für den Boxplot</span>
 
 <span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
@@ -1004,7 +1002,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Es wurde ein Diagramm mit der Anzahl der Fahrzeuge im Vergleich zu den Marken erstellt, um die wichtigsten Marken in der Auktion zu ermitteln. Und Ford war am meisten.</p>
+<p>Es wurde ein Diagramm mit der Anzahl der Fahrzeuge im Vergleich zu den Marken erstellt, um die wichtigsten Marken im Datenset zu ermitteln. Ford hatte dabei die meisten.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the steps for Bar Diagram</span>
@@ -1024,9 +1022,7 @@ dtype: float64
 <p>Hier habe ich ein Diagramm erstellt, das die Anzahl der verkauften Fahrzeuge in Abhängigkeit von ihrem Preis zeigt. Die meisten Fahrzeuge wurden in einem Bereich von 10 000 bis 20 000 verkauft.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
-<span class="c1"># These are for plotting Histogram</span>
-<span class="c1"># Comment if you have any doubts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are for plotting Histogram</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">],</span><span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -1064,16 +1060,14 @@ Name: sellingprice, dtype: float64
 </div>
 </div>
 </div>
-<p>Erstellung eines Diagramms, das zeigt, wie der Kilometerstand den Verkaufspreis von Gebrauchtwagen beeinflusst. Fahrzeuge mit einem Kilometerstand von weniger als 20 Kilometern erzielen den höchsten Preis beim Verkauf. Mit zunehmender Fahrleistung sinkt der Verkaufspreis.</p>
+<p>Erstellung eines Diagramms, das zeigt, wie der Kilometerstand den Verkaufspreis von Gebrauchtwagen beeinflusst. Fahrzeuge mit einem Kilometerstand von weniger als 20T Kilometern erzielen den höchsten Preis beim Verkauf. Mit zunehmender Fahrleistung sinkt der Verkaufspreis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
-<span class="c1"># These are for plotting Scatter Plot</span>
-<span class="c1"># Comment if you have any doubts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are for plotting Scatter Plot</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;odometer&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Odometer vS Selling Price Correlation&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Odometer vs Selling Price Correlation&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Odometer&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Selling Price&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">xlabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;k&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()</span><span class="o">/</span><span class="mf">10e3</span><span class="p">]</span>
@@ -1116,9 +1110,8 @@ C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\2329879420.py:13: UserWarning:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing to worry, If you don&#39;t understand this.</span>
-<span class="c1"># These are for plotting Bar Plot</span>
-<span class="c1"># Comment if you have any doubts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are for plotting Bar Plot</span>
+
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;sellingprice&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
@@ -1138,9 +1131,9 @@ C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\2329879420.py:13: UserWarning:
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="schlussfolgerung">
 <h1>Schlussfolgerung<a class="headerlink" href="#schlussfolgerung" title="Permalink to this headline">#</a></h1>
-<p>In diesem Notizbuch habe ich EDA auf dem Datensatz für Autoauktionen durchgeführt, um die Faktoren zu verstehen, die die Versteigerung von Gebrauchtwagen beeinflussen. Es handelte sich um einen großen Datensatz mit etwa 558T Zeilen. Ich habe die Nullwerte und irrelevanten Spalten gelöscht, um ein besseres Verständnis der Daten zu erhalten.</p>
-<p>In dieser Analyse habe ich einige Diagramme erstellt, um die Verteilung des Verkaufspreises nach verschiedenen Faktoren wie Kilometerstand, Baujahr des Modells und Marken des Fahrzeugs zu zeigen.</p>
-<p>Aus dieser Analyse konnte ich entnehmen, dass Faktoren wie Kilometerstand (die vom Fahrzeug zurückgelegte Strecke), Fahrzeugmarken und Baujahr des Modells die Versteigerung von Gebrauchtwagen hauptsächlich beeinflussen. Autos mit geringem Kilometerstand erzielen bei der Versteigerung einen guten Preis.</p>
+<p>In diesem Abschnitt habe ich EDA auf dem Datensatz für Gebrauchtwagen angewendet, um die Faktoren zu verstehen, die den Preis von Gebrauchtwagen beeinflussen. Es handelte sich um einen großen Datensatz mit etwa 558T Zeilen. Ich habe die Nullwerte und irrelevanten Spalten gelöscht, um ein besseres Verständnis der Daten zu erhalten.</p>
+<p>Zu dieser Analyse habe ich einige Diagramme erstellt, um die Verteilung des Verkaufspreises nach verschiedenen Faktoren wie Kilometerstand, Baujahr des Modells und Marken des Fahrzeugs zu zeigen.</p>
+<p>Zudem konnte ich aus dieser Analyse entnehmen, dass Faktoren wie Kilometerstand (die vom Fahrzeug zurückgelegte Strecke), Fahrzeugmarken und Baujahr des Modells den Preis von Gebrauchtwagen hauptsächlich beeinflussen. Autos mit geringem Kilometerstand erzielen bei einem Verkauf einen guten Preis.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1174,13 +1167,13 @@ C:\Users\Jerma\AppData\Local\Temp\ipykernel_25220\2329879420.py:13: UserWarning:
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Herzlich Willkommen zu meinem Projekt im Data Science &amp; MLOps!</p>
+            <p class="prev-next-title">Herzlich Willkommen zu meinem Projekt im Modul Data Science &amp; MLOps!</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Reg_Modell1.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regressionsmodell</p>
+        <p class="prev-next-title">Regressionsmodell 1</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

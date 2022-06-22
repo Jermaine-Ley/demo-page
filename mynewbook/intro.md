@@ -1,4 +1,4 @@
-# Herzlich Willkommen zu meinem Projekt im Data Science & MLOps!
+# Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
 
 Ziel:
 Das entwickeln von einen Prototyp für ein Dashboard, das eine Sensitivitätsanalyse enthält, die von einem Geschäftsanwender genutzt werden kann, um

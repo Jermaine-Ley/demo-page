@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # SHAP with structured data classification
+# # SHAP mit strukturierten Daten (Classification)
 
-# In[1]:
+# In[111]:
 
 
 import numpy as np
@@ -20,21 +20,21 @@ import shap
 tf.__version__
 
 
-# In[2]:
+# In[112]:
 
 
 # print the JS visualization code to the notebook
 shap.initjs()
 
 
-# In[3]:
+# In[113]:
 
 
-df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
+df = pd.read_csv('Mobile_Price_train.csv',error_bad_lines=False,warn_bad_lines=True)
 print(df) # Ausgabe 
 
 
-# In[4]:
+# In[114]:
 
 
 df.info()
@@ -46,29 +46,29 @@ df.info()
 
 
 
-# In[5]:
+# In[115]:
 
 
 # make target variable
-y = df.pop('sellingprice')
+y = df.pop('price_range')
 
 
-# In[12]:
+# In[116]:
 
 
 # prepare features
-list_numerical = ['year', 'mmr']
+list_numerical = ['ram', 'battery_power', 'touch_screen']
 
 X = df[list_numerical]
 
 
-# In[13]:
+# In[117]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
-# In[14]:
+# In[118]:
 
 
 scaler = StandardScaler().fit(X_train[list_numerical]) 
@@ -77,7 +77,7 @@ X_train[list_numerical] = scaler.transform(X_train[list_numerical])
 X_test[list_numerical] = scaler.transform(X_test[list_numerical])
 
 
-# In[15]:
+# In[119]:
 
 
 model = tf.keras.Sequential([
@@ -87,7 +87,7 @@ model = tf.keras.Sequential([
   ])
 
 
-# In[16]:
+# In[120]:
 
 
 model.compile(optimizer="adam", 
@@ -95,7 +95,7 @@ model.compile(optimizer="adam",
               metrics=["accuracy"])
 
 
-# In[17]:
+# In[121]:
 
 
 model.fit(X_train, y_train, 
@@ -105,14 +105,14 @@ model.fit(X_train, y_train,
          )
 
 
-# In[18]:
+# In[122]:
 
 
 # `rankdir='LR'` is to make the graph horizontal.
 tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
 
 
-# In[19]:
+# In[123]:
 
 
 loss, accuracy = model.evaluate(X_test, y_test)
@@ -120,25 +120,25 @@ loss, accuracy = model.evaluate(X_test, y_test)
 print("Accuracy", accuracy)
 
 
-# In[20]:
+# In[124]:
 
 
-model.save('classifier_hd')
+model.save('classifier_mobile_hd')
 
 
-# In[21]:
+# In[125]:
 
 
-reloaded_model = tf.keras.models.load_model('classifier_hd')
+reloaded_model = tf.keras.models.load_model('classifier_mobile_hd')
 
 
-# In[22]:
+# In[126]:
 
 
 predictions = reloaded_model.predict(X_train)
 
 
-# In[ ]:
+# In[127]:
 
 
 print(
@@ -147,31 +147,31 @@ print(
 )
 
 
-# In[23]:
+# In[128]:
 
 
 explainer = shap.KernelExplainer(model, X_train.iloc[:50,:])
 
 
-# In[24]:
+# In[129]:
 
 
 shap_values = explainer.shap_values(X_train.iloc[20,:], nsamples=500)
 
 
-# In[25]:
+# In[130]:
 
 
 shap.force_plot(explainer.expected_value, shap_values[0], X_train.iloc[20,:])
 
 
-# In[28]:
+# In[131]:
 
 
 shap_values50 = explainer.shap_values(X_train.iloc[50:100,:], nsamples=500)
 
 
-# In[29]:
+# In[132]:
 
 
 shap.force_plot(explainer.expected_value, shap_values50[0], X_train.iloc[50:100,:])
