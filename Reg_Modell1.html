@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Was beeinflusst den Verkaufspreis?" href="Reg_Modell2.html" />
-    <link rel="prev" title="Here’s my sample title" href="mymarkdownfile.html" />
+    <link rel="prev" title="Exploratory Data Analysis (EDA) Auktion" href="Reg_EDA.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
         
       
       
-      <img src="_static/logo.png" class="logo" alt="logo">
+      <img src="_static/hdm-logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Das Projekt von JL132 im Modul Data Science & MLOps</h1>
@@ -109,29 +109,14 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Einleitung
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooksh
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mymarkdownfile.html">
-   Here’s my sample title
+  <a class="reference internal" href="Reg_EDA.html">
+   Exploratory Data Analysis (EDA) Auktion
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -145,8 +130,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+  <a class="reference internal" href="Mobile_Classification.html">
+   Mobile Classifikation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SHAP_Mobile.html">
+   SHAP mit strukturierten Daten (Classification)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Keras_T_Mobile.html">
+   Keras Tuner
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pr%C3%BCfungsleistung.html">
+   Prüfungsleistung
   </a>
  </li>
 </ul>
@@ -968,20 +968,10 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ExtraTreesRegressor()
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">zip</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x2361b515a40&gt;
 </pre></div>
 </div>
 </div>
@@ -999,58 +989,6 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Importance</th>
-      <th>Columns</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>13</th>
-      <td>0.648769</td>
-      <td>mmr</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0.141967</td>
-      <td>year</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.108141</td>
-      <td>condition</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.055326</td>
-      <td>odometer</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.012429</td>
-      <td>vin</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1066,125 +1004,6 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mmr</th>
-      <th>year</th>
-      <th>condition</th>
-      <th>odometer</th>
-      <th>vin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>20500.0</td>
-      <td>2015</td>
-      <td>5.0</td>
-      <td>16639.0</td>
-      <td>290586</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>20800.0</td>
-      <td>2015</td>
-      <td>5.0</td>
-      <td>9393.0</td>
-      <td>290582</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>31900.0</td>
-      <td>2014</td>
-      <td>4.5</td>
-      <td>1331.0</td>
-      <td>363258</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>27500.0</td>
-      <td>2015</td>
-      <td>4.1</td>
-      <td>14282.0</td>
-      <td>390906</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>66000.0</td>
-      <td>2014</td>
-      <td>4.3</td>
-      <td>2641.0</td>
-      <td>363873</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>399995</th>
-      <td>20100.0</td>
-      <td>2012</td>
-      <td>3.3</td>
-      <td>27575.0</td>
-      <td>379008</td>
-    </tr>
-    <tr>
-      <th>399996</th>
-      <td>34600.0</td>
-      <td>2012</td>
-      <td>3.6</td>
-      <td>46502.0</td>
-      <td>246303</td>
-    </tr>
-    <tr>
-      <th>399997</th>
-      <td>15450.0</td>
-      <td>2012</td>
-      <td>4.6</td>
-      <td>23677.0</td>
-      <td>294250</td>
-    </tr>
-    <tr>
-      <th>399998</th>
-      <td>33600.0</td>
-      <td>2012</td>
-      <td>4.1</td>
-      <td>19059.0</td>
-      <td>384215</td>
-    </tr>
-    <tr>
-      <th>399999</th>
-      <td>21400.0</td>
-      <td>2014</td>
-      <td>4.6</td>
-      <td>23400.0</td>
-      <td>97867</td>
-    </tr>
-  </tbody>
-</table>
-<p>400000 rows × 5 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1230,15 +1049,6 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score -&gt; 0.9113078938814688
-MAE -&gt; 1423.4611111431452
-MSE -&gt; 7767731.391843106
-RMSE -&gt; 2787.065013924703
-Adjusted R2 -&gt; 0.9113067852135124
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1247,54 +1057,10 @@ Adjusted R2 -&gt; 0.9113067852135124
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/Reg_Modell1_38_1.png" src="_images/Reg_Modell1_38_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">Y_test</span><span class="o">-</span><span class="n">Y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/Reg_Modell1_39_1.png" src="_images/Reg_Modell1_39_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># #print first five rows of dataset</span>
-<span class="c1"># print(df.head())</span>
-
-<span class="c1"># #print shape of dataframe</span>
-<span class="c1"># print(&quot;Shape of data frame: &quot;,df.shape)</span>
-
-<span class="c1"># #print descriptive statistics of this dataset</span>
-<span class="c1"># print(&quot;\n&quot;,df.describe())</span>
-
-<span class="c1"># #Show unique values for &quot;method&quot; using &quot;unique&quot; method</span>
-<span class="c1"># print(&quot;\nUnique values for method: &quot;,df[&#39;state&#39;].unique())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># #Calculate correlation between all attributs</span>
-<span class="c1"># corr = df[[&#39;year&#39;, &#39;make&#39;, &#39;model&#39;, &#39;trim&#39;, &#39;body&#39;, &#39;transmission&#39;, &#39;vin&#39;, &#39;state&#39;, &#39;condition&#39;, &#39;odometer&#39;, &#39;color&#39;, &#39;interior&#39;, &#39;seller&#39;, &#39;mmr&#39;, &#39;sellingprice&#39;, &#39;saledate&#39;]].corr()</span>
-
-<span class="c1"># #generate a custom diverging colormap</span>
-<span class="c1"># cmap = sns.diverging_palette(230, 20, as_cmap=True)</span>
-
-<span class="c1"># #draw Heatmap with correlations</span>
-<span class="c1"># sns.heatmap(corr,cmap=cmap)</span>
-<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -1328,11 +1094,11 @@ Adjusted R2 -&gt; 0.9113067852135124
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="mymarkdownfile.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Reg_EDA.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Here’s my sample title</p>
+            <p class="prev-next-title">Exploratory Data Analysis (EDA) Auktion</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Reg_Modell2.html" title="next page">

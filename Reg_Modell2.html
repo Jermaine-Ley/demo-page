@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exploratory Data Analysis (EDA) Auktion" href="Reg_EDA.html" />
+    <link rel="next" title="Mobile Classifikation" href="Mobile_Classification.html" />
     <link rel="prev" title="Regressionsmodell" href="Reg_Modell1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
         
       
       
-      <img src="_static/logo.png" class="logo" alt="logo">
+      <img src="_static/hdm-logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Das Projekt von JL132 im Modul Data Science & MLOps</h1>
@@ -109,29 +109,14 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Einleitung
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooksh
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mymarkdownfile.html">
-   Here’s my sample title
+  <a class="reference internal" href="Reg_EDA.html">
+   Exploratory Data Analysis (EDA) Auktion
   </a>
  </li>
  <li class="toctree-l1">
@@ -145,8 +130,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Reg_EDA.html">
-   Exploratory Data Analysis (EDA) Auktion
+  <a class="reference internal" href="Mobile_Classification.html">
+   Mobile Classifikation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SHAP_Mobile.html">
+   SHAP mit strukturierten Daten (Classification)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Keras_T_Mobile.html">
+   Keras Tuner
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pr%C3%BCfungsleistung.html">
+   Prüfungsleistung
   </a>
  </li>
 </ul>
@@ -366,8 +366,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+  <a class="reference internal nav-link" href="#fazit">
+   Fazit:
   </a>
  </li>
 </ul>
@@ -400,8 +400,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+  <a class="reference internal nav-link" href="#fazit">
+   Fazit:
   </a>
  </li>
 </ul>
@@ -438,11 +438,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_48232\814460106.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_13492\814460106.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
-C:\Users\Jerma\AppData\Local\Temp\ipykernel_48232\814460106.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_13492\814460106.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;car_prices.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
@@ -526,7 +526,7 @@ b&#39;Skipping line 528998: expected 16 fields, saw 17\nSkipping line 529011: ex
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Die Funktion head() wird verwendet, um die ersten n Zeilen zu erhalten.</span>
-        <span class="c1">#Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.</span>
+<span class="c1">#Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1017,9 +1017,9 @@ Name: transmission, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_48232\1581177395.py:8: UserWarning: FixedFormatter should only be used together with FixedLocator
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_13492\1581177395.py:8: UserWarning: FixedFormatter should only be used together with FixedLocator
   g.set_xticklabels(xlabels);
-C:\Users\Jerma\AppData\Local\Temp\ipykernel_48232\1581177395.py:9: UserWarning: FixedFormatter should only be used together with FixedLocator
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_13492\1581177395.py:9: UserWarning: FixedFormatter should only be used together with FixedLocator
   g.set_yticklabels(ylabels);
 </pre></div>
 </div>
@@ -1439,9 +1439,9 @@ Welche Marken waren bei der Auktion am begehrtesten?</p>
 <li><p>Bei den insgesamt verkauften Einheiten dominieren Nissan, Ford, Hyundai und Chevrolet die Liste.</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
-<h1>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
-<p>In this notebook, we have done an exploratory analytics on the car auction dataset - briefly we have seen what is the distribution of selling price look like , type &amp; model of cars sold, how does each of the parameters like odometer,transmission affect the value of selling price.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="fazit">
+<h1>Fazit:<a class="headerlink" href="#fazit" title="Permalink to this headline">#</a></h1>
+<p>Mit den bereitgestellten Daten habe ich eine explorative Analyse des Gebrauchtwagendatensatzes durchgeführt - kurz gesagt habe ich gesehen, wie die Verteilung des Verkaufspreises aussieht, wie Typ und Modell der verkauften Autos aussehen und wie jeder der Parameter wie Kilometerstand und Getriebe den Wert des Verkaufspreises beeinflusst.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1478,10 +1478,10 @@ Welche Marken waren bei der Auktion am begehrtesten?</p>
             <p class="prev-next-title">Regressionsmodell</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="Reg_EDA.html" title="next page">
+    <a class='right-next' id="next-link" href="Mobile_Classification.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exploratory Data Analysis (EDA) Auktion</p>
+        <p class="prev-next-title">Mobile Classifikation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
