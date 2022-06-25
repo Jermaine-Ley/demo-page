@@ -9,5 +9,4 @@ chapters:
 - file: Reg_Modell2.ipynb
 - file: Mobile_Classification.ipynb
 - file: SHAP_Mobile.ipynb
-- file: Keras_T_Mobile.ipynb
 - file: Prüfungsleistung.md 

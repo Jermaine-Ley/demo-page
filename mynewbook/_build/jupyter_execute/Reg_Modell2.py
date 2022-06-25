@@ -71,9 +71,11 @@ df.dtypes
 # In[8]:
 
 
+
+
 plt.figure(figsize=(15,8))
 plt.hist(df['sellingprice'],bins=200,color='#dc2f02')
-plt.title('Distribution of Selling Price',fontsize=15)
+plt.title('Verteilung des Verkaufspreises',fontsize=15)
 plt.xticks(np.arange(0,df['sellingprice'].max(),15000))
 plt.xlabel('Selling Price',fontsize=12)
 plt.ylabel('Freq',fontsize=12)
@@ -123,7 +125,6 @@ top_make
 # In[14]:
 
 
-#Inspiration -https://www.kaggle.com/nroman/eda-for-ashrae
 fig,ax=plt.subplots(5,2,figsize=(14,20))
 color_list=['#0a9396','#ca6702','#ae2012','#9b2226','#001219','#005f73','#94d2bd','#e9d8a6','#e5e5e5','#e07a5f'] #coolors.co
 i=0
@@ -131,7 +132,7 @@ for t in top_make:
     df.loc[df['make']==t,'sellingprice'].hist(ax=ax[i%5][i//5],bins=100,color=np.random.choice(color_list,replace=False))
     ax[i%5][i//5].set_xlabel('Selling Price',fontsize=10)
     ax[i%5][i//5].set_ylabel('Frequency',fontsize=10)
-    ax[i%5][i//5].set_title(f'Selling price distribution for {t}',fontsize=15)
+    ax[i%5][i//5].set_title(f'Verteilung des Kaufpreises für {t}',fontsize=15)
     plt.subplots_adjust(hspace=0.45)
     i+=1
 
@@ -145,25 +146,26 @@ df.loc[df['make']=='Ford','sellingprice'].describe()
 # 
 # - Die Verteilung der Top-10-Marken ist einzigartig und die Preisspanne ist unterschiedlich.
 # -  Von diesen scheinen Honda und Chrysler eine größere Bandbreite bei der Verteilung der Verkaufspreise zu haben.
-# - Der Verkaufspreis von Ford war eng und auf 50000 begrenzt. Es gibt einen Ausreißer, der in der Preisspanne oberhalb von 200.000 zu liegen scheint.
+# - Der Verkaufspreis von Ford liegt eng beieinander und ist auf 50000 begrenzt. Es gibt einen Ausreißer, der in der Preisspanne oberhalb von 200.000 zu liegen scheint.
 # - Fast alle der 10 Marken haben Spitzenwerte um 10000. Es gibt nur wenige Marken, die bimodale Spitzenwerte aufweisen.
 # 
-# Eine ähnliche Analyse wie die obige kann für verschiedene Karosserietypen durchgeführt werden. Lassen Sie uns eine schnelle Überprüfung durchführen
+# Eine ähnliche Analyse wie die obige kann für verschiedene Karosserietypen durchgeführt werden.
 
 # In[16]:
+
+
 
 
 (df['body'].value_counts()[:10]/df.shape[0])*100
 
 
-
-# Da 11 % der Gesamtdaten in dieser Spalte Null sind, werde ich sie für diese Analyse entfernen.
+# Da 11 % der Gesamtdaten in dieser Spalte Null sind, werde ich sie in der Analyse entfernen.
 
 # In[17]:
 
 
 trans_df=df.loc[~(df['transmission'].isna()),]
-trans_df.isna().sum() ## confirms that null values are removed.
+trans_df.isna().sum() ## Bestätigt, dass Nullwerte entfernt werden.
 
 
 # In[18]:
@@ -180,7 +182,7 @@ plt.figure(figsize=(10,11))
 # plt.hist(trans_df.loc[trans_df['transmission']=='manual','sellingprice'],color='#480ca8',alpha=0.8,label='manual',bins=100)
 # plt.legend()
 sns.boxplot(x='transmission',y='sellingprice',data=trans_df,palette=['#b5179e','#480ca8'])
-plt.title('Distribution of Selling Price',fontsize=15)
+plt.title('Verteilung des Verkaufspreises',fontsize=15)
 plt.xlabel('Selling Price',fontsize=10)
 plt.ylabel('Freq',fontsize=10)
 
@@ -208,7 +210,7 @@ g.set_yticklabels(ylabels);
 
 # # Marke & Model
 # 
-# In order to do this analysis,lets remove the null values in make and model.
+# Um diese Analyse durchzuführen, müssen die Nullwerte für Marke und Modell entfernt werden.
 # 
 
 # In[21]:
@@ -222,7 +224,6 @@ mod_df.isna().sum()
 
 
 ma_mo=list(zip(mod_df['make'],mod_df['model']))
-
 
 
 # In[23]:
@@ -246,7 +247,7 @@ plt.ylabel('Freq',fontsize=15)
 
 # Der Zustand der zu versteigernden Fahrzeuge wird zwischen 1 und 5 eingestuft. Es gibt keine eindeutige Verteilung, die sich aus dem Diagramm ableiten ließe. 45000 Autos sind in sehr gutem Zustand, und es gibt auch Autos mit den Bewertungen 1,8 und 3,5 in großer Zahl.
 # 
-# Lassen Sie diese Spalte weg und ermitteln Sie den durchschnittlichen Verkaufspreis.
+# Lässt man die Spalte weg und ermittelt den durchschnittlichen Verkaufspreis entsteht folgendes :
 
 # In[25]:
 
@@ -259,7 +260,7 @@ df['condition_bin'],bins=pd.cut(df['condition'],bins=4,retbins=True)
 
 plt.figure(figsize=(10,8))
 sns.violinplot(y=df['condition_bin'],x=df['sellingprice'],palette=['#606c38','#283618','#dda15e','#bc6c25'])
-plt.title('Condition of Cars Vs Selling Price',fontsize=12)
+plt.title('Zustand des Autos Vs Verkaufspreis',fontsize=12)
 plt.ylabel('Condition',fontsize=12)
 plt.xlabel('Selling Price',fontsize=12)
 
@@ -291,8 +292,9 @@ df['sale_date']=pd.to_datetime(df['sale_date'],format='%b %d %Y')
 # In[29]:
 
 
-df['sale_dow'].value_counts()
 
+
+df['sale_dow'].value_counts()
 
 
 # In[30]:
@@ -330,7 +332,7 @@ sale_model=df.groupby('year')['make'].count().sort_values(ascending=False)[:10].
 
 plt.figure(figsize=(10,8))
 sns.barplot(x='year',y='total_units',data=sale_model,palette=sns.set_palette('Set1'))
-plt.title('Number of Units Sold by year of make',fontsize=15)
+plt.title('Anzahl der Verauften Autos pro Jahr',fontsize=15)
 plt.xlabel('Year',fontsize=10)
 plt.ylabel('Total Units',fontsize=10)
 
@@ -406,7 +408,7 @@ plt.subplots_adjust(hspace=0.45)
 # - Bei den insgesamt verkauften Einheiten dominieren Nissan, Ford, Hyundai und Chevrolet die Liste.
 # 
 # 
-# # Fazit:
+# # Schlussfolgerung:
 # 
-# Mit den bereitgestellten Daten habe ich eine explorative Analyse des Gebrauchtwagendatensatzes durchgeführt - kurz gesagt habe ich gesehen, wie die Verteilung des Verkaufspreises aussieht, wie Typ und Modell der verkauften Autos aussehen und wie jeder der Parameter wie Kilometerstand und Getriebe den Wert des Verkaufspreises beeinflusst.
+# In dieser Analyse habe ich eine explorative Analyse des Autoauktionsdatensatzes durchgeführt - kurz gesagt habe ich gesehen, wie die Verteilung des Verkaufspreises aussieht, wie Typ und Modell der verkauften Autos aussehen und wie jeder der Parameter wie Kilometerstand und Getriebe den Wert des Verkaufspreises beeinflusst.
 # 

@@ -3,7 +3,7 @@
 
 # # Exploratory Data Analysis (EDA) Auktion
 
-# In[3]:
+# In[1]:
 
 
 # Importing Libraries
@@ -17,39 +17,37 @@ import seaborn as sns                       #visualisation
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[4]:
+# In[2]:
 
 
 # Loading the Data into the Data Frame
 df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
 
-# To display the top 5 rows
+# So werden die obersten 5 Zeilen angezeigt
 df.head(5)
 
 
-# In[5]:
+# In[3]:
 
 
-# To display the botton 5 rows
+# Um die untersten 5 Zeilen anzuzeigen
 df.tail(3)
 
 
-# In[6]:
+# In[4]:
 
 
-# To check the types of data
+# So prüfen man die Datentypen
 df.dtypes
-
 
 
 # Hier werde ich einige Zeilen löschen, die für die Daten unerheblich sind.
 # 
 
-# In[7]:
+# In[5]:
 
 
-# To drop the irrelevant columns
-
+# So lässt man die irrelevanten Spalten aus.
 df = df.drop(['vin', 'mmr'], axis=1)
 df.head(5)
 
@@ -58,7 +56,7 @@ df.head(5)
 # Manchmal können Daten doppelte Zeilen enthalten. Hier habe ich die Anzahl der doppelten Zeilen überprüft, aber es gab keine doppelten Zeilen.
 # 
 
-# In[8]:
+# In[6]:
 
 
 # To find the number of duplicate rows
@@ -67,56 +65,53 @@ duplicate_rows_df = df[df.duplicated()]
 print("number of duplicate rows: ", duplicate_rows_df.shape)
 
 
-
 # Diese Daten enthalten mehrere Nullwerte. Ich zeige die Nullwerte im Dataset an.
 # 
 
-# In[9]:
+# In[7]:
 
 
-#  To Drop the missing or null values
-print(df.isnull().sum())     # Finding the number of Null values
+# So finden Sie die Anzahl der doppelten Zeilen
+print(df.isnull().sum())     # Ermittlung der Anzahl der Nullwerte
 
 
 # Hier lasse ich die Nullwerte weg und lösche sie. Da es sich um einen sehr großen Datensatz handelt, wirkt sich das Löschen einiger Werte nicht auf die gesamten Daten aus.
 
+# In[8]:
+
+
+df = df.dropna()    # Die fehlenden Werte werden gestrichen.
+df.count()
+
+
+# In[9]:
+
+
+print(df.isnull().sum())   # Nach dem löschen der Werte
+
+
+# Auffinden der Ausreißer in den Daten. Hier habe ich die Ausreißer in Kilometerzähler und Preis aufgezeichnet. Da die Ausreißer bei Kilometerzähler und Preis einen gewissen Einfluss auf die Daten haben, lösche ich die Ausreißer nicht. Denn der Preis eines Fahrzeugs und die gefahrene Strecke hängen von vielen anderen Faktoren ab.
+
 # In[10]:
 
 
-df = df.dropna()    # Dropping the missing values.
-df.count()
+# Dies sind die Schritte für den Box Plot
+
+sns.boxplot(x=df['odometer'])
 
 
 # In[11]:
 
 
-print(df.isnull().sum())   # After dropping the values
-
-
-
-# Auffinden der Ausreißer in den Daten. Hier habe ich die Ausreißer in Kilometerzähler und Preis aufgezeichnet. Da die Ausreißer bei Kilometerzähler und Preis einen gewissen Einfluss auf die Daten haben, lösche ich die Ausreißer nicht. Denn der Preis eines Fahrzeugs und die gefahrene Strecke hängen von vielen anderen Faktoren ab.
-
-# In[12]:
-
-
-# These are the steps for Box Plot
-
-sns.boxplot(x=df['odometer'])
-
-
-# In[13]:
-
-
-# These are the steps for Box Plot
+# Dies sind die Schritte für den Box Plot
 
 sns.boxplot(x=df['sellingprice'])
 
 
-# In[14]:
+# In[12]:
 
 
-# Nothing to worry, If you don't understand this.
-# These are the steps for Box Plot
+# Dies sind die Schritte für den Box Plot
 
 Q1 = df.quantile(0.25)
 Q3 = df.quantile(0.75)
@@ -124,32 +119,30 @@ IQR = Q3 - Q1
 print(IQR)
 
 
-# Es wurde ein Diagramm mit der Anzahl der Fahrzeuge im Vergleich zu den Marken erstellt, um die wichtigsten Marken in der Auktion zu ermitteln. Und Ford war am meisten.
+# Es wurde ein Diagramm mit der Anzahl der Fahrzeuge im Vergleich zu den Marken erstellt, um die wichtigsten Marken in der Auktion zu ermitteln. Dabei hatte Ford die meisten Autos.
 # 
 
-# In[15]:
+# In[13]:
 
 
-# These are the steps for Bar Diagram
+# Dies sind die Schritte für das Balkendiagramm
 
 df.make.value_counts().nlargest(40).plot(kind='bar', figsize=(10,5))
-plt.title("Number of cars by Brands (make)")
+plt.title("Anzahl von Autos in Bezug auf die Marke(make)")
 plt.ylabel('Number of cars')
 plt.xlabel('Brands');
 
 
 # 
-# Insights finden
+# # Insights finden
 # 
 # Hier habe ich ein Diagramm erstellt, das die Anzahl der verkauften Fahrzeuge in Abhängigkeit von ihrem Preis zeigt. Die meisten Fahrzeuge wurden in einem Bereich von 10 000 bis 20 000 verkauft.
 # 
 
-# In[16]:
+# In[14]:
 
 
-# Nothing to worry, If you don't understand this.
 # These are for plotting Histogram
-# Comment if you have any doubts
 
 plt.figure(figsize=(15,8))
 plt.hist(df['sellingprice'],bins=200)
@@ -159,22 +152,19 @@ plt.xlabel('Selling Price',fontsize=12)
 plt.ylabel('Freq',fontsize=12)
 
 
-# In[17]:
+# In[15]:
 
 
-df['sellingprice'].describe()   # Describing the above graph
-
+df['sellingprice'].describe()   # Beschreibung des obigen Diagramms
 
 
 # Erstellung eines Diagramms, das zeigt, wie der Kilometerstand den Verkaufspreis von Gebrauchtwagen beeinflusst. Fahrzeuge mit einem Kilometerstand von weniger als 20 Kilometern erzielen den höchsten Preis beim Verkauf. Mit zunehmender Fahrleistung sinkt der Verkaufspreis.
 # 
 
-# In[18]:
+# In[16]:
 
 
-# Nothing to worry, If you don't understand this.
-# These are for plotting Scatter Plot
-# Comment if you have any doubts
+# Diese sind für das Plotten von Streudiagrammen gedacht.
 
 plt.figure(figsize=(20,8))
 g=sns.scatterplot(x='odometer',y='sellingprice',data=df)
@@ -187,30 +177,28 @@ g.set_xticklabels(xlabels);
 g.set_yticklabels(ylabels);
 
 
-# In[19]:
+# In[17]:
 
 
-# These are the steps for Bar Diagram
+# Dies sind die Schritte für das Balkendiagramm
 
 plt.figure(figsize=(19,6))
 
 df['year'].value_counts().plot(kind='bar')
 
-plt.title('Number of Cars Sold by year of Brands',fontsize=20)
+plt.title('Anzahl der verkauften Autos nach Jahr',fontsize=20)
 plt.xlabel('Year',fontsize=15)
 plt.ylabel('Total Cars',fontsize=15)
 
 
-# In[20]:
+# In[18]:
 
 
-# Nothing to worry, If you don't understand this.
 # These are for plotting Bar Plot
-# Comment if you have any doubts
 
 plt.figure(figsize=(20,7))
 sns.barplot(x='year',y='sellingprice',data=df)
-plt.title('Models by Selling Price')
+plt.title('Modelle nach Verkaufspreis')
 plt.xlabel('Year')
 plt.ylabel('Selling Price')
 

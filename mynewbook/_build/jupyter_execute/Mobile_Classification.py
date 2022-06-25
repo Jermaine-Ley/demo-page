@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Mobile Classifikation
+# # Klassifikation (Mobile Dataset)
 
 # In[1]:
 
@@ -154,14 +154,14 @@ df_val = df.sample(frac=0.2, random_state=1337)
 df_train_mobile_class = df.drop(df_val.index)
 
 
-# In[19]:
+# In[20]:
 
 
 # Save training data
 df_train_mobile_class.to_csv("df_train_mobile_class.csv", index=False)
 
 
-# In[20]:
+# In[21]:
 
 
 print(
@@ -170,7 +170,7 @@ print(
 )
 
 
-# In[21]:
+# In[22]:
 
 
 # Define a function to create our tensors
@@ -186,7 +186,7 @@ def dataframe_to_dataset(dataframe, shuffle=True, batch_size=32):
     return ds
 
 
-# In[23]:
+# In[24]:
 
 
 batch_size = 32
@@ -195,7 +195,7 @@ ds_train = dataframe_to_dataset(df_train_mobile_class, shuffle=True, batch_size=
 ds_val = dataframe_to_dataset(df_val, shuffle=True, batch_size=batch_size)
 
 
-# In[24]:
+# In[25]:
 
 
 # Define numerical preprocessing function
@@ -214,7 +214,7 @@ def get_normalization_layer(name, dataset):
     return normalizer
 
 
-# In[25]:
+# In[26]:
 
 
 def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
@@ -240,14 +240,14 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
   return lambda feature: encoder(index(feature))
 
 
-# In[26]:
+# In[27]:
 
 
 all_inputs = []
 encoded_features = []
 
 
-# In[27]:
+# In[28]:
 
 
 # Numerical features
@@ -259,7 +259,7 @@ for feature in list_num:
   encoded_features.append(encoded_numeric_feature)
 
 
-# In[28]:
+# In[29]:
 
 
 for feature in list_cat_int:
@@ -273,7 +273,7 @@ for feature in list_cat_int:
   encoded_features.append(encoded_categorical_feature)
 
 
-# In[29]:
+# In[30]:
 
 
 for feature in list_cat_string:
@@ -287,7 +287,7 @@ for feature in list_cat_string:
   encoded_features.append(encoded_categorical_feature)
 
 
-# In[30]:
+# In[31]:
 
 
 # Input
@@ -306,7 +306,7 @@ output = layers.Dense(1, activation="sigmoid")(x)
 model = tf.keras.Model(all_inputs, output)
 
 
-# In[31]:
+# In[32]:
 
 
 model.compile(optimizer="adam", 
@@ -314,7 +314,7 @@ model.compile(optimizer="adam",
               metrics=["accuracy"])
 
 
-# In[32]:
+# In[33]:
 
 
 # `rankdir='LR'` is to make the graph horizontal.
@@ -323,7 +323,7 @@ tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
 
 # Training
 
-# In[33]:
+# In[34]:
 
 
 loss, accuracy = model.evaluate(ds_val)
@@ -331,19 +331,19 @@ loss, accuracy = model.evaluate(ds_val)
 print("Accuracy", round(accuracy, 2))
 
 
-# In[34]:
+# In[35]:
 
 
 model.save('my_hd_classifier_mobile_classi')
 
 
-# In[35]:
+# In[36]:
 
 
 reloaded_model = tf.keras.models.load_model('my_hd_classifier_mobile_classi')
 
 
-# In[36]:
+# In[37]:
 
 
 sample = {
@@ -371,23 +371,23 @@ sample = {
 }
 
 
-# In[37]:
+# In[38]:
 
 
 input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
 
 
-# In[38]:
+# In[39]:
 
 
 predictions = reloaded_model.predict(input_dict)
 
 
-# In[39]:
+# In[40]:
 
 
 print(
-    "Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer %.1f prozentigen Wahrscheinlichkeit "
+    "Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei %.1f prozentigen Wahrscheinlichkeit "
      % (100 * predictions[0][0],)
 )
 
