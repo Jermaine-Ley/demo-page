@@ -3,7 +3,7 @@
 
 # # Was beeinflusst den Verkaufspreis?
 
-# In[3]:
+# In[1]:
 
 
 import numpy as np # linear algebra
@@ -16,14 +16,14 @@ from collections import Counter
 import os
 
 
-# In[7]:
+# In[2]:
 
 
 df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
 print(df) # Ausgabe 
 
 
-# In[9]:
+# In[3]:
 
 
 df.shape
@@ -31,15 +31,15 @@ df.shape
 
 # Die Gesamtzahl der Zeilen beträgt 558 Tausend mit 16 Spalten.
 
-# In[10]:
+# In[4]:
 
 
 #Die Funktion head() wird verwendet, um die ersten n Zeilen zu erhalten.
-        #Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.
+#Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.
 df.head()
 
 
-# In[11]:
+# In[5]:
 
 
 #Gibt ein Tupel zurück, das die Dimensionalität des DataFrame angibt.
@@ -49,7 +49,7 @@ df.head()
 # Betrachtet man die Nullwerte, so sind mit Ausnahme der Übertragung (11 %) alle anderen vernachlässigbar. 
 # Der Einfachheit halber lassen wir diese Nullwerte weg und führen unsere Analyse durch. Prüfen wir auf Duplikate,
 
-# In[13]:
+# In[6]:
 
 
 df.duplicated().sum()
@@ -58,18 +58,17 @@ df.duplicated().sum()
 # No rows are duplicated.
 # 
 
-# In[14]:
+# In[7]:
 
 
 #Gibt die Datentypen im DataFrame zurück.
 
 # Dies gibt eine Serie mit dem Datentyp jeder Spalte zurück. Der Index des Ergebnisses entspricht den Spalten des ursprünglichen DataFrame. 
 # Spalten mit gemischten Typen werden mit dem Objekt dtype gespeichert.
-
 df.dtypes
 
 
-# In[15]:
+# In[8]:
 
 
 plt.figure(figsize=(15,8))
@@ -80,7 +79,7 @@ plt.xlabel('Selling Price',fontsize=12)
 plt.ylabel('Freq',fontsize=12)
 
 
-# In[16]:
+# In[9]:
 
 
 df['sellingprice'].describe()
@@ -88,8 +87,9 @@ df['sellingprice'].describe()
 
 # Die Verteilung scheint schräg nach rechts zu verlaufen, wobei der Großteil der Verkaufspreise zwischen 15000 und 30000 liegt. Es gibt Ausreißer > 60000. 75 % der Daten haben einen Verkaufspreis < 200K. Ich gehe davon aus, dass es sich bei den teuersten Marken um Oldtimer oder High-End-Modelle wie Ferrari, BMW usw. handeln sollte. Das wird vielleicht klar, wenn wir dies mit der Marke vergleichen. Werfen wir einen groben Blick auf die Top-End-Marken
 # 
+# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
-# In[17]:
+# In[10]:
 
 
 df.loc[df['sellingprice']>60000,'make'].value_counts()
@@ -97,21 +97,21 @@ df.loc[df['sellingprice']>60000,'make'].value_counts()
 
 # Unsere Vermutung war richtig. Die Liste wird von BMW, Benz, Jaguar und Ferrari dominiert. Ein weiterer interessanter Punkt bei unserer Analyse ist die Tatsache, dass die Spalte "Marke" möglicherweise etwas bereinigt werden muss, da sich einige Marken zu wiederholen scheinen (BMW, bmw, Land Rover, land rover usw.). Der Einfachheit halber werden wir dies nicht tun und uns stattdessen auf die Gesamtanalyse konzentrieren
 # 
-# 
+# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
-# In[18]:
+# In[11]:
 
 
 df['make'].value_counts()[:10]
 
 
-# In[19]:
+# In[12]:
 
 
 top_make=df['make'].value_counts()[:10].index
 
 
-# In[20]:
+# In[13]:
 
 
 top_make
@@ -120,7 +120,7 @@ top_make
 # Da wir fast 96 Marken haben, betrachten wir nur die Top 10 und veranschaulichen ihre Verkaufspreisentwicklung.
 # 
 
-# In[21]:
+# In[14]:
 
 
 #Inspiration -https://www.kaggle.com/nroman/eda-for-ashrae
@@ -136,7 +136,7 @@ for t in top_make:
     i+=1
 
 
-# In[22]:
+# In[15]:
 
 
 df.loc[df['make']=='Ford','sellingprice'].describe()
@@ -150,7 +150,7 @@ df.loc[df['make']=='Ford','sellingprice'].describe()
 # 
 # Eine ähnliche Analyse wie die obige kann für verschiedene Karosserietypen durchgeführt werden. Lassen Sie uns eine schnelle Überprüfung durchführen
 
-# In[23]:
+# In[16]:
 
 
 (df['body'].value_counts()[:10]/df.shape[0])*100
@@ -159,20 +159,20 @@ df.loc[df['make']=='Ford','sellingprice'].describe()
 
 # Da 11 % der Gesamtdaten in dieser Spalte Null sind, werde ich sie für diese Analyse entfernen.
 
-# In[24]:
+# In[17]:
 
 
 trans_df=df.loc[~(df['transmission'].isna()),]
 trans_df.isna().sum() ## confirms that null values are removed.
 
 
-# In[25]:
+# In[18]:
 
 
 trans_df['transmission'].value_counts()
 
 
-# In[26]:
+# In[19]:
 
 
 plt.figure(figsize=(10,11))
@@ -190,7 +190,7 @@ plt.ylabel('Freq',fontsize=10)
 # Da wir nun die Verteilung der Verkaufspreise kennen, können wir prüfen, wie sie sich zu den Kilometerständen verhalten. Im Allgemeinen würde ich erwarten, dass der Wiederverkaufswert umso geringer ist, je höher die Nutzung (Kilometerstand) ist. 
 # 
 
-# In[28]:
+# In[20]:
 
 
 plt.figure(figsize=(10,10))
@@ -211,21 +211,21 @@ g.set_yticklabels(ylabels);
 # In order to do this analysis,lets remove the null values in make and model.
 # 
 
-# In[29]:
+# In[21]:
 
 
 mod_df=df.dropna(axis=0,subset=['make','model'])
 mod_df.isna().sum()
 
 
-# In[30]:
+# In[22]:
 
 
 ma_mo=list(zip(mod_df['make'],mod_df['model']))
 
 
 
-# In[31]:
+# In[23]:
 
 
 Counter(i for i in ma_mo).most_common()[:10]
@@ -234,7 +234,7 @@ Counter(i for i in ma_mo).most_common()[:10]
 # Ford scheint die Liste der meistverkauften Autos eindeutig zu dominieren. Nissan, Chevrolet, Honda und BMW sind weitere Marken.
 # 
 
-# In[32]:
+# In[24]:
 
 
 plt.figure(figsize=(10,8))
@@ -248,13 +248,13 @@ plt.ylabel('Freq',fontsize=15)
 # 
 # Lassen Sie diese Spalte weg und ermitteln Sie den durchschnittlichen Verkaufspreis.
 
-# In[33]:
+# In[25]:
 
 
 df['condition_bin'],bins=pd.cut(df['condition'],bins=4,retbins=True)
 
 
-# In[34]:
+# In[26]:
 
 
 plt.figure(figsize=(10,8))
@@ -266,7 +266,7 @@ plt.xlabel('Selling Price',fontsize=12)
 
 # Es ist deutlich zu erkennen, dass der Medianwert des Verkaufspreises mit zunehmendem Zustand der Fahrzeuge ansteigt. Wie aus den Diagrammen ersichtlich ist, werden die Bedingungen von vielen Ausreißern dominiert.
 
-# In[35]:
+# In[27]:
 
 
 df['year'].min(),df['year'].max()
@@ -277,7 +277,7 @@ df['year'].min(),df['year'].max()
 # 
 # Es gibt auch eine Spalte - saledate, die einige gute Informationen enthält. Bereinigen wir sie, um Wochentag, Monat und Tag zu extrahieren.
 
-# In[37]:
+# In[28]:
 
 
 df['sale_dow']=df['saledate'].apply(lambda x:re.search('^(\w+)\s',x).group(1))
@@ -288,26 +288,26 @@ df['sale_date']=df['saledate'].apply(lambda x:re.search('(\w+\s\d{2}\s\d{4})',x)
 df['sale_date']=pd.to_datetime(df['sale_date'],format='%b %d %Y')
 
 
-# In[38]:
+# In[29]:
 
 
 df['sale_dow'].value_counts()
 
 
 
-# In[39]:
+# In[30]:
 
 
 df['sale_month'].value_counts()
 
 
-# In[40]:
+# In[31]:
 
 
 df['sale_day'].value_counts()
 
 
-# In[41]:
+# In[32]:
 
 
 df['sale_year'].value_counts()
@@ -319,13 +319,13 @@ df['sale_year'].value_counts()
 # 
 # Schauen wir uns an, welches Jahr der hergestellten Marke den höchsten Verkaufswert hatte. Dann verstehen wir die Modelle in diesem Spitzenjahr.
 
-# In[42]:
+# In[33]:
 
 
 sale_model=df.groupby('year')['make'].count().sort_values(ascending=False)[:10].reset_index().rename(columns={'make':'total_units'})
 
 
-# In[43]:
+# In[34]:
 
 
 plt.figure(figsize=(10,8))
@@ -339,13 +339,13 @@ plt.ylabel('Total Units',fontsize=10)
 # Aus dem Diagramm geht hervor, dass Autos der Marke 2012 die meisten Auktionen hatten, gefolgt von 2013 und 2014. Oldtimer verkauften sich also nicht so gut, und die Leute interessierten sich mehr für die neuesten Marken.Interessant. Mal sehen, welches Modell beim durchschnittlichen Verkaufspreis an der Spitze steht.
 # 
 
-# In[44]:
+# In[35]:
 
 
 sale_year=df.groupby('year')['sellingprice'].mean().sort_values(ascending=False)[:10].reset_index()
 
 
-# In[45]:
+# In[36]:
 
 
 plt.figure(figsize=(8,8))
@@ -360,26 +360,26 @@ plt.ylabel('Selling Price')
 # Die bloße Betrachtung des Modelljahrs könnte keine wertvollen Informationen liefern, da es mehrere Marken für das Modelljahr gibt. Lassen Sie uns das Jahr und die Markenspalte zusammenfassen und diese Analyse erneut betrachten.
 # 
 
-# In[46]:
+# In[37]:
 
 
 df['year_make']=df['year'].astype('str')+'_'+df['make']
 
 
-# In[47]:
+# In[38]:
 
 
 df['year_make'].value_counts().reset_index().rename(columns={'year_make':'units','index':'year_make'})[:10]
 
 
-# In[48]:
+# In[39]:
 
 
 sale_make=df.groupby('year_make')['sellingprice'].mean().sort_values(ascending=False)[:10].reset_index()
 units_make=df['year_make'].value_counts().reset_index().rename(columns={'year_make':'units','index':'year_make'})[:10]
 
 
-# In[49]:
+# In[40]:
 
 
 plt.figure(figsize=(22,12))
@@ -406,7 +406,7 @@ plt.subplots_adjust(hspace=0.45)
 # - Bei den insgesamt verkauften Einheiten dominieren Nissan, Ford, Hyundai und Chevrolet die Liste.
 # 
 # 
-# # Schlussfolgerung:
+# # Fazit:
 # 
-# In diesem Modell habe ich eine explorative Analyse des Datensatzes der Autoauktion durchgeführt - kurz gesagt habe ich gesehen, wie die Verteilung des Verkaufspreises aussieht, wie Typ und Modell der verkauften Autos aussehen, wie jeder der Parameter wie Kilometerstand und Getriebe den Wert des Verkaufspreises beeinflusst.
+# Mit den bereitgestellten Daten habe ich eine explorative Analyse des Gebrauchtwagendatensatzes durchgeführt - kurz gesagt habe ich gesehen, wie die Verteilung des Verkaufspreises aussieht, wie Typ und Modell der verkauften Autos aussehen und wie jeder der Parameter wie Kilometerstand und Getriebe den Wert des Verkaufspreises beeinflusst.
 # 

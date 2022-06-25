@@ -1,0 +1,13 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Reg_EDA.ipynb
+- file: Reg_Modell1.ipynb
+- file: Reg_Modell2.ipynb
+- file: Struc_Keras_T.ipynb
+- file: Mobile_Classification.ipynb
+- file: Struc_SHAP.ipynb
+- file: Prüfungsleistung.md 

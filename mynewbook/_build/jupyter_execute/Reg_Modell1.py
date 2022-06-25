@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Regressionsmodell 1
+# # Regressionsmodell
 
-# In[1]:
+# In[3]:
 
 
 import numpy as np # linear algebra
@@ -17,14 +17,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[4]:
 
 
-df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
+df = pd.read_csv("car_prices.csv",nrows=400000)
 print(df) # Ausgabe 
 
 
-# In[3]:
+# In[5]:
 
 
 #Die Funktion head() wird verwendet, um die ersten n Zeilen zu erhalten.
@@ -32,14 +32,14 @@ print(df) # Ausgabe
 df.head()
 
 
-# In[4]:
+# In[6]:
 
 
 #Das shape-Attribut von pandas.DataFrame speichert die Anzahl der Zeilen und Spalten als Tupel 
 df.shape 
 
 
-# In[5]:
+# In[7]:
 
 
 #Die Methode info() von pandas.DataFrame kann Informationen wie die Anzahl der Zeilen und Spalten, 
@@ -48,14 +48,14 @@ df.shape
 df.info()
 
 
-# In[6]:
+# In[8]:
 
 
 #Fehlende Werte erkennen. Gibt ein boolesches Objekt zurück, das angibt, ob die Werte NA sind 
 df.isna().sum().sort_values(ascending=False)
 
 
-# In[7]:
+# In[9]:
 
 
 #Ab diesen Abschnitt werden die fehlenden Werte je nach Datentyp der Spalte. 
@@ -76,25 +76,25 @@ for x in df.columns:
       discrete_columns.append(x)
 
 
-# In[8]:
+# In[10]:
 
 
 categorical_columns
 
 
-# In[9]:
+# In[11]:
 
 
 continous_columns
 
 
-# In[10]:
+# In[12]:
 
 
 discrete_columns
 
 
-# In[11]:
+# In[13]:
 
 
 #Füllen von fehlenden Werten kontinuierlicher Spalten mit dem Median
@@ -102,7 +102,7 @@ for x in continous_columns:
   df[x].fillna(df[x].median(),inplace=True)
 
 
-# In[12]:
+# In[14]:
 
 
 #Füllen fehlender Werte kategorischer Spalten mit Modus
@@ -110,19 +110,19 @@ for x in categorical_columns:
   df[x].fillna(df[x].mode()[0],inplace=True)
 
 
-# In[13]:
+# In[15]:
 
 
 df.isna().sum().sort_values(ascending=False)
 
 
-# In[14]:
+# In[16]:
 
 
 #Wir haben keine Missing Values mehr, somit ist die Datei sauber und wir können beginnen.
 
 
-# In[15]:
+# In[17]:
 
 
 #Mit einem Boxplot werden die Ausreißer überprüft.
@@ -130,7 +130,7 @@ df[continous_columns].plot(kind='box',subplots=True,layout=(2,3),figsize=(14,8))
 plt.show()
 
 
-# In[16]:
+# In[18]:
 
 
 # Funktion zur Rückgabe des Index für die Spalte, deren Datenpunkte größer als die angegebene Grenze sind
@@ -141,7 +141,7 @@ def outs(col,limit):
     return index
 
 
-# In[17]:
+# In[19]:
 
 
 # Dieser Index hat Datenpunkte, die sehr weit von der Gruppe der Datenpunkte entfernt sind.
@@ -150,20 +150,20 @@ ind = outs('odometer',900000)
 ind
 
 
-# In[18]:
+# In[20]:
 
 
 value = round(np.percentile(df.odometer,99),1)
 value
 
 
-# In[19]:
+# In[21]:
 
 
 df.loc[ind,'mmr'] = value
 
 
-# In[20]:
+# In[22]:
 
 
 # Dieser Index hat Datenpunkte, die sehr weit von der Gruppe der Datenpunkte entfernt sind.
@@ -172,33 +172,33 @@ ind = outs('sellingprice',100000)
 ind
 
 
-# In[21]:
+# In[23]:
 
 
 value = round(np.percentile(df.sellingprice,99),1)
 value
 
 
-# In[22]:
+# In[24]:
 
 
 df.loc[ind,'sellingprice'] = value
 
 
-# In[23]:
+# In[25]:
 
 
 # Die Außreiser sind damit abgeschlossen
 # Label-Kodierung
 
 
-# In[24]:
+# In[26]:
 
 
 categorical_columns
 
 
-# In[25]:
+# In[27]:
 
 
 from sklearn.preprocessing import LabelEncoder
@@ -207,26 +207,26 @@ for x in categorical_columns:
   df[x] = le.fit_transform(df[x])
 
 
-# In[26]:
+# In[28]:
 
 
 #Feature Selection
 X = df.copy()
 
 
-# In[27]:
+# In[29]:
 
 
 X.drop('sellingprice',inplace=True,axis=1)
 
 
-# In[28]:
+# In[30]:
 
 
 Y = df.sellingprice
 
 
-# In[29]:
+# In[32]:
 
 
 from sklearn.ensemble import ExtraTreesRegressor
@@ -234,38 +234,38 @@ et = ExtraTreesRegressor()
 et.fit(X,Y)
 
 
-# In[30]:
+# In[33]:
 
 
 zip(et.feature_importances_,X.columns)
 
 
-# In[31]:
+# In[34]:
 
 
 imp_col = pd.DataFrame(zip(et.feature_importances_,X.columns),columns=['Importance','Columns'])
 
 
-# In[32]:
+# In[35]:
 
 
 imp_col.sort_values(by='Importance',ascending=False).head()
 
 
-# In[33]:
+# In[36]:
 
 
 #Auswahl der ersten 5 Spalten
 X = X[['mmr','year','condition','odometer','vin']]
 
 
-# In[34]:
+# In[37]:
 
 
 X
 
 
-# In[35]:
+# In[38]:
 
 
 #Modelbau und Splittung un Trainings-und Testdaten
@@ -274,7 +274,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3,
 random_state=10)
 
 
-# In[36]:
+# In[39]:
 
 
 #Lineare Regression
@@ -284,7 +284,7 @@ lr.fit(X_train, Y_train)
 Y_pred=lr.predict(X_test)
 
 
-# In[37]:
+# In[40]:
 
 
 # Evaluation
@@ -307,14 +307,14 @@ adjusted_r_squared = 1 - (1-lracc)*(len(Y)-1)/(len(Y)-X.shape[1]-1)
 print('Adjusted R2 ->',adjusted_r_squared)
 
 
-# In[38]:
+# In[41]:
 
 
 #Streudiagramm der tatsächlichen Werte gegenüber den vorhergesagten Werten
 sns.scatterplot(x=Y_test,y=Y_pred)
 
 
-# In[39]:
+# In[42]:
 
 
 sns.distplot(Y_test-Y_pred)

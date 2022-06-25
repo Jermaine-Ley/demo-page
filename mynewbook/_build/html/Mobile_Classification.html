@@ -52,7 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Prüfungsleistung" href="Pr%C3%BCfungsleistung.html" />
+    <link rel="next" title="SHAP mit strukturierten Daten (Classification)" href="SHAP_Mobile.html" />
+    <link rel="prev" title="Was beeinflusst den Verkaufspreis?" href="Reg_Modell2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -108,19 +109,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
+                    Einleitung
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_EDA.html">
-   Explorative Datenanalyse (EDA)
+   Exploratory Data Analysis (EDA) Auktion
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell 1
+   Regressionsmodell
   </a>
  </li>
  <li class="toctree-l1">
@@ -128,29 +129,24 @@ const thebe_selector_output = ".output, .cell_output"
    Was beeinflusst den Verkaufspreis?
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Struc_Keras_T.html">
-   Keras Tuner
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Mobile Classifikation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Struc_Classifi.html">
-   Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Struc_SHAP.html">
+  <a class="reference internal" href="SHAP_Mobile.html">
    SHAP mit strukturierten Daten (Classification)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Keras_T_Mobile.html">
+   Keras Tuner
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Pr%C3%BCfungsleistung.html">
    Prüfungsleistung
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Mobile Classifikation
   </a>
  </li>
 </ul>
@@ -431,11 +427,11 @@ title="Print to PDF"
 [2000 rows x 21 columns]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_28296\3119796705.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_9684\3119796705.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;Mobile_Price_train.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
-C:\Users\Jerma\AppData\Local\Temp\ipykernel_28296\3119796705.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_9684\3119796705.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;Mobile_Price_train.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
@@ -852,7 +848,25 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;battery_power&#39;: numpy.int32,
+ &#39;blue&#39;: numpy.int32,
+ &#39;dual_sim&#39;: numpy.int32,
+ &#39;fc&#39;: numpy.int32,
+ &#39;four_g&#39;: numpy.int32,
+ &#39;int_memory&#39;: numpy.int32,
+ &#39;mobile_wt&#39;: numpy.int32,
+ &#39;n_cores&#39;: numpy.int32,
+ &#39;pc&#39;: numpy.int32,
+ &#39;px_height&#39;: numpy.int32,
+ &#39;px_width&#39;: numpy.int32,
+ &#39;ram&#39;: numpy.int32,
+ &#39;sc_h&#39;: numpy.int32,
+ &#39;sc_w&#39;: numpy.int32,
+ &#39;talk_time&#39;: numpy.int32,
+ &#39;three_g&#39;: numpy.int32,
+ &#39;touch_screen&#39;: numpy.int32,
+ &#39;wifi&#39;: numpy.int32,
+ &#39;price_range&#39;: numpy.int32}
 </pre></div>
 </div>
 </div>
@@ -938,7 +952,7 @@ memory usage: 164.2 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save training data</span>
-<span class="n">df_train</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;df_train_mobile_class.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_train_mobile_class</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;df_train_mobile_class.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -979,7 +993,7 @@ memory usage: 164.2 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
 
-<span class="n">ds_train</span> <span class="o">=</span> <span class="n">dataframe_to_dataset</span><span class="p">(</span><span class="n">df_train</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="n">ds_train</span> <span class="o">=</span> <span class="n">dataframe_to_dataset</span><span class="p">(</span><span class="n">df_train_mobile_class</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
 <span class="n">ds_val</span> <span class="o">=</span> <span class="n">dataframe_to_dataset</span><span class="p">(</span><span class="n">df_val</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1133,8 +1147,8 @@ memory usage: 164.2 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 1s 7ms/step - loss: 0.9135 - accuracy: 0.2450
-Accuracy 0.25
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 2s 5ms/step - loss: 0.2471 - accuracy: 0.2850
+Accuracy 0.28
 </pre></div>
 </div>
 </div>
@@ -1200,18 +1214,24 @@ Accuracy 0.25
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\keras\engine\functional.py:559: UserWarning: Input dict contained keys [&#39;price_range&#39;] which did not match any model input. They will be ignored by the model.
+  inputs = self._flatten_to_reference_inputs(inputs)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Mit diesen ausgewählten Parametern besteht die auswahl für ein gutes Smartphone bei  </span><span class="si">%.1f</span><span class="s2"> prozentigen Wahrscheinlichkeit &quot;</span>
+    <span class="s2">&quot;Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer </span><span class="si">%.1f</span><span class="s2"> prozentigen Wahrscheinlichkeit &quot;</span>
      <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mit diesen ausgewählten Parametern besteht die auswahl für ein gutes Smartphone bei  43.5 prozentigen Wahrscheinlichkeit 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer 67.2 prozentigen Wahrscheinlichkeit 
 </pre></div>
 </div>
 </div>
@@ -1245,12 +1265,19 @@ Accuracy 0.25
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Pr%C3%BCfungsleistung.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Reg_Modell2.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Prüfungsleistung</p>
+            <p class="prev-next-title">Was beeinflusst den Verkaufspreis?</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="SHAP_Mobile.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SHAP mit strukturierten Daten (Classification)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
