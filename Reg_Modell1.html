@@ -968,10 +968,20 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ExtraTreesRegressor()
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">zip</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x22b541c8380&gt;
 </pre></div>
 </div>
 </div>
@@ -989,6 +999,58 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Importance</th>
+      <th>Columns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>0.622955</td>
+      <td>mmr</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.133290</td>
+      <td>year</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.123088</td>
+      <td>condition</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.076523</td>
+      <td>odometer</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.011210</td>
+      <td>vin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1004,6 +1066,125 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mmr</th>
+      <th>year</th>
+      <th>condition</th>
+      <th>odometer</th>
+      <th>vin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20500.0</td>
+      <td>2015</td>
+      <td>5.0</td>
+      <td>16639.0</td>
+      <td>290586</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20800.0</td>
+      <td>2015</td>
+      <td>5.0</td>
+      <td>9393.0</td>
+      <td>290582</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>31900.0</td>
+      <td>2014</td>
+      <td>4.5</td>
+      <td>1331.0</td>
+      <td>363258</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27500.0</td>
+      <td>2015</td>
+      <td>4.1</td>
+      <td>14282.0</td>
+      <td>390906</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>66000.0</td>
+      <td>2014</td>
+      <td>4.3</td>
+      <td>2641.0</td>
+      <td>363873</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>399995</th>
+      <td>20100.0</td>
+      <td>2012</td>
+      <td>3.3</td>
+      <td>27575.0</td>
+      <td>379008</td>
+    </tr>
+    <tr>
+      <th>399996</th>
+      <td>34600.0</td>
+      <td>2012</td>
+      <td>3.6</td>
+      <td>46502.0</td>
+      <td>246303</td>
+    </tr>
+    <tr>
+      <th>399997</th>
+      <td>15450.0</td>
+      <td>2012</td>
+      <td>4.6</td>
+      <td>23677.0</td>
+      <td>294250</td>
+    </tr>
+    <tr>
+      <th>399998</th>
+      <td>33600.0</td>
+      <td>2012</td>
+      <td>4.1</td>
+      <td>19059.0</td>
+      <td>384215</td>
+    </tr>
+    <tr>
+      <th>399999</th>
+      <td>21400.0</td>
+      <td>2014</td>
+      <td>4.6</td>
+      <td>23400.0</td>
+      <td>97867</td>
+    </tr>
+  </tbody>
+</table>
+<p>400000 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1049,6 +1230,15 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score -&gt; 0.9113078938814688
+MAE -&gt; 1423.4611111431452
+MSE -&gt; 7767731.391843106
+RMSE -&gt; 2787.065013924703
+Adjusted R2 -&gt; 0.9113067852135124
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1057,12 +1247,24 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/Reg_Modell1_38_1.png" src="_images/Reg_Modell1_38_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">Y_test</span><span class="o">-</span><span class="n">Y_pred</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/Reg_Modell1_39_1.png" src="_images/Reg_Modell1_39_1.png" />
 </div>
 </div>
 </section>

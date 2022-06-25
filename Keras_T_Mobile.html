@@ -200,6 +200,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Jermaine-Ley/demo-page/main?urlpath=tree/docs/Keras_T_Mobile.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -304,12 +333,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Keras Tuner
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variable-lists">
+   Variable lists¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-search">
+   Start search
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -321,6 +384,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Keras Tuner
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variable-lists">
+   Variable lists¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-search">
+   Start search
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -332,7 +418,7 @@ title="Print to PDF"
 <h1>Keras Tuner<a class="headerlink" href="#keras-tuner" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keras_tuner</span> <span class="k">as</span> <span class="nn">kt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keras_tuner</span> <span class="k">as</span> <span class="nn">kt</span>
 
 <span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
@@ -343,14 +429,14 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">tensorboard</span>
+<span class="o">%</span><span class="k">load_ext</span> tensorboard
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
 
     <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
     
@@ -378,14 +464,14 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">build_model</span><span class="p">(</span><span class="n">kt</span><span class="o">.</span><span class="n">HyperParameters</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">build_model</span><span class="p">(</span><span class="n">kt</span><span class="o">.</span><span class="n">HyperParameters</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
     
     <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 
@@ -421,8 +507,99 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Mobile_Price_train.csv&#39;</span><span class="p">,</span><span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn_bad_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="c1"># Ausgabe </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">build_model</span><span class="p">(</span><span class="n">kt</span><span class="o">.</span><span class="n">HyperParameters</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hp</span> <span class="o">=</span> <span class="n">kt</span><span class="o">.</span><span class="n">HyperParameters</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hp</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">32</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="variable-lists">
+<h1>Variable lists¶<a class="headerlink" href="#variable-lists" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of all numerical data</span>
+<span class="n">list_num</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># list of all categorical data</span>
+<span class="n">list_cat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define outcome variable as y_label</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;ram&#39;</span>
+
+<span class="c1"># select features</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">y_label</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># create feature data for data splitting</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+
+<span class="c1"># list of numeric features</span>
+<span class="n">feat_num</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># list of categorical features</span>
+<span class="n">feat_cat</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
+
+<span class="c1"># create response for data splitting</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="start-search">
+<h1>Start search<a class="headerlink" href="#start-search" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuner</span> <span class="o">=</span> <span class="n">kt</span><span class="o">.</span><span class="n">RandomSearch</span><span class="p">(</span>
+    <span class="n">hypermodel</span><span class="o">=</span><span class="n">build_model</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;val_accuracy&quot;</span><span class="p">,</span>
+    <span class="n">max_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">executions_per_trial</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span>
+    <span class="n">project_name</span><span class="o">=</span><span class="s2">&quot;Mobile_Price&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuner</span><span class="o">.</span><span class="n">search_space_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">10000</span><span class="p">]</span>
+<span class="n">x_val</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">10000</span><span class="p">:]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="mi">10000</span><span class="p">]</span>
+<span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">10000</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
