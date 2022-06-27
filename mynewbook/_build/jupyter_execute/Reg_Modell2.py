@@ -88,8 +88,6 @@ df['sellingprice'].describe()
 
 
 # Die Verteilung scheint schräg nach rechts zu verlaufen, wobei der Großteil der Verkaufspreise zwischen 15000 und 30000 liegt. Es gibt Ausreißer > 60000. 75 % der Daten haben einen Verkaufspreis < 200K. Ich gehe davon aus, dass es sich bei den teuersten Marken um Oldtimer oder High-End-Modelle wie Ferrari, BMW usw. handeln sollte. Das wird vielleicht klar, wenn wir dies mit der Marke vergleichen. Werfen wir einen groben Blick auf die Top-End-Marken
-# 
-# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 # In[10]:
 
@@ -98,8 +96,6 @@ df.loc[df['sellingprice']>60000,'make'].value_counts()
 
 
 # Unsere Vermutung war richtig. Die Liste wird von BMW, Benz, Jaguar und Ferrari dominiert. Ein weiterer interessanter Punkt bei unserer Analyse ist die Tatsache, dass die Spalte "Marke" möglicherweise etwas bereinigt werden muss, da sich einige Marken zu wiederholen scheinen (BMW, bmw, Land Rover, land rover usw.). Der Einfachheit halber werden wir dies nicht tun und uns stattdessen auf die Gesamtanalyse konzentrieren
-# 
-# Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 # In[11]:
 
@@ -122,7 +118,7 @@ top_make
 # Da wir fast 96 Marken haben, betrachten wir nur die Top 10 und veranschaulichen ihre Verkaufspreisentwicklung.
 # 
 
-# In[14]:
+# In[41]:
 
 
 fig,ax=plt.subplots(5,2,figsize=(14,20))
@@ -130,7 +126,7 @@ color_list=['#0a9396','#ca6702','#ae2012','#9b2226','#001219','#005f73','#94d2bd
 i=0
 for t in top_make:
     df.loc[df['make']==t,'sellingprice'].hist(ax=ax[i%5][i//5],bins=100,color=np.random.choice(color_list,replace=False))
-    ax[i%5][i//5].set_xlabel('Selling Price',fontsize=10)
+    ax[i%5][i//5].set_xlabel('Verkaufspreis',fontsize=10)
     ax[i%5][i//5].set_ylabel('Frequency',fontsize=10)
     ax[i%5][i//5].set_title(f'Verteilung des Kaufpreises für {t}',fontsize=15)
     plt.subplots_adjust(hspace=0.45)
@@ -235,13 +231,13 @@ Counter(i for i in ma_mo).most_common()[:10]
 # Ford scheint die Liste der meistverkauften Autos eindeutig zu dominieren. Nissan, Chevrolet, Honda und BMW sind weitere Marken.
 # 
 
-# In[24]:
+# In[42]:
 
 
 plt.figure(figsize=(10,8))
 plt.hist(df['condition'],bins=30,color='#023047')
-plt.title('Distribution of Condition',fontsize=20)
-plt.xlabel('Condition',fontsize=15)
+plt.title('Verteilung des Zustands',fontsize=20)
+plt.xlabel('Zustand',fontsize=15)
 plt.ylabel('Freq',fontsize=15)
 
 
@@ -261,8 +257,8 @@ df['condition_bin'],bins=pd.cut(df['condition'],bins=4,retbins=True)
 plt.figure(figsize=(10,8))
 sns.violinplot(y=df['condition_bin'],x=df['sellingprice'],palette=['#606c38','#283618','#dda15e','#bc6c25'])
 plt.title('Zustand des Autos Vs Verkaufspreis',fontsize=12)
-plt.ylabel('Condition',fontsize=12)
-plt.xlabel('Selling Price',fontsize=12)
+plt.ylabel('Zustand',fontsize=12)
+plt.xlabel('Verkaufspreis',fontsize=12)
 
 
 # Es ist deutlich zu erkennen, dass der Medianwert des Verkaufspreises mit zunehmendem Zustand der Fahrzeuge ansteigt. Wie aus den Diagrammen ersichtlich ist, werden die Bedingungen von vielen Ausreißern dominiert.
@@ -321,24 +317,26 @@ df['sale_year'].value_counts()
 # 
 # Schauen wir uns an, welches Jahr der hergestellten Marke den höchsten Verkaufswert hatte. Dann verstehen wir die Modelle in diesem Spitzenjahr.
 
-# In[33]:
+# In[46]:
 
 
 sale_model=df.groupby('year')['make'].count().sort_values(ascending=False)[:10].reset_index().rename(columns={'make':'total_units'})
 
 
-# In[34]:
+# In[47]:
 
 
 plt.figure(figsize=(10,8))
 sns.barplot(x='year',y='total_units',data=sale_model,palette=sns.set_palette('Set1'))
 plt.title('Anzahl der Verauften Autos pro Jahr',fontsize=15)
-plt.xlabel('Year',fontsize=10)
-plt.ylabel('Total Units',fontsize=10)
+plt.xlabel('Jahr',fontsize=10)
+plt.ylabel('Gesamtanzahl ',fontsize=10)
 
 
 # 
-# Aus dem Diagramm geht hervor, dass Autos der Marke 2012 die meisten Auktionen hatten, gefolgt von 2013 und 2014. Oldtimer verkauften sich also nicht so gut, und die Leute interessierten sich mehr für die neuesten Marken.Interessant. Mal sehen, welches Modell beim durchschnittlichen Verkaufspreis an der Spitze steht.
+# Aus dem Diagramm geht hervor, dass Autos der Marke 2012 die meisten Auktionen hatten, gefolgt von 2013 und 2014. Oldtimer verkauften sich also nicht so gut, und die Leute interessierten sich mehr für die neuesten Marken.Interessant!
+# 
+# Mal sehen, welches Modell beim durchschnittlichen Verkaufspreis an der Spitze steht.
 # 
 
 # In[35]:
@@ -347,14 +345,14 @@ plt.ylabel('Total Units',fontsize=10)
 sale_year=df.groupby('year')['sellingprice'].mean().sort_values(ascending=False)[:10].reset_index()
 
 
-# In[36]:
+# In[48]:
 
 
 plt.figure(figsize=(8,8))
 sns.barplot(x='year',y='sellingprice',data=sale_year)
-plt.title('Top 10 Models by Selling Price')
-plt.xlabel('Year')
-plt.ylabel('Selling Price')
+plt.title('Top 10 Modelle (Verkaufspreis)')
+plt.xlabel('Jahr')
+plt.ylabel('Verkaufspreis')
 
 
 # Das Modell 2012 mag die höchsten Auktionen nach Gesamteinheiten erzielt haben, aber wenn es um den durchschnittlichen Verkaufspreis geht, liegt das Modell 2015 an der Spitze, gefolgt vom Modell 2014.Eine weitere interessante Sache ist der Preis des Modells 1982, das die Top 10 der Verkaufspreise dominiert.
@@ -381,7 +379,7 @@ sale_make=df.groupby('year_make')['sellingprice'].mean().sort_values(ascending=F
 units_make=df['year_make'].value_counts().reset_index().rename(columns={'year_make':'units','index':'year_make'})[:10]
 
 
-# In[40]:
+# In[49]:
 
 
 plt.figure(figsize=(22,12))
@@ -389,15 +387,15 @@ plt.figure(figsize=(22,12))
 plt.subplot(1,2,1)
 
 a=sns.barplot(x='sellingprice',y='year_make',data=sale_make)
-a.set_title('Top 10 Make&Edition by Selling Price(Avg)',fontsize=15)
-a.set_ylabel('Year & Make',fontsize=12)
-a.set_xlabel('Selling Price',fontsize=12)
+a.set_title('Top 10 Marke&Variante nach Verkaufspreis(Avg)',fontsize=15)
+a.set_ylabel('Jahr & Marke',fontsize=12)
+a.set_xlabel('Verkaufspreis',fontsize=12)
 
 plt.subplot(1,2,2)
 b=sns.barplot(x='units',y='year_make',data=units_make)
-b.set_title('Top 10 Make&Edition by Total Units Sold',fontsize=15)
-b.set_ylabel('Year & Make',fontsize=12)
-b.set_xlabel('Units Sold',fontsize=12)
+b.set_title('Top 10 Marke&Variante nach verkauften Einheiten',fontsize=15)
+b.set_ylabel('Jahr & Marke',fontsize=12)
+b.set_xlabel('Verkaufte Einheiten',fontsize=12)
 
 
 plt.subplots_adjust(hspace=0.45)

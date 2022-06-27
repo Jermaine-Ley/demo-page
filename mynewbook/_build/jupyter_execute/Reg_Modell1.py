@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Regressionsmodell
+# # Regressionsmodell 1
 
 # In[1]:
 
@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 # In[2]:
 
 
-df = pd.read_csv("car_prices.csv",nrows=400000)
+df = pd.read_csv('car_prices.csv',error_bad_lines=False,warn_bad_lines=True)
 print(df) # Ausgabe 
 
 
