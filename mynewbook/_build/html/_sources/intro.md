@@ -1,5 +1,6 @@
 # Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
 
+
 Ziel:
 Das entwickeln von einen Prototyp für ein Dashboard, das eine Sensitivitätsanalyse enthält, die von einem Geschäftsanwender genutzt werden kann, um
 verschiedene Szenarien einfach zu simulieren und die Auswirkungen modellunabhängig zu verstehen.
@@ -19,6 +20,9 @@ und Volumenänderungen zu simulieren
 - Auswertung und Visualisierung: Aufbereitung der Ergebnisse und
 Simulation in einem Dashboard
 
+**Anmerkung: Das Jupyterbook ist funktionell sowie von der Vorgehensweise dokumentiert.
+Sie finden entsprechend im Code sowie in den Markdownfiles Anleitungen und Erklärungen zu den jeweiligen Funktionen und Themen.
+Das Jupyterbook wurde für jede Funktion einmalig kommentiert, bei Doppelungen wurde auf die erneute Erklärung verzichtet.**
 
 ```{tableofcontents}
 ```

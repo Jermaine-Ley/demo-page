@@ -3,6 +3,10 @@
 
 # # Klassifikation (Mobile Dataset)
 
+# Anlehnung an Classification I & Classification II von Prof. Dr. Jan Kirenz
+# <br>
+# https://kirenz.github.io/deep-learning/docs/structured_data_classification_functions.html
+
 # In[1]:
 
 
@@ -37,7 +41,7 @@ df.info()
 # In[5]:
 
 
-# To find the number of duplicate rows
+# Um die doppelten Zeilen zu finden
 
 duplicate_rows_df = df[df.duplicated()]
 print("number of duplicate rows: ", duplicate_rows_df.shape)
@@ -118,7 +122,7 @@ int_32
 # Convert to numeric
 
 # make a list of all categorical variables
-cat_convert = ['ram', 'battery_power', 'touch_screen']
+cat_convert = ['blue', 'dual_sim', 'touch_screen', 'four_g','three_g', 'wifi']
 
 # convert variables
 for i in cat_convert:
@@ -169,6 +173,8 @@ print(
     % (len(df_train_mobile_class), len(df_val))
 )
 
+
+# Jetzt müssen wir die Tensoren Funktionen kreieren.
 
 # In[20]:
 
@@ -343,7 +349,7 @@ model.save('my_hd_classifier_mobile_classi')
 reloaded_model = tf.keras.models.load_model('my_hd_classifier_mobile_classi')
 
 
-# In[49]:
+# In[62]:
 
 
 sample = {
@@ -352,38 +358,38 @@ sample = {
 'wifi': 1,
 'touch_screen': 1,    
 'three_g': 1,
-'talk_time': 100,
-'sc_w': 8,
-'sc_h': 12,
-'ram': 4873,
-'px_width': 957,
+'talk_time': 20,
+'sc_w': 10,
+'sc_h': 18,
+'ram': 3130,
+'px_width': 555,
 'pc': 20,
 'blue': 1,
 'n_cores': 5, 
 'mobile_wt': 156,
 'm_dep': 0.8,
-'int_memory':50, 
+'int_memory':64, 
 'four_g': 1,
-'fc': 14,
+'fc': 16,
 'dual_sim': 1,
 'clock_speed': 0.5,
 'price_range': "fixed",
 }
 
 
-# In[50]:
+# In[63]:
 
 
 input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
 
 
-# In[51]:
+# In[64]:
 
 
 predictions = reloaded_model.predict(input_dict)
 
 
-# In[52]:
+# In[65]:
 
 
 print(
@@ -391,3 +397,5 @@ print(
      % (100 * predictions[0][0],)
 )
 
+
+# In diesem Klassifikationsmodell sehen wir mit Einbindung eines Samples, wie sich bestimmte Werte auf das jeweilige Smartphone auswirkt.

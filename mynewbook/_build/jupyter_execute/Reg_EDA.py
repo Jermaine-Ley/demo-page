@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Exploratory Data Analysis (EDA) Auktion
+# # Exploratory Data Analysis (EDA)
 
 # In[38]:
 
@@ -103,7 +103,9 @@ sns.boxplot(x=df['odometer'])
 # In[57]:
 
 
-bgggggggggggggggggggggggggggggggggggdddddddddddddddddddddddffff
+# Dies sind die Schritte für den Box Plot
+
+sns.boxplot(x=df['sellingprice'])
 
 
 # In[49]:
@@ -162,7 +164,7 @@ df['sellingprice'].describe()   # Beschreibung des obigen Diagramms
 # In[53]:
 
 
-# Diese sind für das Plotten von Streudiagrammen gedacht.
+# Diese Parameter dienen zum Zeichnen von einem Streudiagramm
 
 plt.figure(figsize=(20,8))
 g=sns.scatterplot(x='odometer',y='sellingprice',data=df)
@@ -192,7 +194,7 @@ plt.ylabel('Gesamte Autos',fontsize=15)
 # In[55]:
 
 
-# These are for plotting Bar Plot
+# Diese Parameter dienen zum Zeichnen von Balkendiagrammen
 
 plt.figure(figsize=(20,7))
 sns.barplot(x='year',y='sellingprice',data=df)

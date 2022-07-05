@@ -3,7 +3,11 @@
 
 # # SHAP mit strukturierten Daten (Classification) Mobile Dataset
 
-# In[60]:
+# Anlehnung an Classification I & Classification II von Prof. Dr. Jan Kirenz
+# <br>
+# https://kirenz.github.io/deep-learning/docs/shap_structured_data_classification.html
+
+# In[21]:
 
 
 import numpy as np
@@ -20,49 +24,49 @@ import shap
 tf.__version__
 
 
-# In[61]:
+# In[22]:
 
 
 # print the JS visualization code to the notebook
 shap.initjs()
 
 
-# In[62]:
+# In[23]:
 
 
 df = pd.read_csv('Mobile_Price_train.csv',error_bad_lines=False,warn_bad_lines=True)
 print(df) # Ausgabe 
 
 
-# In[63]:
+# In[24]:
 
 
 df.info()
 
 
-# In[64]:
+# In[25]:
 
 
 # make target variable
 y = df.pop('price_range')
 
 
-# In[66]:
+# In[26]:
 
 
 # prepare features
-list_numerical = ['ram', 'battery_power', 'touch_screen', 'int_memory', 'pc']
+list_numerical = ['ram', 'battery_power', 'touch_screen', 'int_memory', 'pc', 'blue','clock_speed', 'dual_sim', 'fc','four_g','m_dep', 'mobile_wt', 'n_cores', 'px_height', 'px_width', 'sc_h', 'sc_w', 'talk_time', 'three_g', 'wifi']
 
 X = df[list_numerical]
 
 
-# In[67]:
+# In[27]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
-# In[68]:
+# In[28]:
 
 
 scaler = StandardScaler().fit(X_train[list_numerical]) 
@@ -71,17 +75,17 @@ X_train[list_numerical] = scaler.transform(X_train[list_numerical])
 X_test[list_numerical] = scaler.transform(X_test[list_numerical])
 
 
-# In[69]:
+# In[29]:
 
 
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(10, activation='relu'),
-    tf.keras.layers.Dense(10, activation='relu'),
+    tf.keras.layers.Dense(25, activation='relu'),
+    tf.keras.layers.Dense(25, activation='relu'),
     tf.keras.layers.Dense(1, activation='sigmoid')
   ])
 
 
-# In[70]:
+# In[30]:
 
 
 model.compile(optimizer="adam", 
@@ -89,24 +93,24 @@ model.compile(optimizer="adam",
               metrics=["accuracy"])
 
 
-# In[71]:
+# In[31]:
 
 
 model.fit(X_train, y_train, 
-         epochs=15, 
-         batch_size=13,
+         epochs=30, 
+         batch_size=20,
          validation_data=(X_test, y_test)
          )
 
 
-# In[72]:
+# In[32]:
 
 
 # `rankdir='LR'` is to make the graph horizontal.
 tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
 
 
-# In[73]:
+# In[33]:
 
 
 loss, accuracy = model.evaluate(X_test, y_test)
@@ -114,60 +118,56 @@ loss, accuracy = model.evaluate(X_test, y_test)
 print("Accuracy", accuracy)
 
 
-# In[74]:
+# In[34]:
 
 
 model.save('classifier_mobile_hd')
 
 
-# In[75]:
+# In[35]:
 
 
 reloaded_model = tf.keras.models.load_model('classifier_mobile_hd')
 
 
-# In[76]:
+# In[36]:
 
 
 predictions = reloaded_model.predict(X_train)
 
 
-# In[77]:
-
-
-print(
-    "Mit dieses ausgewählte Handy hat eine %.1f prozentige Wahrscheinlichkeit eine gute Auswahl zu sein " % (100 * predictions[0][0],)
-)
-
-
 # # SHAP
 
-# In[78]:
+# In[37]:
 
 
 explainer = shap.KernelExplainer(model, X_train.iloc[:50,:])
 
 
-# In[79]:
+# In[38]:
 
 
 shap_values = explainer.shap_values(X_train.iloc[20,:], nsamples=500)
 
 
-# In[80]:
+# In[39]:
 
 
-shap.force_plot(explainer.expected_value, shap_values[0], X_train.iloc[20,:])
+shap.force_plot(explainer.expected_value, shap_values[0], X_train.iloc[25,:])
 
 
-# In[81]:
+# In[40]:
 
 
 shap_values50 = explainer.shap_values(X_train.iloc[50:100,:], nsamples=500)
 
 
-# In[82]:
+# In[41]:
 
 
 shap.force_plot(explainer.expected_value, shap_values50[0], X_train.iloc[50:100,:])
 
+
+# Shapley Additive exPlanations oder SHAP ist ein Ansatz, der in der Spieltheorie verwendet wird. Mit SHAP wird die Ausgabe seines maschinellen Lernmodells erklärt.
+# 
+# In dem obigen Modell werden Merkmale aufgezeigt, die dazu beitragen, die Modellausgabe zu steigern. Merkmale bzw. Vorhersagen die sich positiv auswirken werde in Rot dargestellt und Vorhersagen, die sich negativ auswirken werden in Blau dargestellt.

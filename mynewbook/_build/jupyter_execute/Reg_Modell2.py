@@ -71,13 +71,11 @@ df.dtypes
 # In[8]:
 
 
-
-
 plt.figure(figsize=(15,8))
 plt.hist(df['sellingprice'],bins=200,color='#dc2f02')
 plt.title('Verteilung des Verkaufspreises',fontsize=15)
 plt.xticks(np.arange(0,df['sellingprice'].max(),15000))
-plt.xlabel('Selling Price',fontsize=12)
+plt.xlabel('Verkaufspreis',fontsize=12)
 plt.ylabel('Freq',fontsize=12)
 
 
@@ -118,7 +116,7 @@ top_make
 # Da wir fast 96 Marken haben, betrachten wir nur die Top 10 und veranschaulichen ihre Verkaufspreisentwicklung.
 # 
 
-# In[41]:
+# In[14]:
 
 
 fig,ax=plt.subplots(5,2,figsize=(14,20))
@@ -150,9 +148,8 @@ df.loc[df['make']=='Ford','sellingprice'].describe()
 # In[16]:
 
 
-
-
 (df['body'].value_counts()[:10]/df.shape[0])*100
+
 
 
 # Da 11 % der Gesamtdaten in dieser Spalte Null sind, werde ich sie in der Analyse entfernen.
@@ -231,7 +228,7 @@ Counter(i for i in ma_mo).most_common()[:10]
 # Ford scheint die Liste der meistverkauften Autos eindeutig zu dominieren. Nissan, Chevrolet, Honda und BMW sind weitere Marken.
 # 
 
-# In[42]:
+# In[24]:
 
 
 plt.figure(figsize=(10,8))
@@ -288,9 +285,8 @@ df['sale_date']=pd.to_datetime(df['sale_date'],format='%b %d %Y')
 # In[29]:
 
 
-
-
 df['sale_dow'].value_counts()
+
 
 
 # In[30]:
@@ -317,13 +313,13 @@ df['sale_year'].value_counts()
 # 
 # Schauen wir uns an, welches Jahr der hergestellten Marke den höchsten Verkaufswert hatte. Dann verstehen wir die Modelle in diesem Spitzenjahr.
 
-# In[46]:
+# In[33]:
 
 
 sale_model=df.groupby('year')['make'].count().sort_values(ascending=False)[:10].reset_index().rename(columns={'make':'total_units'})
 
 
-# In[47]:
+# In[34]:
 
 
 plt.figure(figsize=(10,8))
@@ -345,7 +341,7 @@ plt.ylabel('Gesamtanzahl ',fontsize=10)
 sale_year=df.groupby('year')['sellingprice'].mean().sort_values(ascending=False)[:10].reset_index()
 
 
-# In[48]:
+# In[36]:
 
 
 plt.figure(figsize=(8,8))
@@ -379,7 +375,7 @@ sale_make=df.groupby('year_make')['sellingprice'].mean().sort_values(ascending=F
 units_make=df['year_make'].value_counts().reset_index().rename(columns={'year_make':'units','index':'year_make'})[:10]
 
 
-# In[49]:
+# In[40]:
 
 
 plt.figure(figsize=(22,12))
