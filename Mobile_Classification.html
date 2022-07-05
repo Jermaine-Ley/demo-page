@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Mobile Classifikation &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <title>Klassifikation (Mobile Dataset) &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SHAP mit strukturierten Daten (Classification)" href="SHAP_Mobile.html" />
+    <link rel="next" title="SHAP mit strukturierten Daten (Classification) Mobile Dataset" href="SHAP_Mobile.html" />
     <link rel="prev" title="Was beeinflusst den Verkaufspreis?" href="Reg_Modell2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Einleitung
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,17 +131,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Mobile Classifikation
+   Klassifikation (Mobile Dataset)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="SHAP_Mobile.html">
-   SHAP mit strukturierten Daten (Classification)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Keras_T_Mobile.html">
-   Keras Tuner
+   SHAP mit strukturierten Daten (Classification) Mobile Dataset
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,7 +340,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Mobile Classifikation</h1>
+                <h1>Klassifikation (Mobile Dataset)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -357,8 +352,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="mobile-classifikation">
-<h1>Mobile Classifikation<a class="headerlink" href="#mobile-classifikation" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="klassifikation-mobile-dataset">
+<h1>Klassifikation (Mobile Dataset)<a class="headerlink" href="#klassifikation-mobile-dataset" title="Permalink to this headline">#</a></h1>
+<p>Anlehnung an Classification I &amp; Classification II von Prof. Dr. Jan Kirenz
+<br>
+<a class="reference external" href="https://kirenz.github.io/deep-learning/docs/structured_data_classification_functions.html">https://kirenz.github.io/deep-learning/docs/structured_data_classification_functions.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -427,11 +425,11 @@ title="Print to PDF"
 [2000 rows x 21 columns]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_9684\3119796705.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Jerma\AppData\Local\Temp\ipykernel_6652\3119796705.py:1: FutureWarning: The error_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;Mobile_Price_train.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
-C:\Users\Jerma\AppData\Local\Temp\ipykernel_9684\3119796705.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
+C:\Users\Jerma\AppData\Local\Temp\ipykernel_6652\3119796705.py:1: FutureWarning: The warn_bad_lines argument has been deprecated and will be removed in a future version. Use on_bad_lines in the future.
 
 
   df = pd.read_csv(&#39;Mobile_Price_train.csv&#39;,error_bad_lines=False,warn_bad_lines=True)
@@ -654,7 +652,7 @@ memory usage: 328.2 KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To find the number of duplicate rows</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Um die doppelten Zeilen zu finden</span>
 
 <span class="n">duplicate_rows_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of duplicate rows: &quot;</span><span class="p">,</span> <span class="n">duplicate_rows_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -876,7 +874,7 @@ dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to numeric</span>
 
 <span class="c1"># make a list of all categorical variables</span>
-<span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ram&#39;</span><span class="p">,</span> <span class="s1">&#39;battery_power&#39;</span><span class="p">,</span> <span class="s1">&#39;touch_screen&#39;</span><span class="p">]</span>
+<span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;dual_sim&#39;</span><span class="p">,</span> <span class="s1">&#39;touch_screen&#39;</span><span class="p">,</span> <span class="s1">&#39;four_g&#39;</span><span class="p">,</span><span class="s1">&#39;three_g&#39;</span><span class="p">,</span> <span class="s1">&#39;wifi&#39;</span><span class="p">]</span>
 
 <span class="c1"># convert variables</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_convert</span><span class="p">:</span>
@@ -972,6 +970,7 @@ memory usage: 164.2 KB
 </div>
 </div>
 </div>
+<p>Jetzt müssen wir die Tensoren Funktionen kreieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to create our tensors</span>
@@ -1134,7 +1133,7 @@ memory usage: 164.2 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Mobile_Classification_30_0.png" src="_images/Mobile_Classification_30_0.png" />
+<img alt="_images/Mobile_Classification_32_0.png" src="_images/Mobile_Classification_32_0.png" />
 </div>
 </div>
 <p>Training</p>
@@ -1147,8 +1146,8 @@ memory usage: 164.2 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 2s 5ms/step - loss: 0.2471 - accuracy: 0.2850
-Accuracy 0.28
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 1s 4ms/step - loss: 0.7433 - accuracy: 0.2475
+Accuracy 0.25
 </pre></div>
 </div>
 </div>
@@ -1175,24 +1174,24 @@ Accuracy 0.28
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s1">&#39;battery_power&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+<span class="s1">&#39;battery_power&#39;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span>
 <span class="s1">&#39;px_height&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  
 <span class="s1">&#39;wifi&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
 <span class="s1">&#39;touch_screen&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
 <span class="s1">&#39;three_g&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="s1">&#39;talk_time&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-<span class="s1">&#39;sc_w&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-<span class="s1">&#39;sc_h&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-<span class="s1">&#39;ram&#39;</span><span class="p">:</span> <span class="mi">3873</span><span class="p">,</span>
-<span class="s1">&#39;px_width&#39;</span><span class="p">:</span> <span class="mi">957</span><span class="p">,</span>
+<span class="s1">&#39;talk_time&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+<span class="s1">&#39;sc_w&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<span class="s1">&#39;sc_h&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+<span class="s1">&#39;ram&#39;</span><span class="p">:</span> <span class="mi">3130</span><span class="p">,</span>
+<span class="s1">&#39;px_width&#39;</span><span class="p">:</span> <span class="mi">555</span><span class="p">,</span>
 <span class="s1">&#39;pc&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
 <span class="s1">&#39;blue&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
 <span class="s1">&#39;n_cores&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> 
 <span class="s1">&#39;mobile_wt&#39;</span><span class="p">:</span> <span class="mi">156</span><span class="p">,</span>
 <span class="s1">&#39;m_dep&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
-<span class="s1">&#39;int_memory&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> 
+<span class="s1">&#39;int_memory&#39;</span><span class="p">:</span><span class="mi">64</span><span class="p">,</span> 
 <span class="s1">&#39;four_g&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="s1">&#39;fc&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+<span class="s1">&#39;fc&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
 <span class="s1">&#39;dual_sim&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
 <span class="s1">&#39;clock_speed&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
 <span class="s1">&#39;price_range&#39;</span><span class="p">:</span> <span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
@@ -1214,28 +1213,23 @@ Accuracy 0.28
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Jerma\anaconda3\envs\tf\lib\site-packages\keras\engine\functional.py:559: UserWarning: Input dict contained keys [&#39;price_range&#39;] which did not match any model input. They will be ignored by the model.
-  inputs = self._flatten_to_reference_inputs(inputs)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer </span><span class="si">%.1f</span><span class="s2"> prozentigen Wahrscheinlichkeit &quot;</span>
+    <span class="s2">&quot;Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer </span><span class="si">%.1f</span><span class="s2"> prozentigen Wahrscheinlichkeit. &quot;</span>
      <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer 67.2 prozentigen Wahrscheinlichkeit 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mit diesen ausgewählten Parametern besteht die Auswahl für ein gutes Smartphone bei einer 66.5 prozentigen Wahrscheinlichkeit. 
 </pre></div>
 </div>
 </div>
 </div>
+<p>In diesem Klassifikationsmodell sehen wir mit Einbindung eines Samples, wie sich bestimmte Werte auf das jeweilige Smartphone auswirkt.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1275,7 +1269,7 @@ Accuracy 0.28
     <a class='right-next' id="next-link" href="SHAP_Mobile.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SHAP mit strukturierten Daten (Classification)</p>
+        <p class="prev-next-title">SHAP mit strukturierten Daten (Classification) Mobile Dataset</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

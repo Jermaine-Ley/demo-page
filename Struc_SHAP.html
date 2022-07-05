@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>SHAP mit strukturierten Daten (Classification) Mobile Dataset &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHAP mit strukturierten Daten (Classification) &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -52,8 +53,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Prüfungsleistung" href="Pr%C3%BCfungsleistung.html" />
-    <link rel="prev" title="Klassifikation (Mobile Dataset)" href="Mobile_Classification.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -61,21 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -84,10 +69,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -102,18 +86,17 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
-                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Herzlich Willkommen zu meinem Projekt im Modul Data Science &amp; MLOps!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_EDA.html">
    Exploratory Data Analysis (EDA) Auktion
@@ -121,7 +104,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reg_Modell1.html">
-   Regressionsmodell 1
+   Regressionsmodell
   </a>
  </li>
  <li class="toctree-l1">
@@ -134,11 +117,6 @@ const thebe_selector_output = ".output, .cell_output"
    Klassifikation (Mobile Dataset)
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   SHAP mit strukturierten Daten (Classification) Mobile Dataset
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Pr%C3%BCfungsleistung.html">
    Prüfungsleistung
@@ -147,263 +125,122 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Struc_SHAP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Jermaine-Ley/demo-page"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Quell-Repository"><i
+                    class="fab fa-github"></i>Repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Jermaine-Ley/demo-page/issues/new?title=Issue%20on%20page%20%2FStruc_SHAP.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Öffnen Sie ein Problem"><i class="fas fa-lightbulb"></i>offenes Thema</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Jermaine-Ley/demo-page/main?urlpath=tree/docs/Struc_SHAP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
         </div>
     </div>
-    <div id="rtd-footer-container"></div>
 </div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/Jermaine-Ley/demo-page/main?urlpath=tree/docs/SHAP_Mobile.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/Jermaine-Ley/demo-page"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/Jermaine-Ley/demo-page/issues/new?title=Issue%20on%20page%20%2FSHAP_Mobile.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/SHAP_Mobile.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   SHAP mit strukturierten Daten (Classification) Mobile Dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shap">
-   SHAP
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>SHAP mit strukturierten Daten (Classification) Mobile Dataset</h1>
+                <h1>SHAP mit strukturierten Daten (Classification)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   SHAP mit strukturierten Daten (Classification) Mobile Dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shap">
-   SHAP
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="shap-mit-strukturierten-daten-classification-mobile-dataset">
-<h1>SHAP mit strukturierten Daten (Classification) Mobile Dataset<a class="headerlink" href="#shap-mit-strukturierten-daten-classification-mobile-dataset" title="Permalink to this headline">#</a></h1>
-<p>Anlehnung an Classification I &amp; Classification II von Prof. Dr. Jan Kirenz
-<br>
-<a class="reference external" href="https://kirenz.github.io/deep-learning/docs/shap_structured_data_classification.html">https://kirenz.github.io/deep-learning/docs/shap_structured_data_classification.html</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="shap-mit-strukturierten-daten-classification">
+<h1>SHAP mit strukturierten Daten (Classification)<a class="headerlink" href="#shap-mit-strukturierten-daten-classification" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -575,7 +412,7 @@ memory usage: 328.2 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare features</span>
-<span class="n">list_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ram&#39;</span><span class="p">,</span> <span class="s1">&#39;battery_power&#39;</span><span class="p">,</span> <span class="s1">&#39;touch_screen&#39;</span><span class="p">,</span> <span class="s1">&#39;int_memory&#39;</span><span class="p">,</span> <span class="s1">&#39;pc&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;clock_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;dual_sim&#39;</span><span class="p">,</span> <span class="s1">&#39;fc&#39;</span><span class="p">,</span><span class="s1">&#39;four_g&#39;</span><span class="p">,</span><span class="s1">&#39;m_dep&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile_wt&#39;</span><span class="p">,</span> <span class="s1">&#39;n_cores&#39;</span><span class="p">,</span> <span class="s1">&#39;px_height&#39;</span><span class="p">,</span> <span class="s1">&#39;px_width&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_h&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_w&#39;</span><span class="p">,</span> <span class="s1">&#39;talk_time&#39;</span><span class="p">,</span> <span class="s1">&#39;three_g&#39;</span><span class="p">,</span> <span class="s1">&#39;wifi&#39;</span><span class="p">]</span>
+<span class="n">list_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ram&#39;</span><span class="p">,</span> <span class="s1">&#39;battery_power&#39;</span><span class="p">,</span> <span class="s1">&#39;touch_screen&#39;</span><span class="p">,</span> <span class="s1">&#39;int_memory&#39;</span><span class="p">,</span> <span class="s1">&#39;pc&#39;</span><span class="p">]</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">list_numerical</span><span class="p">]</span>
 </pre></div>
@@ -602,8 +439,8 @@ memory usage: 328.2 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
   <span class="p">])</span>
 </pre></div>
@@ -622,77 +459,47 @@ memory usage: 328.2 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> 
-         <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> 
-         <span class="n">batch_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+         <span class="n">epochs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> 
+         <span class="n">batch_size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
          <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
          <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/30
-80/80 [==============================] - 2s 11ms/step - loss: -0.3617 - accuracy: 0.2612 - val_loss: -2.2293 - val_accuracy: 0.2275
-Epoch 2/30
-80/80 [==============================] - 1s 6ms/step - loss: -4.8533 - accuracy: 0.2556 - val_loss: -9.8737 - val_accuracy: 0.2275
-Epoch 3/30
-80/80 [==============================] - 1s 7ms/step - loss: -18.0679 - accuracy: 0.2556 - val_loss: -32.9594 - val_accuracy: 0.2275
-Epoch 4/30
-80/80 [==============================] - 0s 6ms/step - loss: -52.2007 - accuracy: 0.2556 - val_loss: -85.6421 - val_accuracy: 0.2275
-Epoch 5/30
-80/80 [==============================] - 0s 5ms/step - loss: -122.0195 - accuracy: 0.2556 - val_loss: -184.2063 - val_accuracy: 0.2275
-Epoch 6/30
-80/80 [==============================] - 0s 5ms/step - loss: -239.9629 - accuracy: 0.2569 - val_loss: -343.8299 - val_accuracy: 0.2350
-Epoch 7/30
-80/80 [==============================] - 0s 5ms/step - loss: -419.1168 - accuracy: 0.2688 - val_loss: -570.8777 - val_accuracy: 0.2400
-Epoch 8/30
-80/80 [==============================] - 0s 5ms/step - loss: -668.7781 - accuracy: 0.2869 - val_loss: -888.5015 - val_accuracy: 0.2575
-Epoch 9/30
-80/80 [==============================] - 0s 5ms/step - loss: -1001.3284 - accuracy: 0.3038 - val_loss: -1299.5170 - val_accuracy: 0.2675
-Epoch 10/30
-80/80 [==============================] - 0s 5ms/step - loss: -1427.4485 - accuracy: 0.3137 - val_loss: -1809.0386 - val_accuracy: 0.2725
-Epoch 11/30
-80/80 [==============================] - 0s 5ms/step - loss: -1946.9480 - accuracy: 0.3294 - val_loss: -2432.0225 - val_accuracy: 0.2875
-Epoch 12/30
-80/80 [==============================] - 0s 5ms/step - loss: -2571.5393 - accuracy: 0.3400 - val_loss: -3179.1816 - val_accuracy: 0.2975
-Epoch 13/30
-80/80 [==============================] - 0s 4ms/step - loss: -3309.2139 - accuracy: 0.3481 - val_loss: -4031.7314 - val_accuracy: 0.3025
-Epoch 14/30
-80/80 [==============================] - 0s 5ms/step - loss: -4157.9067 - accuracy: 0.3562 - val_loss: -5028.4126 - val_accuracy: 0.3150
-Epoch 15/30
-80/80 [==============================] - 0s 5ms/step - loss: -5124.1475 - accuracy: 0.3600 - val_loss: -6143.0156 - val_accuracy: 0.3225
-Epoch 16/30
-80/80 [==============================] - 0s 6ms/step - loss: -6208.9189 - accuracy: 0.3669 - val_loss: -7390.4033 - val_accuracy: 0.3250
-Epoch 17/30
-80/80 [==============================] - 0s 5ms/step - loss: -7424.8789 - accuracy: 0.3706 - val_loss: -8770.6758 - val_accuracy: 0.3325
-Epoch 18/30
-80/80 [==============================] - 0s 5ms/step - loss: -8771.1709 - accuracy: 0.3756 - val_loss: -10325.7314 - val_accuracy: 0.3450
-Epoch 19/30
-80/80 [==============================] - 0s 4ms/step - loss: -10256.8535 - accuracy: 0.3756 - val_loss: -12047.4189 - val_accuracy: 0.3575
-Epoch 20/30
-80/80 [==============================] - 0s 4ms/step - loss: -11886.1602 - accuracy: 0.3806 - val_loss: -13882.4180 - val_accuracy: 0.3575
-Epoch 21/30
-80/80 [==============================] - 0s 4ms/step - loss: -13650.5088 - accuracy: 0.3850 - val_loss: -15871.8203 - val_accuracy: 0.3600
-Epoch 22/30
-80/80 [==============================] - 0s 4ms/step - loss: -15560.7158 - accuracy: 0.3900 - val_loss: -18055.4746 - val_accuracy: 0.3600
-Epoch 23/30
-80/80 [==============================] - 0s 6ms/step - loss: -17629.8906 - accuracy: 0.3919 - val_loss: -20387.1504 - val_accuracy: 0.3650
-Epoch 24/30
-80/80 [==============================] - 0s 6ms/step - loss: -19844.2246 - accuracy: 0.3925 - val_loss: -22894.2617 - val_accuracy: 0.3650
-Epoch 25/30
-80/80 [==============================] - 0s 6ms/step - loss: -22214.6348 - accuracy: 0.3931 - val_loss: -25564.4746 - val_accuracy: 0.3675
-Epoch 26/30
-80/80 [==============================] - 1s 7ms/step - loss: -24736.3008 - accuracy: 0.3938 - val_loss: -28395.8555 - val_accuracy: 0.3750
-Epoch 27/30
-80/80 [==============================] - 1s 7ms/step - loss: -27420.6172 - accuracy: 0.3931 - val_loss: -31390.1348 - val_accuracy: 0.3750
-Epoch 28/30
-80/80 [==============================] - 1s 7ms/step - loss: -30254.7402 - accuracy: 0.3963 - val_loss: -34587.6133 - val_accuracy: 0.3750
-Epoch 29/30
-80/80 [==============================] - 1s 7ms/step - loss: -33250.5078 - accuracy: 0.3975 - val_loss: -38016.2578 - val_accuracy: 0.3750
-Epoch 30/30
-80/80 [==============================] - 1s 7ms/step - loss: -36426.9023 - accuracy: 0.3994 - val_loss: -41521.2266 - val_accuracy: 0.3800
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/15
+124/124 [==============================] - 2s 8ms/step - loss: 0.0764 - accuracy: 0.2587 - val_loss: -0.7615 - val_accuracy: 0.2275
+Epoch 2/15
+124/124 [==============================] - 1s 5ms/step - loss: -1.8009 - accuracy: 0.2562 - val_loss: -3.8382 - val_accuracy: 0.2275
+Epoch 3/15
+124/124 [==============================] - 1s 4ms/step - loss: -7.3038 - accuracy: 0.2569 - val_loss: -14.0994 - val_accuracy: 0.2350
+Epoch 4/15
+124/124 [==============================] - 1s 5ms/step - loss: -23.8358 - accuracy: 0.2806 - val_loss: -41.0677 - val_accuracy: 0.2900
+Epoch 5/15
+124/124 [==============================] - 1s 4ms/step - loss: -59.6049 - accuracy: 0.3413 - val_loss: -92.2391 - val_accuracy: 0.3300
+Epoch 6/15
+124/124 [==============================] - 1s 5ms/step - loss: -120.6804 - accuracy: 0.3650 - val_loss: -174.2290 - val_accuracy: 0.3625
+Epoch 7/15
+124/124 [==============================] - 1s 4ms/step - loss: -214.5331 - accuracy: 0.3850 - val_loss: -292.4056 - val_accuracy: 0.3875
+Epoch 8/15
+124/124 [==============================] - 1s 5ms/step - loss: -340.8250 - accuracy: 0.4013 - val_loss: -449.5389 - val_accuracy: 0.3900
+Epoch 9/15
+124/124 [==============================] - 1s 5ms/step - loss: -505.9120 - accuracy: 0.4125 - val_loss: -648.0705 - val_accuracy: 0.4025
+Epoch 10/15
+124/124 [==============================] - 1s 4ms/step - loss: -714.9310 - accuracy: 0.4200 - val_loss: -895.6844 - val_accuracy: 0.4100
+Epoch 11/15
+124/124 [==============================] - 1s 4ms/step - loss: -966.3402 - accuracy: 0.4231 - val_loss: -1185.1053 - val_accuracy: 0.4125
+Epoch 12/15
+124/124 [==============================] - 1s 5ms/step - loss: -1259.0811 - accuracy: 0.4269 - val_loss: -1524.6077 - val_accuracy: 0.4150
+Epoch 13/15
+124/124 [==============================] - 0s 4ms/step - loss: -1600.6897 - accuracy: 0.4300 - val_loss: -1920.4717 - val_accuracy: 0.4150
+Epoch 14/15
+124/124 [==============================] - 0s 4ms/step - loss: -1993.1619 - accuracy: 0.4306 - val_loss: -2366.3455 - val_accuracy: 0.4200
+Epoch 15/15
+124/124 [==============================] - 1s 4ms/step - loss: -2444.0098 - accuracy: 0.4313 - val_loss: -2881.5769 - val_accuracy: 0.4200
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x165a485e760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x23499a042b0&gt;
 </pre></div>
 </div>
 </div>
@@ -705,7 +512,7 @@ Epoch 30/30
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/SHAP_Mobile_13_0.png" src="_images/SHAP_Mobile_13_0.png" />
+<img alt="_images/Struc_SHAP_12_0.png" src="_images/Struc_SHAP_12_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -717,8 +524,8 @@ Epoch 30/30
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 1s 7ms/step - loss: -41521.2266 - accuracy: 0.3800
-Accuracy 0.3799999952316284
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13/13 [==============================] - 0s 2ms/step - loss: -2881.5769 - accuracy: 0.4200
+Accuracy 0.41999998688697815
 </pre></div>
 </div>
 </div>
@@ -749,9 +556,20 @@ Accuracy 0.3799999952316284
 </div>
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="shap">
-<h1>SHAP<a class="headerlink" href="#shap" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Mit dieses ausgewählte Handy hat eine </span><span class="si">%.1f</span><span class="s2"> prozentige Wahrscheinlichkeit eine gute Auswahl zu sein &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mit dieses ausgewählte Handy hat eine 100.0 prozentige Wahrscheinlichkeit eine gute Auswahl zu sein 
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">KernelExplainer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">50</span><span class="p">,:])</span>
@@ -765,33 +583,16 @@ Accuracy 0.3799999952316284
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">25</span><span class="p">,:])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">20</span><span class="p">,:])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id='iN2E03YFNZMO5T2CGOMBJ'>
+<div id='iX6MNOTQJ4SAECJQKTY50'>
 <div style='color: #900; text-align: center;'>
   <b>Visualization omitted, Javascript library not loaded!</b><br>
   Have you run `initjs()` in this notebook? If this notebook was from another
@@ -801,8 +602,8 @@ Set parameter alpha to: original_alpha * np.sqrt(n_samples).
 </div></div>
  <script>
    if (window.SHAP) SHAP.ReactDom.render(
-    SHAP.React.createElement(SHAP.AdditiveForceVisualizer, {"outNames": ["f(x)"], "baseValue": 0.8600000000000035, "outValue": 0.9999999840112568, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen", "int_memory", "pc", "blue", "clock_speed", "dual_sim", "fc", "four_g", "m_dep", "mobile_wt", "n_cores", "px_height", "px_width", "sc_h", "sc_w", "talk_time", "three_g", "wifi"], "features": {"0": {"effect": 0.3112066040743203, "value": -1.5514367674375966}, "1": {"effect": -0.004016036358563657, "value": 0.26598729851862246}, "2": {"effect": 0.015121680951692886, "value": -1.0100505037878158}, "3": {"effect": 0.043869104740480044, "value": 1.5245077629712966}, "4": {"effect": 0.00652100796193791, "value": -1.4764965583337306}, "5": {"effect": 0.012367771347091204, "value": -0.9814225308444268}, "6": {"effect": -0.0056383129391567345, "value": 0.22730528720529142}, "7": {"effect": -0.009838841762857774, "value": -1.0304638130973318}, "8": {"effect": -0.00494923417058529, "value": -0.9935610936904357}, "9": {"effect": -0.016871114040194746, "value": -1.046059672148934}, "10": {"effect": 0.009917307403045635, "value": 0.33974964730605445}, "12": {"effect": 0.0022498106181702993, "value": -0.6737996513107842}, "13": {"effect": -0.0710389561345619, "value": 0.5496856411722999}, "14": {"effect": -0.09820541362734109, "value": 0.8945580254970598}, "15": {"effect": -0.0063188976642997875, "value": 0.4234004822660387}, "16": {"effect": -0.0047902766163278555, "value": 0.9900560026786358}, "18": {"effect": -0.029102850540372135, "value": 0.5571367071027632}, "19": {"effect": -0.01048336923122406, "value": -0.9975031172021119}}, "plot_cmap": "RdBu", "labelMargin": 20}),
-    document.getElementById('iN2E03YFNZMO5T2CGOMBJ')
+    SHAP.React.createElement(SHAP.AdditiveForceVisualizer, {"outNames": ["f(x)"], "baseValue": 0.7800000000079643, "outValue": 1.0000000295495164, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen", "int_memory", "pc"], "features": {"0": {"effect": 0.184393080882728, "value": 1.0754324267188273}, "1": {"effect": -0.00903708161786193, "value": 0.16839081553631144}, "2": {"effect": 0.010992491152137587, "value": -1.0100505037878158}, "3": {"effect": 0.03599219862371686, "value": 1.7444151214958254}, "4": {"effect": -0.002340659499168396, "value": 1.018112199146701}}, "plot_cmap": "RdBu", "labelMargin": 20}),
+    document.getElementById('iX6MNOTQJ4SAECJQKTY50')
   );
 </script></div></div>
 </div>
@@ -813,657 +614,7 @@ Set parameter alpha to: original_alpha * np.sqrt(n_samples).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/50 [00:00&lt;?, ?it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-  2%|▏         | 1/50 [00:00&lt;00:31,  1.55it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-  4%|▍         | 2/50 [00:01&lt;00:31,  1.52it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-  6%|▌         | 3/50 [00:01&lt;00:28,  1.62it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-  8%|▊         | 4/50 [00:02&lt;00:28,  1.62it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 10%|█         | 5/50 [00:03&lt;00:29,  1.54it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 12%|█▏        | 6/50 [00:03&lt;00:28,  1.52it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 14%|█▍        | 7/50 [00:04&lt;00:26,  1.61it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 16%|█▌        | 8/50 [00:05&lt;00:25,  1.63it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 18%|█▊        | 9/50 [00:05&lt;00:27,  1.51it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 20%|██        | 10/50 [00:06&lt;00:26,  1.54it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 22%|██▏       | 11/50 [00:07&lt;00:25,  1.54it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 24%|██▍       | 12/50 [00:07&lt;00:25,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 26%|██▌       | 13/50 [00:08&lt;00:24,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 28%|██▊       | 14/50 [00:09&lt;00:24,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 30%|███       | 15/50 [00:09&lt;00:24,  1.45it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 32%|███▏      | 16/50 [00:10&lt;00:22,  1.51it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 34%|███▍      | 17/50 [00:11&lt;00:22,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 36%|███▌      | 18/50 [00:11&lt;00:21,  1.52it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 38%|███▊      | 19/50 [00:12&lt;00:20,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 40%|████      | 20/50 [00:13&lt;00:19,  1.52it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 42%|████▏     | 21/50 [00:13&lt;00:18,  1.53it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 44%|████▍     | 22/50 [00:14&lt;00:18,  1.49it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 46%|████▌     | 23/50 [00:15&lt;00:17,  1.54it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 48%|████▊     | 24/50 [00:15&lt;00:16,  1.54it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 50%|█████     | 25/50 [00:16&lt;00:16,  1.55it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 52%|█████▏    | 26/50 [00:16&lt;00:14,  1.62it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 54%|█████▍    | 27/50 [00:17&lt;00:13,  1.67it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 56%|█████▌    | 28/50 [00:18&lt;00:14,  1.47it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 58%|█████▊    | 29/50 [00:19&lt;00:14,  1.46it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 60%|██████    | 30/50 [00:19&lt;00:13,  1.45it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 62%|██████▏   | 31/50 [00:20&lt;00:13,  1.44it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 64%|██████▍   | 32/50 [00:21&lt;00:12,  1.50it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 66%|██████▌   | 33/50 [00:21&lt;00:11,  1.50it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 68%|██████▊   | 34/50 [00:22&lt;00:10,  1.58it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 70%|███████   | 35/50 [00:22&lt;00:09,  1.66it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 72%|███████▏  | 36/50 [00:23&lt;00:07,  1.76it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 74%|███████▍  | 37/50 [00:23&lt;00:07,  1.86it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 76%|███████▌  | 38/50 [00:24&lt;00:06,  1.81it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 78%|███████▊  | 39/50 [00:24&lt;00:06,  1.75it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 80%|████████  | 40/50 [00:25&lt;00:05,  1.71it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 82%|████████▏ | 41/50 [00:26&lt;00:05,  1.68it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 84%|████████▍ | 42/50 [00:26&lt;00:05,  1.57it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 86%|████████▌ | 43/50 [00:27&lt;00:04,  1.60it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 88%|████████▊ | 44/50 [00:28&lt;00:03,  1.65it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 90%|█████████ | 45/50 [00:28&lt;00:03,  1.60it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 92%|█████████▏| 46/50 [00:29&lt;00:02,  1.57it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 94%|█████████▍| 47/50 [00:30&lt;00:01,  1.58it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 96%|█████████▌| 48/50 [00:30&lt;00:01,  1.61it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
- 98%|█████████▊| 49/50 [00:31&lt;00:00,  1.55it/s]The default of &#39;normalize&#39; will be set to False in version 1.2 and deprecated in version 1.4.
-If you wish to scale the data, use Pipeline with a StandardScaler in a preprocessing stage. To reproduce the previous behavior:
-
-from sklearn.pipeline import make_pipeline
-
-model = make_pipeline(StandardScaler(with_mean=False), LassoLarsIC())
-
-If you wish to pass a sample_weight parameter, you need to pass it as a fit parameter to each step of the pipeline as follows:
-
-kwargs = {s[0] + &#39;__sample_weight&#39;: sample_weight for s in model.steps}
-model.fit(X, y, **kwargs)
-
-Set parameter alpha to: original_alpha * np.sqrt(n_samples). 
-100%|██████████| 50/50 [00:31&lt;00:00,  1.56it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 50/50 [00:04&lt;00:00, 11.89it/s]
 </pre></div>
 </div>
 </div>
@@ -1476,7 +627,7 @@ Set parameter alpha to: original_alpha * np.sqrt(n_samples).
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id='iSJHAM5C1U50NP4VQXU20'>
+<div id='iVV26R3RGY59LCU2B9D05'>
 <div style='color: #900; text-align: center;'>
   <b>Visualization omitted, Javascript library not loaded!</b><br>
   Have you run `initjs()` in this notebook? If this notebook was from another
@@ -1486,14 +637,12 @@ Set parameter alpha to: original_alpha * np.sqrt(n_samples).
 </div></div>
  <script>
    if (window.SHAP) SHAP.ReactDom.render(
-    SHAP.React.createElement(SHAP.AdditiveForceArrayVisualizer, {"outNames": ["f(x)"], "baseValue": 0.8600000000000035, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen", "int_memory", "pc", "blue", "clock_speed", "dual_sim", "fc", "four_g", "m_dep", "mobile_wt", "n_cores", "px_height", "px_width", "sc_h", "sc_w", "talk_time", "three_g", "wifi"], "explanations": [{"outValue": 1.4605525788802254e-08, "simIndex": 6.0, "features": {"0": {"effect": -0.5343009730624952, "value": -1.5903122100572478}, "1": {"effect": -0.046598992670974004, "value": -0.05176869258657626}, "2": {"effect": 0.025829811391447514, "value": -1.0100505037878158}, "3": {"effect": -0.03611965272340814, "value": -1.004426860060786}, "4": {"effect": -0.004046623932273709, "value": -0.9775748068376443}, "5": {"effect": -0.006662551070113432, "value": -0.9814225308444268}, "6": {"effect": -0.010439400177459618, "value": 0.3492665412389826}, "7": {"effect": 0.014169675204571908, "value": 0.9704367948586523}, "8": {"effect": 0.0068799046078675055, "value": -0.7630364779849981}, "9": {"effect": 0.012363891329046112, "value": 0.9559684085188823}, "10": {"effect": 0.0030194876317964636, "value": -0.008935045246663081}, "11": {"effect": -0.003862304800650862, "value": 0.18020854356262303}, "12": {"effect": -0.005470613095698518, "value": -0.6737996513107842}, "13": {"effect": -0.09150147813053644, "value": -0.9324688920393619}, "14": {"effect": -0.15616243672032204, "value": -1.4675446847827616}, "15": {"effect": 0.005417303965423087, "value": 1.1369968006919469}, "16": {"effect": -0.025676914840183307, "value": -1.315415696180071}, "17": {"effect": 0.0019176213952195598, "value": -1.0818838501098993}, "18": {"effect": 0.008243922226720213, "value": 0.5571367071027632}, "19": {"effect": -0.016999661922454834, "value": -0.9975031172021119}}}, {"outValue": 0.9999999877213029, "simIndex": 33.0, "features": {"0": {"effect": 0.16104050448057533, "value": 0.24608965083293727}, "1": {"effect": 0.0027386385563284987, "value": 0.2228632711543455}, "2": {"effect": 0.012931171932295857, "value": -1.0100505037878158}, "3": {"effect": 0.009562024188584928, "value": 0.42497097034865194}, "4": {"effect": 0.0, "value": -1.4764965583337306}, "5": {"effect": 0.00627503076844399, "value": 1.0189291243798826}, "6": {"effect": -0.0059139161670374585, "value": 0.9590728114074377}, "7": {"effect": 0.00560055413462409, "value": 0.9704367948586523}, "8": {"effect": 0.006780820254628936, "value": -0.9935610936904357}, "9": {"effect": -0.013052423976329504, "value": -1.046059672148934}, "10": {"effect": -0.0011155339548306123, "value": -1.4036738154575337}, "11": {"effect": 0.0, "value": -0.49915608168818354}, "12": {"effect": -0.0028927247071122777, "value": -1.1106227639920057}, "13": {"effect": -0.04354774255532981, "value": -0.9706455997129956}, "14": {"effect": 0.005206115268442418, "value": 0.0461482198420896}, "15": {"effect": -0.006656464848402391, "value": -1.4795230335363831}, "16": {"effect": -0.008337327665734424, "value": -0.39322701663658827}, "17": {"effect": 0.0, "value": -0.718645121712913}, "18": {"effect": 0.0051598036963024785, "value": 0.5571367071027632}, "19": {"effect": 0.006221458315849304, "value": 1.0025031328271852}}}, {"outValue": 0.999999981425247, "simIndex": 28.0, "features": {"0": {"effect": 0.11485726260031148, "value": 0.4506485274744347}, "1": {"effect": -0.08010201968258435, "value": -1.538412793828756}, "2": {"effect": 0.0, "value": 0.9900495037128095}, "3": {"effect": 0.0031679869305671626, "value": 0.4799478099797842}, "4": {"effect": 0.0, "value": -0.6449603058402533}, "5": {"effect": 0.013518473018711397, "value": 1.0189291243798826}, "6": {"effect": 0.0, "value": -1.2362297611990014}, "7": {"effect": 0.0, "value": 0.9704367948586523}, "8": {"effect": 0.005563140449514219, "value": -0.5325118622795606}, "9": {"effect": 0.006657607914081168, "value": 0.9559684085188823}, "10": {"effect": 0.004386505172027291, "value": 1.3858037249642075}, "11": {"effect": 0.0, "value": 0.12359482479172249}, "12": {"effect": 0.0, "value": 0.1998465740516586}, "13": {"effect": 0.037942260020429025, "value": 1.3895732099922415}, "14": {"effect": 0.0390023806584848, "value": 1.0823208513387335}, "15": {"effect": 0.0, "value": -0.2901958361598695}, "16": {"effect": -0.009342847376269406, "value": -0.8543213564083296}, "17": {"effect": 0.0, "value": -0.35540639331592644}, "18": {"effect": 0.004349231719970703, "value": 0.5571367071027632}, "19": {"effect": 0.0, "value": -0.9975031172021119}}}, {"outValue": 0.9999999888055404, "simIndex": 31.0, "features": {"0": {"effect": 0.11904518420056301, "value": -0.1463671984702071}, "1": {"effect": 0.012218534521776403, "value": 0.05036716169723762}, "2": {"effect": -0.014087502694631604, "value": 0.9900495037128095}, "3": {"effect": -0.0376165160219763, "value": -1.4992184167409761}, "4": {"effect": -0.0019372713761429683, "value": -1.1438820573363397}, "5": {"effect": 0.009870908064184294, "value": 1.0189291243798826}, "6": {"effect": -0.003974596641541622, "value": 0.5931890493063647}, "7": {"effect": -0.004351802451495315, "value": -1.0304638130973318}, "8": {"effect": 0.008150843975565099, "value": -0.9935610936904357}, "9": {"effect": -0.02063419117737532, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -0.3576197377993806}, "11": {"effect": -0.004857300172724073, "value": 0.15190168417717276}, "12": {"effect": 0.0, "value": 0.63666968673288}, "13": {"effect": 0.03826933591140641, "value": 0.6956554058067818}, "14": {"effect": 0.04230227491403432, "value": 0.8342884764614609}, "15": {"effect": -0.00880496986641377, "value": -0.7659267151104749}, "16": {"effect": -0.002864861423819004, "value": 0.06786732313515309}, "17": {"effect": 0.0, "value": -1.2635032143083926}, "18": {"effect": 0.004312127145399879, "value": 0.5571367071027632}, "19": {"effect": 0.004959791898727417, "value": 1.0025031328271852}}}, {"outValue": 0.9999999891957545, "simIndex": 26.0, "features": {"0": {"effect": 0.07357236398512176, "value": 0.948624435316632}, "1": {"effect": 0.004222178599935662, "value": 0.08441244645850891}, "2": {"effect": -0.0075747542841283905, "value": 0.9900495037128095}, "3": {"effect": -0.004003431999009795, "value": -0.4546584637494637}, "4": {"effect": 0.004432973528298072, "value": 1.018112199146701}, "5": {"effect": 0.0025849129580023293, "value": 1.0189291243798826}, "6": {"effect": 0.0, "value": -0.6264234910305461}, "7": {"effect": 0.0019289763593147973, "value": -1.0304638130973318}, "8": {"effect": 0.0, "value": 0.620111216247627}, "9": {"effect": 0.008011225791542603, "value": 0.9559684085188823}, "10": {"effect": 0.002200313695428505, "value": 1.0371190324114898}, "11": {"effect": -0.0038785710754002823, "value": 0.8312663094279793}, "12": {"effect": -0.005293158758485732, "value": -0.6737996513107842}, "13": {"effect": 0.033936041989053575, "value": 1.5894395031071475}, "14": {"effect": 0.03204529150275408, "value": 1.2190863664579774}, "15": {"effect": -0.004497752066754499, "value": -1.4795230335363831}, "16": {"effect": -0.005308077374591453, "value": -0.8543213564083296}, "17": {"effect": -0.0019491467190649201, "value": 0.007832335081059995}, "18": {"effect": 0.0031850233584962973, "value": 0.5571367071027632}, "19": {"effect": 0.006385579705238342, "value": 1.0025031328271852}}}, {"outValue": 0.9999999904307453, "simIndex": 41.0, "features": {"0": {"effect": 0.20045940284890879, "value": -0.07694676522083015}, "1": {"effect": -0.03325956534310271, "value": -0.4171880823575548}, "2": {"effect": -0.009689962967424507, "value": 0.9900495037128095}, "3": {"effect": 0.01816905875132857, "value": 0.4799478099797842}, "4": {"effect": -0.004601285299402232, "value": 0.02026869615452839}, "5": {"effect": 0.01944964022784823, "value": 1.0189291243798826}, "6": {"effect": -0.014337276617024958, "value": 1.4469178275422026}, "7": {"effect": -0.012326631501054612, "value": -1.0304638130973318}, "8": {"effect": 0.004113942022178877, "value": -0.30198724657412307}, "9": {"effect": 0.013332456569411223, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": -1.4036738154575337}, "11": {"effect": 0.011892261858219913, "value": -1.2351344257098906}, "12": {"effect": -0.005627564816173261, "value": -0.2369765386295628}, "13": {"effect": -0.028539281601369083, "value": -0.5551931926763934}, "14": {"effect": -0.060083312034313954, "value": -0.8300783007523879}, "15": {"effect": 0.02296969771674456, "value": 0.8991313612166442}, "16": {"effect": 0.014175908997676867, "value": 0.759508832792765}, "17": {"effect": 0.0, "value": -1.626741942705379}, "18": {"effect": 0.014763123547458706, "value": 0.5571367071027632}, "19": {"effect": -0.010860621929168701, "value": -0.9975031172021119}}}, {"outValue": 0.9999999902101991, "simIndex": 24.0, "features": {"0": {"effect": 0.05443380241194581, "value": -0.1648793140033743}, "1": {"effect": 0.036421866935400976, "value": 0.7244637999704092}, "2": {"effect": -0.0034206935822938805, "value": 0.9900495037128095}, "3": {"effect": -0.005599581537208248, "value": -0.5646121430117281}, "4": {"effect": -0.0019284172150159408, "value": -1.4764965583337306}, "5": {"effect": -0.007970846578853722, "value": -0.9814225308444268}, "6": {"effect": -0.005823179975299225, "value": 0.9590728114074377}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.013651206354524286, "value": -0.9935610936904357}, "9": {"effect": 0.014819054775030616, "value": 0.9559684085188823}, "10": {"effect": 0.0018656938499131206, "value": 1.0371190324114898}, "11": {"effect": -0.004914749668127355, "value": 0.802959450042529}, "12": {"effect": 0.003217721411623164, "value": 1.0734927994141015}, "13": {"effect": 0.008865210313213545, "value": 0.22630647028975548}, "14": {"effect": 0.01190959970984744, "value": 0.2663638797798551}, "15": {"effect": 0.007204855895084477, "value": 0.6612659217413415}, "16": {"effect": 0.008835766445731912, "value": 1.2206031725645063}, "17": {"effect": 0.0, "value": 0.9159291560735261}, "18": {"effect": 0.003062242565771145, "value": 0.5571367071027632}, "19": {"effect": 0.005370438098907471, "value": 1.0025031328271852}}}, {"outValue": 0.9999999789801765, "simIndex": 11.0, "features": {"0": {"effect": -0.11353730016166103, "value": -1.047907224935449}, "1": {"effect": -0.08567911505243449, "value": -1.1525662332010147}, "2": {"effect": 0.013590183675037296, "value": -1.0100505037878158}, "3": {"effect": 0.06517491587551247, "value": 1.6894382818646934}, "4": {"effect": 0.0, "value": 0.02026869615452839}, "5": {"effect": 0.015424423442088605, "value": 1.0189291243798826}, "6": {"effect": 0.005780169801678194, "value": -1.1142685071653105}, "7": {"effect": 0.00865376449205876, "value": 0.9704367948586523}, "8": {"effect": 0.010086022516105943, "value": -0.9935610936904357}, "9": {"effect": -0.01590736368635539, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -0.7063044303520983}, "11": {"effect": 0.019682334323819994, "value": -1.0086795506262884}, "12": {"effect": 0.0, "value": 1.0734927994141015}, "13": {"effect": 0.06853012768528996, "value": 0.6866726510600444}, "14": {"effect": 0.12964598419157852, "value": 1.1356362216394558}, "15": {"effect": 0.015636518336306693, "value": 1.1369968006919469}, "16": {"effect": -0.009134724093812302, "value": -0.39322701663658827}, "17": {"effect": 0.0, "value": -0.35540639331592644}, "18": {"effect": 0.0053720440312533535, "value": 0.5571367071027632}, "19": {"effect": 0.00668199360370636, "value": 1.0025031328271852}}}, {"outValue": 0.9999999911551104, "simIndex": 14.0, "features": {"0": {"effect": 0.15149892930384717, "value": -0.24355580501933483}, "1": {"effect": 0.12268686879684061, "value": 0.3885503236591991}, "2": {"effect": 0.03328566411886429, "value": -1.0100505037878158}, "3": {"effect": 0.08322406147137307, "value": 1.3595772440779}, "4": {"effect": -0.002120912773129823, "value": 0.02026869615452839}, "5": {"effect": -0.01797688743139798, "value": -0.9814225308444268}, "6": {"effect": 0.01663460692819754, "value": -1.1142685071653105}, "7": {"effect": -0.02041567150764148, "value": -1.0304638130973318}, "8": {"effect": 0.008060749328304879, "value": 1.0811604476585022}, "9": {"effect": -0.02215060440643392, "value": -1.046059672148934}, "10": {"effect": 0.008464849224485229, "value": -1.0549891229048158}, "11": {"effect": 0.03420064330344176, "value": -1.5465098789498437}, "12": {"effect": -0.00705279964584672, "value": -0.6737996513107842}, "13": {"effect": -0.09251410455700766, "value": -1.4422402239167063}, "14": {"effect": -0.11699904150706061, "value": -1.3655500633379019}, "15": {"effect": 0.007765184102248511, "value": 0.6612659217413415}, "16": {"effect": 0.0054129371849362395, "value": 0.9900560026786358}, "17": {"effect": 0.0, "value": 1.2791678844705126}, "18": {"effect": -0.06334466677878459, "value": -1.7948916078429396}, "19": {"effect": 0.0113401859998703, "value": 1.0025031328271852}}}, {"outValue": 0.9999999795603545, "simIndex": 25.0, "features": {"0": {"effect": 0.039085275440905606, "value": 1.4142041409757868}, "1": {"effect": 0.010745293868563432, "value": 0.53381020530729}, "2": {"effect": 0.005921834001715115, "value": -1.0100505037878158}, "3": {"effect": 0.01326451698901722, "value": 0.5899014892420487}, "4": {"effect": 0.002662226091107389, "value": -1.310189307835035}, "5": {"effect": 0.0, "value": -0.9814225308444268}, "6": {"effect": 0.0020033069601951975, "value": -1.2362297611990014}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.005601254968191111, "value": -0.9935610936904357}, "9": {"effect": 0.006876503344085502, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": 0.688434339858772}, "11": {"effect": 0.0, "value": 0.2085154029480733}, "12": {"effect": 0.0, "value": -1.1106227639920057}, "13": {"effect": 0.029609864913867245, "value": 2.570805459188202}, "14": {"effect": 0.01835728537227986, "value": 1.675744103381554}, "15": {"effect": 0.0038964973792457724, "value": 0.6612659217413415}, "16": {"effect": 0.0, "value": 0.9900560026786358}, "17": {"effect": 0.0, "value": -0.9002644859114062}, "18": {"effect": 0.0004321066117546485, "value": 0.5571367071027632}, "19": {"effect": 0.0015440136194229126, "value": 1.0025031328271852}}}, {"outValue": 0.999999984930287, "simIndex": 20.0, "features": {"0": {"effect": -0.13874457738976864, "value": -1.397786208512309}, "1": {"effect": 0.09898372898739373, "value": 1.7049680010950226}, "2": {"effect": -0.00507781806952789, "value": 0.9900495037128095}, "3": {"effect": 0.04255397497243846, "value": 1.3595772440779}, "4": {"effect": -0.004901233848855175, "value": 0.8518049486480056}, "5": {"effect": 0.013906053214186104, "value": 1.0189291243798826}, "6": {"effect": -0.0046650564700996475, "value": 0.1053440331716005}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.007222834292206321, "value": 0.159061984836752}, "9": {"effect": 0.012931657652144294, "value": 0.9559684085188823}, "10": {"effect": -0.00019120150968803332, "value": 1.734488417516925}, "11": {"effect": 0.01927450681935883, "value": -1.1502138475535397}, "12": {"effect": -0.003978053694813742, "value": -1.1106227639920057}, "13": {"effect": 0.0781420186264115, "value": 2.0385772404440146}, "14": {"effect": 0.03304876245390794, "value": 0.8041537019436613}, "15": {"effect": -0.011292720862056582, "value": -0.7659267151104749}, "16": {"effect": -0.0117062558231952, "value": -0.6237741865224589}, "17": {"effect": 0.0, "value": -1.2635032143083926}, "18": {"effect": 0.00492874234358498, "value": 0.5571367071027632}, "19": {"effect": 0.009564623236656189, "value": 1.0025031328271852}}}, {"outValue": -4.083406246468968e-08, "simIndex": 5.0, "features": {"0": {"effect": -0.5367736541343308, "value": -1.647699768210066}, "1": {"effect": 0.16489456363402233, "value": 1.4938872355751405}, "2": {"effect": 0.04015879157067681, "value": -1.0100505037878158}, "3": {"effect": -0.049478989237418565, "value": -0.34470478448719927}, "4": {"effect": -0.008257877092516214, "value": -1.642803808832426}, "5": {"effect": 0.01921414215070799, "value": 1.0189291243798826}, "6": {"effect": 0.018885902291452775, "value": -1.1142685071653105}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.023351462153478324, "value": -0.9935610936904357}, "9": {"effect": -0.05763438806751603, "value": -1.046059672148934}, "10": {"effect": -0.02088603092228508, "value": -1.4036738154575337}, "11": {"effect": -0.019090926484515533, "value": 0.2934359811044241}, "12": {"effect": -0.025210848557509144, "value": -1.1106227639920057}, "13": {"effect": -0.21987911936700996, "value": -1.2311454873683785}, "14": {"effect": -0.23141071046158257, "value": -1.0085688882808925}, "15": {"effect": -0.019533542990118363, "value": 0.18553504279073596}, "16": {"effect": 0.018813301412622788, "value": 1.2206031725645063}, "17": {"effect": 0.008394326005354502, "value": -1.2635032143083926}, "18": {"effect": 0.034443557262420654, "value": 0.5571367071027632}, "19": {"effect": 0.0, "value": 1.0025031328271852}}}, {"outValue": 0.9999999909176439, "simIndex": 23.0, "features": {"0": {"effect": 0.06719843310040172, "value": 0.6977852698422166}, "1": {"effect": 0.0569387879367719, "value": 1.6595742880799942}, "2": {"effect": 0.014332509834079347, "value": -1.0100505037878158}, "3": {"effect": 0.008315741259270185, "value": 0.2600404514552553}, "4": {"effect": 0.0034551279423954175, "value": -1.4764965583337306}, "5": {"effect": -0.0065896946528025205, "value": -0.9814225308444268}, "6": {"effect": 0.0, "value": -0.382500982963164}, "7": {"effect": 0.0, "value": 0.9704367948586523}, "8": {"effect": 0.005353085371695941, "value": -0.9935610936904357}, "9": {"effect": -0.009357156826039333, "value": -1.046059672148934}, "10": {"effect": 0.004240536113125471, "value": 0.688434339858772}, "11": {"effect": 0.007796900038028395, "value": -1.0936001287826393}, "12": {"effect": -0.0060970365788928504, "value": -1.1106227639920057}, "13": {"effect": 0.005632857183072733, "value": 0.1589358096892254}, "14": {"effect": 0.020163689539391814, "value": 0.9246928000148593}, "15": {"effect": 0.0039317897408973936, "value": 0.8991313612166442}, "16": {"effect": -0.011870512191395958, "value": -1.315415696180071}, "17": {"effect": 0.0017507431315488134, "value": 1.0975485202720194}, "18": {"effect": -0.020469191495541966, "value": -1.7948916078429396}, "19": {"effect": -0.004726618528366089, "value": -0.9975031172021119}}}, {"outValue": 0.9999999824848098, "simIndex": 27.0, "features": {"0": {"effect": 0.013437594521090087, "value": -0.4286769603510067}, "1": {"effect": 0.05855444950790621, "value": 1.0286016771710995}, "2": {"effect": 0.012318834931764215, "value": -1.0100505037878158}, "3": {"effect": 0.021484334652733025, "value": 1.139669885553371}, "4": {"effect": 0.004057376975819538, "value": -1.642803808832426}, "5": {"effect": -0.007986764156647844, "value": -0.9814225308444268}, "6": {"effect": 0.0025071823468429, "value": 0.3492665412389826}, "7": {"effect": -0.008847442092417696, "value": -1.0304638130973318}, "8": {"effect": 0.007808388847986451, "value": -0.9935610936904357}, "9": {"effect": -0.008184317504247293, "value": -1.046059672148934}, "10": {"effect": 0.011472838212715726, "value": 1.734488417516925}, "11": {"effect": -0.007561871541060465, "value": 1.2841760595951837}, "12": {"effect": 0.0046933599182058736, "value": 0.63666968673288}, "13": {"effect": 0.04424345857084682, "value": 1.2346206906110224}, "14": {"effect": 0.0058251789134177515, "value": -0.09525341443373878}, "15": {"effect": -0.009940023230615162, "value": -1.2416575940610803}, "16": {"effect": -0.0012140846496139224, "value": -0.1626798467507176}, "17": {"effect": -0.002400631496775135, "value": -0.9002644859114062}, "18": {"effect": 0.004389358478702768, "value": 0.5571367071027632}, "19": {"effect": -0.004657238721847534, "value": -0.9975031172021119}}}, {"outValue": -3.0806024065022086e-08, "simIndex": 7.0, "features": {"0": {"effect": -0.3443925181445308, "value": -0.9849660321226806}, "1": {"effect": 0.025823947522830237, "value": 0.5179224057520301}, "2": {"effect": -0.044994923893656946, "value": 0.9900495037128095}, "3": {"effect": -0.1171376992591516, "value": -1.3342878978475794}, "4": {"effect": 0.018957176266533843, "value": -1.642803808832426}, "5": {"effect": -0.03270892456655858, "value": -0.9814225308444268}, "6": {"effect": -0.010785145017437187, "value": 0.7151503033400559}, "7": {"effect": -0.024713498142039214, "value": -1.0304638130973318}, "8": {"effect": 0.01953400027805069, "value": -0.9935610936904357}, "9": {"effect": -0.0333078182111628, "value": -1.046059672148934}, "10": {"effect": 0.012604912774913907, "value": 0.688434339858772}, "11": {"effect": 0.026642633005310057, "value": -0.49915608168818354}, "12": {"effect": 0.01959777187420575, "value": 1.0734927994141015}, "13": {"effect": -0.12547086195573603, "value": -0.552947503989709}, "14": {"effect": -0.08757772090225135, "value": -0.2691078828056589}, "15": {"effect": -0.012165809318040378, "value": -1.0037921545857778}, "16": {"effect": -0.03206772929660029, "value": -1.0848685262942002}, "17": {"effect": -0.025465311111703803, "value": -1.4451225785068857}, "18": {"effect": -0.07710508097301072, "value": -1.7948916078429396}, "19": {"effect": -0.015267431735992432, "value": -0.9975031172021119}}}, {"outValue": 9.841543469057967e-09, "simIndex": 4.0, "features": {"0": {"effect": -0.22579295578727168, "value": -0.8387203194106598}, "1": {"effect": -0.27074145022306034, "value": -1.159375290153269}, "2": {"effect": -0.06454462706577055, "value": 0.9900495037128095}, "3": {"effect": -0.19821560729770554, "value": -1.5541952563721084}, "4": {"effect": -0.05788109198771285, "value": -1.310189307835035}, "5": {"effect": -0.08666701703259244, "value": -0.9814225308444268}, "6": {"effect": -0.09616446633474793, "value": 0.7151503033400559}, "7": {"effect": 0.03969906214816874, "value": 0.9704367948586523}, "8": {"effect": -0.026480784584212436, "value": -0.9935610936904357}, "9": {"effect": 0.07879606149566454, "value": 0.9559684085188823}, "10": {"effect": 0.026648815318407383, "value": -1.4036738154575337}, "11": {"effect": 0.05694025296113412, "value": -1.4615893007934928}, "12": {"effect": 0.0, "value": 1.510315912095323}, "13": {"effect": -0.16706706098015187, "value": -0.7685336179114054}, "14": {"effect": -0.0697541274931793, "value": -0.004849090880340307}, "15": {"effect": 0.0934328372914968, "value": 1.6127276796425523}, "16": {"effect": 0.1358347625202141, "value": 2.142791852107989}, "17": {"effect": -0.04339543829909642, "value": -1.2635032143083926}, "18": {"effect": 0.0, "value": 0.5571367071027632}, "19": {"effect": 0.015352845191955566, "value": 1.0025031328271852}}}, {"outValue": 0.9999999806562094, "simIndex": 39.0, "features": {"0": {"effect": 0.21023190916030304, "value": 1.4595588240320463}, "1": {"effect": 0.026866725679705623, "value": 0.592822032226827}, "2": {"effect": -0.008463452033987122, "value": 0.9900495037128095}, "3": {"effect": 0.027256980154091746, "value": 1.1946467251845032}, "4": {"effect": 0.0, "value": 0.3528831971519193}, "5": {"effect": 0.017627862322758932, "value": 1.0189291243798826}, "6": {"effect": 0.0032806398559096298, "value": -0.382500982963164}, "7": {"effect": -0.00405251782497202, "value": -1.0304638130973318}, "8": {"effect": 0.0033591350330173693, "value": -0.9935610936904357}, "9": {"effect": -0.019137640985992938, "value": -1.046059672148934}, "10": {"effect": -0.005650756593508404, "value": -1.0549891229048158}, "11": {"effect": -0.004398598943728654, "value": -0.07455319090642944}, "12": {"effect": -0.0023649952126701436, "value": 0.1998465740516586}, "13": {"effect": -0.05890329892046686, "value": -1.300761836655593}, "14": {"effect": -0.08803844239879229, "value": -1.5324503529749451}, "15": {"effect": 0.012035799623023936, "value": 1.1369968006919469}, "16": {"effect": 0.029735892763540422, "value": 1.9122446822221182}, "17": {"effect": 0.0, "value": 0.9159291560735261}, "18": {"effect": 0.008064947045867549, "value": 0.5571367071027632}, "19": {"effect": -0.007450208067893982, "value": -0.9975031172021119}}}, {"outValue": 0.9999999834144457, "simIndex": 35.0, "features": {"0": {"effect": 0.1614705503698716, "value": 0.23775919884301203}, "1": {"effect": 0.03948072582050209, "value": 0.7902846838422004}, "2": {"effect": -0.008480656240066373, "value": 0.9900495037128095}, "3": {"effect": 0.017861224588060727, "value": 0.7548320081354454}, "4": {"effect": 0.006945634927335062, "value": 1.018112199146701}, "5": {"effect": -0.008322645776603715, "value": -0.9814225308444268}, "6": {"effect": -0.008609610164940454, "value": 1.3249565735085114}, "7": {"effect": -0.00432692018248753, "value": -1.0304638130973318}, "8": {"effect": -0.006059275598855449, "value": 1.0811604476585022}, "9": {"effect": -0.018445286497785943, "value": -1.046059672148934}, "10": {"effect": -0.0025036557050583455, "value": -0.3576197377993806}, "11": {"effect": 0.010839131033368535, "value": -1.603123597720744}, "12": {"effect": -0.003651527369518709, "value": -0.6737996513107842}, "13": {"effect": -0.005430162911608364, "value": -0.05889599291915518}, "14": {"effect": -0.03610091288981535, "value": -0.7164933814160667}, "15": {"effect": -0.0046716006974337684, "value": -0.2901958361598695}, "16": {"effect": 0.007881871789003347, "value": 0.759508832792765}, "17": {"effect": -0.00040197324221788455, "value": 1.642406612867499}, "18": {"effect": 0.0077078450375249186, "value": 0.5571367071027632}, "19": {"effect": -0.005182772874832153, "value": -0.9975031172021119}}}, {"outValue": 0.999999983234273, "simIndex": 36.0, "features": {"0": {"effect": 0.1277163030187221, "value": 1.4697404875752882}, "1": {"effect": 0.07045597580046455, "value": 1.4757297503691291}, "2": {"effect": 0.013579886742823916, "value": -1.0100505037878158}, "3": {"effect": 0.0, "value": 0.2600404514552553}, "4": {"effect": 0.0, "value": 0.6854976981493102}, "5": {"effect": -0.009387182281075865, "value": -0.9814225308444268}, "6": {"effect": -0.016922030158363743, "value": 1.568879081575893}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.0, "value": 0.620111216247627}, "9": {"effect": 0.014408463967203702, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": -0.3576197377993806}, "11": {"effect": -0.0033339627664805485, "value": -0.3293149253754819}, "12": {"effect": 0.007321996562570751, "value": 1.0734927994141015}, "13": {"effect": -0.038545040790318924, "value": -1.067210213240422}, "14": {"effect": -0.006952579564894368, "value": -0.3270593722629656}, "15": {"effect": -0.009718947644854675, "value": -1.0037921545857778}, "16": {"effect": 0.0, "value": 0.06786732313515309}, "17": {"effect": 0.0, "value": 0.007832335081059995}, "18": {"effect": 0.0, "value": 0.5571367071027632}, "19": {"effect": -0.008622899651527405, "value": -0.9975031172021119}}}, {"outValue": 0.9999999828595731, "simIndex": 49.0, "features": {"0": {"effect": 0.23929036801795117, "value": 0.296997968549147}, "1": {"effect": -0.11132061372004587, "value": -1.4952887664644792}, "2": {"effect": -0.015337738319652069, "value": 0.9900495037128095}, "3": {"effect": -0.004293344588821885, "value": -0.289727944856067}, "4": {"effect": -0.0018773939368051853, "value": 0.02026869615452839}, "5": {"effect": -0.005181501453897914, "value": -0.9814225308444268}, "6": {"effect": 0.00637717126463104, "value": -1.2362297611990014}, "7": {"effect": 0.005602602435189232, "value": 0.9704367948586523}, "8": {"effect": 0.0023959618437520563, "value": -0.30198724657412307}, "9": {"effect": -0.018686048442887095, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -1.0549891229048158}, "11": {"effect": -0.012928624517597211, "value": 0.7746525906570788}, "12": {"effect": -0.0021180158225836097, "value": -0.6737996513107842}, "13": {"effect": 0.027757893086670937, "value": 0.7652717550939961}, "14": {"effect": 0.008800793706314057, "value": 0.39617521616422213}, "15": {"effect": 0.014911333338276711, "value": 1.6127276796425523}, "16": {"effect": -0.01707926999904773, "value": -0.8543213564083296}, "17": {"effect": 0.001966857762675814, "value": -1.626741942705379}, "18": {"effect": 0.007751024888400099, "value": 0.5571367071027632}, "19": {"effect": 0.01396852731704712, "value": 1.0025031328271852}}}, {"outValue": -1.0885503054502976e-08, "simIndex": 8.0, "features": {"0": {"effect": -0.42438591656348934, "value": -1.506082084381337}, "1": {"effect": 0.08813053519892092, "value": 0.8334087112064774}, "2": {"effect": 0.0489285157216206, "value": -1.0100505037878158}, "3": {"effect": -0.1069197766877142, "value": -0.2347511052249348}, "4": {"effect": -0.02963244280348118, "value": 0.5191904476506147}, "5": {"effect": -0.07059688712236348, "value": -0.9814225308444268}, "6": {"effect": -0.026840580949173826, "value": 0.3492665412389826}, "7": {"effect": 0.05182279226563511, "value": 0.9704367948586523}, "8": {"effect": -0.03822078702878859, "value": 0.620111216247627}, "9": {"effect": -0.13106388686671566, "value": -1.046059672148934}, "10": {"effect": 0.001159646795469399, "value": -0.3576197377993806}, "11": {"effect": -0.1160896523188424, "value": 1.1992554814388328}, "12": {"effect": -0.05469784390467114, "value": -1.1106227639920057}, "13": {"effect": 0.07519273628463956, "value": 0.8281510383211576}, "14": {"effect": -0.0910377153645994, "value": -0.21115639334835218}, "15": {"effect": 0.0, "value": 0.6612659217413415}, "16": {"effect": 0.06060873444996659, "value": 1.2206031725645063}, "17": {"effect": 0.012108614007029783, "value": -0.5370257575144197}, "18": {"effect": -0.13026327617473055, "value": -1.7948916078429396}, "19": {"effect": 0.02179718017578125, "value": 1.0025031328271852}}}, {"outValue": 0.9999999813146364, "simIndex": 45.0, "features": {"0": {"effect": 0.2558687217620131, "value": 0.9597317046365323}, "1": {"effect": -0.027710391193905164, "value": -0.1493651755688873}, "2": {"effect": 0.021389647551438882, "value": -1.0100505037878158}, "3": {"effect": -0.006930280446395182, "value": -0.39968162411833147}, "4": {"effect": -0.000610709710016151, "value": 0.3528831971519193}, "5": {"effect": -0.007111366399510162, "value": -0.9814225308444268}, "6": {"effect": 0.006257730061039447, "value": -1.1142685071653105}, "7": {"effect": -0.0020340009824329833, "value": -1.0304638130973318}, "8": {"effect": -0.0035224661532957603, "value": 1.3116850633639396}, "9": {"effect": -0.0190750481576277, "value": -1.046059672148934}, "10": {"effect": -0.004369686321223601, "value": -1.4036738154575337}, "11": {"effect": -0.0030436358091979407, "value": 0.12359482479172249}, "12": {"effect": -0.00439381140086028, "value": -1.1106227639920057}, "13": {"effect": -0.06359200956882542, "value": -1.1390722512143208}, "14": {"effect": 0.022792578928021133, "value": 0.5839380420058958}, "15": {"effect": -0.01270947605798406, "value": -0.7659267151104749}, "16": {"effect": -0.0036194484821551465, "value": -0.39322701663658827}, "17": {"effect": -0.0009568197728109795, "value": 0.18945169927955322}, "18": {"effect": 0.006517241350212061, "value": 0.5571367071027632}, "19": {"effect": -0.013146787881851196, "value": -0.9975031172021119}}}, {"outValue": -4.2155436585922246e-08, "simIndex": 2.0, "features": {"0": {"effect": -0.09994685919604562, "value": -0.42960256612766506}, "1": {"effect": -0.22887431314723128, "value": -0.7326743878120021}, "2": {"effect": -0.04195191791101047, "value": 0.9900495037128095}, "3": {"effect": -0.13240429199206222, "value": -1.3342878978475794}, "4": {"effect": -0.01842871839620741, "value": -0.8112675563389489}, "5": {"effect": -0.02022468830428696, "value": -0.9814225308444268}, "6": {"effect": 0.0, "value": -0.7483847450642371}, "7": {"effect": 0.028120210952795016, "value": 0.9704367948586523}, "8": {"effect": 0.018774359850500077, "value": -0.7630364779849981}, "9": {"effect": -0.04219749386407872, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -1.4036738154575337}, "11": {"effect": 0.0, "value": -0.49915608168818354}, "12": {"effect": 0.0, "value": 1.0734927994141015}, "13": {"effect": -0.03373029146779087, "value": 0.01970311111479658}, "14": {"effect": -0.28497971499487956, "value": -1.3400514079766868}, "15": {"effect": 0.02017765647116715, "value": 1.1369968006919469}, "16": {"effect": -0.027793441852044132, "value": -0.39322701663658827}, "17": {"effect": -0.007780208829748503, "value": 0.5526904276765396}, "18": {"effect": 0.015359305153779257, "value": 0.5571367071027632}, "19": {"effect": -0.0041196346282958984, "value": -0.9975031172021119}}}, {"outValue": 0.9999999855793977, "simIndex": 12.0, "features": {"0": {"effect": -0.3169601758785794, "value": -1.6949056628196422}, "1": {"effect": 0.02004081700602383, "value": -0.1516348612196387}, "2": {"effect": 0.027239904025064918, "value": -1.0100505037878158}, "3": {"effect": -0.01220466409671583, "value": -0.39968162411833147}, "4": {"effect": -0.004852839012106223, "value": -0.3123458048428625}, "5": {"effect": -0.01618263266525969, "value": -0.9814225308444268}, "6": {"effect": 0.012661845645237202, "value": -0.9923072531316194}, "7": {"effect": -0.006912151842669889, "value": 0.9704367948586523}, "8": {"effect": 0.007153286386119555, "value": -0.7630364779849981}, "9": {"effect": 0.037560540576634584, "value": 0.9559684085188823}, "10": {"effect": 0.008570086105113676, "value": 1.0371190324114898}, "11": {"effect": 0.027386656833464387, "value": -1.4049755820225922}, "12": {"effect": -0.012155929640921326, "value": -1.1106227639920057}, "13": {"effect": 0.15840030080561343, "value": 1.0167888880026417}, "14": {"effect": 0.11585899986847258, "value": 0.4912156588742051}, "15": {"effect": 0.03458541433871775, "value": 1.6127276796425523}, "16": {"effect": 0.005490990010982702, "value": 0.29841449302102374}, "17": {"effect": -0.009567773984417459, "value": -1.4451225785068857}, "18": {"effect": 0.030162772116704963, "value": 0.5571367071027632}, "19": {"effect": 0.03372453898191452, "value": 1.0025031328271852}}}, {"outValue": 0.9999999881344668, "simIndex": 22.0, "features": {"0": {"effect": 0.09752777643855065, "value": -0.439784229670907}, "1": {"effect": 0.03325633947775927, "value": -0.26284945810645827}, "2": {"effect": -0.020107076869381714, "value": 0.9900495037128095}, "3": {"effect": -0.014746664747917946, "value": -0.5096353033805959}, "4": {"effect": 0.0, "value": 0.6854976981493102}, "5": {"effect": 0.025179357860987045, "value": 1.0189291243798826}, "6": {"effect": 0.0, "value": 1.4469178275422026}, "7": {"effect": -0.012954038853718632, "value": -1.0304638130973318}, "8": {"effect": 0.0038155025678161952, "value": 1.3116850633639396}, "9": {"effect": -0.042348281625820446, "value": -1.046059672148934}, "10": {"effect": -0.02170587270185606, "value": -0.3576197377993806}, "11": {"effect": 0.0, "value": -0.6689972380008852}, "12": {"effect": 0.0, "value": -1.547445876673227}, "13": {"effect": 0.10189542554505665, "value": 0.29143144220360123}, "14": {"effect": -0.05663930561210316, "value": -0.7188114409943589}, "15": {"effect": 0.0144598970529086, "value": 0.4234004822660387}, "16": {"effect": 0.01195536210746019, "value": 0.5289616629068944}, "17": {"effect": 0.007110486290533569, "value": 0.18945169927955322}, "18": {"effect": 0.04545029177643184, "value": 0.5571367071027632}, "19": {"effect": -0.03214921057224274, "value": -0.9975031172021119}}}, {"outValue": 0.9999999864676371, "simIndex": 32.0, "features": {"0": {"effect": 0.1422717472024079, "value": 0.6005966632930889}, "1": {"effect": -0.02823850244328121, "value": -0.3445581415335094}, "2": {"effect": 0.011868138390160099, "value": -1.0100505037878158}, "3": {"effect": -0.036682712117855655, "value": -1.6641489356343728}, "4": {"effect": 0.0, "value": 0.8518049486480056}, "5": {"effect": 0.010459629652905506, "value": 1.0189291243798826}, "6": {"effect": 0.003241873449928774, "value": -0.7483847450642371}, "7": {"effect": 0.0036727826891427805, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": 1.7727342947748146}, "9": {"effect": 0.010676504364500645, "value": 0.9559684085188823}, "10": {"effect": 0.002592312084947951, "value": 0.688434339858772}, "11": {"effect": 0.0, "value": 0.12359482479172249}, "12": {"effect": 0.0, "value": 0.1998465740516586}, "13": {"effect": -0.003992012975475412, "value": -0.01847359655883713}, "14": {"effect": -0.006793725027228074, "value": 0.022967624059166913}, "15": {"effect": 0.00517803275885835, "value": 0.18553504279073596}, "16": {"effect": 0.013432254917542394, "value": 1.451150342450377}, "17": {"effect": 0.00198514084893045, "value": -0.17378702911743324}, "18": {"effect": 0.003037056674453101, "value": 0.5571367071027632}, "19": {"effect": 0.007291465997695923, "value": 1.0025031328271852}}}, {"outValue": 0.9999999799669852, "simIndex": 29.0, "features": {"0": {"effect": 0.09382089626143789, "value": 1.3614446117062602}, "1": {"effect": -0.06465831853699651, "value": -1.3227926570073711}, "2": {"effect": 0.00966408523876559, "value": -1.0100505037878158}, "3": {"effect": -0.022144382568331147, "value": -1.1143805393230506}, "4": {"effect": 0.003694109306785962, "value": -1.1438820573363397}, "5": {"effect": 0.007556774788801668, "value": 1.0189291243798826}, "6": {"effect": -0.005331630803663882, "value": 1.4469178275422026}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.004441597321711755, "value": -0.9935610936904357}, "9": {"effect": 0.013581826359535573, "value": 0.9559684085188823}, "10": {"effect": 0.007271271397895594, "value": 1.3858037249642075}, "11": {"effect": 0.008791494696527805, "value": -1.065293269397189}, "12": {"effect": 0.003471145023061551, "value": 1.0734927994141015}, "13": {"effect": 0.02972607958070876, "value": 1.1492845205170177}, "14": {"effect": 0.037564914201340505, "value": 1.1611348770006706}, "15": {"effect": 0.0019308897607373827, "value": 0.4234004822660387}, "16": {"effect": 0.006726241069485217, "value": 1.2206031725645063}, "17": {"effect": 0.0029959175467291765, "value": 1.642406612867499}, "18": {"effect": 0.005847920524459885, "value": 0.5571367071027632}, "19": {"effect": -0.004950851202011108, "value": -0.9975031172021119}}}, {"outValue": 0.9999999888984763, "simIndex": 47.0, "features": {"0": {"effect": 0.2998294177904897, "value": 0.5719028842166798}, "1": {"effect": -0.09439895657201858, "value": -1.1026331488844836}, "2": {"effect": 0.007443033147641748, "value": -1.0100505037878158}, "3": {"effect": 0.02220300635077667, "value": 1.0297162062911065}, "4": {"effect": 0.0, "value": 0.3528831971519193}, "5": {"effect": 0.007416721542728488, "value": 1.0189291243798826}, "6": {"effect": -0.008005968782321446, "value": 1.568879081575893}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.0, "value": 0.159061984836752}, "9": {"effect": 0.01221515223789111, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": -0.7063044303520983}, "11": {"effect": -0.01863981711145235, "value": 1.2841760595951837}, "12": {"effect": 0.0, "value": -0.2369765386295628}, "13": {"effect": -0.04177605501014406, "value": -0.739339664984509}, "14": {"effect": -0.038430605343043975, "value": -0.6005904025014532}, "15": {"effect": 0.0, "value": -0.5280612756351722}, "16": {"effect": -0.017146796533464022, "value": -1.0848685262942002}, "17": {"effect": 0.0, "value": 0.9159291560735261}, "18": {"effect": 0.005631593928177428, "value": 0.5571367071027632}, "19": {"effect": 0.003659263253211975, "value": 1.0025031328271852}}}, {"outValue": 0.9999999915207003, "simIndex": 16.0, "features": {"0": {"effect": 0.07435627592488235, "value": -0.48236209539719155}, "1": {"effect": 0.20523244901328594, "value": 0.8402177681587316}, "2": {"effect": 0.03571790031895812, "value": -1.0100505037878158}, "3": {"effect": -0.06372185240942414, "value": -1.6091720960032405}, "4": {"effect": 0.007629138882809049, "value": 0.6854976981493102}, "5": {"effect": 0.00635541114858244, "value": 1.0189291243798826}, "6": {"effect": 0.009358698706456316, "value": -1.2362297611990014}, "7": {"effect": 0.00268828604110382, "value": 0.9704367948586523}, "8": {"effect": -0.003346003685127906, "value": 1.5422096790693771}, "9": {"effect": -0.02353938742667009, "value": -1.046059672148934}, "10": {"effect": 0.005864625233023814, "value": 0.33974964730605445}, "11": {"effect": 0.015595516757324047, "value": -1.2068275663244403}, "12": {"effect": -0.0052686450038689735, "value": -0.6737996513107842}, "13": {"effect": -0.052608494186034443, "value": -0.766287929224721}, "14": {"effect": -0.08386874280725992, "value": -1.2403748461101194}, "15": {"effect": -0.01031687132406307, "value": -1.0037921545857778}, "16": {"effect": -0.006197342673130407, "value": -0.39322701663658827}, "17": {"effect": 0.008744861895907091, "value": -0.35540639331592644}, "18": {"effect": 0.008199917894048225, "value": 0.5571367071027632}, "19": {"effect": 0.00912424921989441, "value": 1.0025031328271852}}}, {"outValue": 0.9999999908871496, "simIndex": 10.0, "features": {"0": {"effect": -0.06951892041807224, "value": -0.8812981851369444}, "1": {"effect": -0.0845209739627477, "value": -1.1956902605652917}, "2": {"effect": -0.007039145050953745, "value": 0.9900495037128095}, "3": {"effect": -0.03015633245841782, "value": -1.1693573789541827}, "4": {"effect": -0.01313537896992067, "value": -0.6449603058402533}, "5": {"effect": 0.009379984088818117, "value": 1.0189291243798826}, "6": {"effect": -0.009318958943122752, "value": 0.7151503033400559}, "7": {"effect": -0.003067038954511714, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": 0.159061984836752}, "9": {"effect": 0.021293068760124583, "value": 0.9559684085188823}, "10": {"effect": -0.009984740084816849, "value": -1.4036738154575337}, "11": {"effect": -0.021034115740544403, "value": 1.5955515128351367}, "12": {"effect": -0.00639435043549329, "value": -0.6737996513107842}, "13": {"effect": 0.1803869898819951, "value": 2.4832236004075128}, "14": {"effect": 0.11446465409198789, "value": 1.4091672518779434}, "15": {"effect": 0.02128821036115773, "value": 0.6612659217413415}, "16": {"effect": 0.03470512544842463, "value": 1.451150342450377}, "17": {"effect": 0.006717138397598327, "value": 1.4607872486690059}, "18": {"effect": 0.005934774875640869, "value": 0.5571367071027632}, "19": {"effect": 0.0, "value": -0.9975031172021119}}}, {"outValue": 0.9999999866719246, "simIndex": 13.0, "features": {"0": {"effect": -0.3183838274399492, "value": -1.7134177783528095}, "1": {"effect": -0.02337614074262226, "value": -0.39903059715154343}, "2": {"effect": 0.03827223824906087, "value": -1.0100505037878158}, "3": {"effect": 0.07581028042923421, "value": 0.8647856873977098}, "4": {"effect": -0.012211468426102434, "value": -0.3123458048428625}, "5": {"effect": -0.02253761756144368, "value": -0.9814225308444268}, "6": {"effect": -0.020304665858353457, "value": 0.22730528720529142}, "7": {"effect": 0.019485637463478353, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": -0.07146263086868554}, "9": {"effect": 0.0084873357547363, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": -0.7063044303520983}, "11": {"effect": -0.008603406699093825, "value": 0.6048114343443771}, "12": {"effect": 0.021380500265122476, "value": 0.63666968673288}, "13": {"effect": 0.20464591905233614, "value": 1.2211465584909162}, "14": {"effect": 0.2835667527878539, "value": 1.6201106735025397}, "15": {"effect": -0.018709646906097152, "value": -1.0037921545857778}, "16": {"effect": -0.051909792523212345, "value": -1.315415696180071}, "17": {"effect": -0.014957060299270436, "value": 0.18945169927955322}, "18": {"effect": 0.0, "value": 0.5571367071027632}, "19": {"effect": -0.02065505087375641, "value": -0.9975031172021119}}}, {"outValue": 0.9999999843258416, "simIndex": 37.0, "features": {"0": {"effect": 0.09655289580100454, "value": -0.416644085254448}, "1": {"effect": -0.09717886182886956, "value": -0.9278673537766242}, "2": {"effect": -0.017944220548237914, "value": 0.9900495037128095}, "3": {"effect": -0.033716991554349825, "value": -0.5646121430117281}, "4": {"effect": -0.007823938514042443, "value": -0.3123458048428625}, "5": {"effect": 0.03370531911684399, "value": 1.0189291243798826}, "6": {"effect": 0.01710980571553801, "value": -1.2362297611990014}, "7": {"effect": -0.014149658387230844, "value": -1.0304638130973318}, "8": {"effect": 0.001624116068254234, "value": 0.159061984836752}, "9": {"effect": 0.06227138904913133, "value": 0.9559684085188823}, "10": {"effect": -0.013514623933244492, "value": 0.33974964730605445}, "11": {"effect": -0.04282685402266012, "value": 1.623858372220587}, "12": {"effect": -0.014745336897369867, "value": -1.547445876673227}, "13": {"effect": -0.06399702761480157, "value": -0.6764603817573476}, "14": {"effect": 0.13528203548178747, "value": 0.42167387152543706}, "15": {"effect": 0.04491215577945135, "value": 0.6612659217413415}, "16": {"effect": -0.03504844747567397, "value": -0.39322701663658827}, "17": {"effect": 0.01631008504657519, "value": 1.642406612867499}, "18": {"effect": 0.03540994300386896, "value": 0.5571367071027632}, "19": {"effect": 0.037768200039863586, "value": 1.0025031328271852}}}, {"outValue": 0.999999988165539, "simIndex": 48.0, "features": {"0": {"effect": 0.35065289437063996, "value": 0.8051555399345863}, "1": {"effect": -0.07259854866719784, "value": -0.7894165290807876}, "2": {"effect": -0.011500409377683346, "value": 0.9900495037128095}, "3": {"effect": 0.03237193823936246, "value": 1.2496235648156355}, "4": {"effect": 0.0, "value": -1.4764965583337306}, "5": {"effect": -0.0036521663455301237, "value": -0.9814225308444268}, "6": {"effect": -0.007062005174611752, "value": 1.2029953194748202}, "7": {"effect": 0.005064788782001853, "value": 0.9704367948586523}, "8": {"effect": 0.0024839615330728357, "value": -0.9935610936904357}, "9": {"effect": -0.017729075635334574, "value": -1.046059672148934}, "10": {"effect": 0.007844862270121704, "value": 0.33974964730605445}, "11": {"effect": -0.015923170810702728, "value": 1.1992554814388328}, "12": {"effect": -0.004761686598175885, "value": -1.1106227639920057}, "13": {"effect": -0.030268656457856827, "value": -0.5102794189427067}, "14": {"effect": -0.04033998276420972, "value": -0.7025850239463131}, "15": {"effect": -0.010568336475315826, "value": -1.2416575940610803}, "16": {"effect": -0.01991782546227959, "value": -1.0848685262942002}, "17": {"effect": 0.0, "value": -0.9002644859114062}, "18": {"effect": -0.024096593260765076, "value": -1.7948916078429396}, "19": {"effect": 0.0, "value": 1.0025031328271852}}}, {"outValue": 0.9999999892732176, "simIndex": 43.0, "features": {"0": {"effect": 0.25185015985759707, "value": 0.36549279602186563}, "1": {"effect": -0.025468044370619516, "value": -0.14255611861663303}, "2": {"effect": 0.014226766164421978, "value": -1.0100505037878158}, "3": {"effect": 0.02027987734623582, "value": 0.9197625270288421}, "4": {"effect": 0.009242154716089516, "value": -1.642803808832426}, "5": {"effect": 0.01606402999907018, "value": 1.0189291243798826}, "6": {"effect": 0.003414842996559031, "value": -0.2605397289294728}, "7": {"effect": -0.006812138050014405, "value": -1.0304638130973318}, "8": {"effect": 0.011736678372818943, "value": -0.9935610936904357}, "9": {"effect": -0.011567504956701183, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": 0.33974964730605445}, "11": {"effect": 0.009296117451713742, "value": -1.1219069881680896}, "12": {"effect": -0.004473805526277616, "value": 0.1998465740516586}, "13": {"effect": 0.0, "value": -0.14647785169984429}, "14": {"effect": -0.10216210379968063, "value": -1.513905876348607}, "15": {"effect": -0.01127269262754546, "value": -1.4795230335363831}, "16": {"effect": -0.006788586154772319, "value": -0.6237741865224589}, "17": {"effect": 0.006264865653353116, "value": 1.0975485202720194}, "18": {"effect": -0.03383062779903412, "value": -1.7948916078429396}, "19": {"effect": 0.0, "value": -0.9975031172021119}}}, {"outValue": 0.9999999928180647, "simIndex": 18.0, "features": {"0": {"effect": -0.042180374805542584, "value": -0.7776303381512082}, "1": {"effect": 0.24951427716087035, "value": 1.280536784404507}, "2": {"effect": -0.018501641226836563, "value": 0.9900495037128095}, "3": {"effect": -0.002275638583386256, "value": -0.17977426559380258}, "4": {"effect": 0.013083088558565922, "value": -1.310189307835035}, "5": {"effect": 0.016073402518656243, "value": 1.0189291243798826}, "6": {"effect": 0.00934046006453208, "value": -1.2362297611990014}, "7": {"effect": -0.010691547344509545, "value": -1.0304638130973318}, "8": {"effect": 0.020880969740120534, "value": -0.9935610936904357}, "9": {"effect": -0.019782232962214305, "value": -1.046059672148934}, "10": {"effect": -0.005434301246279291, "value": -1.0549891229048158}, "11": {"effect": -0.024340385887856964, "value": 1.1709486220533827}, "12": {"effect": 0.0, "value": -0.2369765386295628}, "13": {"effect": 0.03473293398318997, "value": 0.25550042321665184}, "14": {"effect": -0.05058469508724117, "value": -0.8300783007523879}, "15": {"effect": 0.02314639702176379, "value": 1.6127276796425523}, "16": {"effect": -0.012420399469554207, "value": -0.39322701663658827}, "17": {"effect": 0.008118638139311019, "value": 1.0975485202720194}, "18": {"effect": -0.04646471970792809, "value": -1.7948916078429396}, "19": {"effect": -0.0022142380475997925, "value": -0.9975031172021119}}}, {"outValue": -3.557413241761509e-08, "simIndex": 1.0, "features": {"0": {"effect": -0.07760887651976334, "value": -0.38147106574143036}, "1": {"effect": -0.28518927846736863, "value": -0.9301370394273756}, "2": {"effect": -0.006766608324643708, "value": 0.9900495037128095}, "3": {"effect": -0.05169336390087764, "value": -0.34470478448719927}, "4": {"effect": -0.00929252785290463, "value": 0.18657594665322383}, "5": {"effect": -0.02459001438739905, "value": -0.9814225308444268}, "6": {"effect": 0.0, "value": 0.22730528720529142}, "7": {"effect": -0.013520623719485203, "value": 0.9704367948586523}, "8": {"effect": -0.008869707458002585, "value": 0.620111216247627}, "9": {"effect": 0.035955874553646905, "value": 0.9559684085188823}, "10": {"effect": 0.0, "value": 0.688434339858772}, "11": {"effect": -0.014582040175999733, "value": 1.0294143251261312}, "12": {"effect": 0.0, "value": 0.1998465740516586}, "13": {"effect": -0.0857613174355546, "value": -0.2991846823943791}, "14": {"effect": -0.3086529322467093, "value": -1.4559543868913003}, "15": {"effect": -0.03889207137239359, "value": -1.4795230335363831}, "16": {"effect": -0.005496616824977485, "value": -0.1626798467507176}, "17": {"effect": -0.006351439785404089, "value": 1.642406612867499}, "18": {"effect": 0.01849866502094688, "value": 0.5571367071027632}, "19": {"effect": 0.022812843322753906, "value": 1.0025031328271852}}}, {"outValue": 0.9999999826003318, "simIndex": 50.0, "features": {"0": {"effect": 0.2008210933587533, "value": -0.07139313056088}, "1": {"effect": -0.14263879017422681, "value": -0.9619126385378955}, "2": {"effect": 0.02928432347246137, "value": 0.9900495037128095}, "3": {"effect": -0.06664763093545632, "value": -1.1693573789541827}, "4": {"effect": -0.0319292545843853, "value": 0.18657594665322383}, "5": {"effect": -0.07596081711094677, "value": -0.9814225308444268}, "6": {"effect": 0.043211740916504385, "value": -0.2605397289294728}, "7": {"effect": -0.017749632819112335, "value": -1.0304638130973318}, "8": {"effect": 0.02889399251532874, "value": -0.9935610936904357}, "9": {"effect": 0.06241230887667991, "value": -1.046059672148934}, "10": {"effect": 0.017696474037406193, "value": -0.008935045246663081}, "11": {"effect": -0.036826766530735064, "value": 0.09528796540627221}, "12": {"effect": -0.018768456409249727, "value": -0.6737996513107842}, "13": {"effect": 0.11113394574008166, "value": 0.17465563049601576}, "14": {"effect": -0.1281289023537936, "value": -1.1198357480389214}, "15": {"effect": 0.05790397936280817, "value": -0.2901958361598695}, "16": {"effect": 0.0, "value": 0.06786732313515309}, "17": {"effect": 0.06141000858422153, "value": 1.4607872486690059}, "18": {"effect": -0.033843211773325686, "value": -1.7948916078429396}, "19": {"effect": 0.07972557842731476, "value": -0.9975031172021119}}}, {"outValue": 0.9999999880867766, "simIndex": 44.0, "features": {"0": {"effect": 0.24824310418706708, "value": 1.2716608513703993}, "1": {"effect": 0.009359530716222222, "value": 0.39308969496070195}, "2": {"effect": -0.015823611397843156, "value": 0.9900495037128095}, "3": {"effect": 0.020380433394628836, "value": 0.6448783288731809}, "4": {"effect": 0.0, "value": -0.6449603058402533}, "5": {"effect": 0.014560348979504884, "value": 1.0189291243798826}, "6": {"effect": 0.0, "value": -0.01661722086209068}, "7": {"effect": 0.0063417555260380926, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": 0.159061984836752}, "9": {"effect": -0.01986997949768633, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -0.008935045246663081}, "11": {"effect": -0.018113105688962888, "value": 1.114334903282482}, "12": {"effect": 0.0, "value": -1.1106227639920057}, "13": {"effect": -0.0697853200432604, "value": -1.3479212990759641}, "14": {"effect": -0.016492374013600434, "value": -0.3038787764800429}, "15": {"effect": 0.008455828051495659, "value": 0.8991313612166442}, "16": {"effect": 0.017748321425827017, "value": 1.451150342450377}, "17": {"effect": 0.0, "value": 0.37107106347804647}, "18": {"effect": -0.03466310555045263, "value": -1.7948916078429396}, "19": {"effect": -0.010341838002204895, "value": -0.9975031172021119}}}, {"outValue": 0.999999980637313, "simIndex": 15.0, "features": {"0": {"effect": 0.16637766350013283, "value": -0.17506097754661623}, "1": {"effect": 0.1224591776980967, "value": 0.5792039183223184}, "2": {"effect": 0.023592776531583676, "value": -1.0100505037878158}, "3": {"effect": 0.010851155368791391, "value": 0.3150172910863875}, "4": {"effect": 0.0035071046915972487, "value": 0.6854976981493102}, "5": {"effect": 0.012269198182364695, "value": 1.0189291243798826}, "6": {"effect": 0.0, "value": 0.4712277952726735}, "7": {"effect": 0.0, "value": 0.9704367948586523}, "8": {"effect": 0.005658670160012636, "value": 2.0032589104802523}, "9": {"effect": -0.020239443918450624, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -1.4036738154575337}, "11": {"effect": 0.0002470855959462587, "value": -0.4142355035318327}, "12": {"effect": 0.0, "value": -0.2369765386295628}, "13": {"effect": -0.017483798426432252, "value": -0.3216415692612225}, "14": {"effect": -0.12588330939987785, "value": -1.7225312383949112}, "15": {"effect": 0.008224899101911227, "value": 1.1369968006919469}, "16": {"effect": -0.01565879325619139, "value": -0.39322701663658827}, "17": {"effect": 0.0018702484241520378, "value": -0.9002644859114062}, "18": {"effect": -0.04914944356288321, "value": -1.7948916078429396}, "19": {"effect": 0.013356789946556091, "value": 1.0025031328271852}}}, {"outValue": 0.9999999804708735, "simIndex": 40.0, "features": {"0": {"effect": 0.20356183946581172, "value": 0.7912714532847109}, "1": {"effect": 0.023538106929351515, "value": 0.5474283192117985}, "2": {"effect": -0.013063818571627597, "value": 0.9900495037128095}, "3": {"effect": 0.017543237731646226, "value": 0.8647856873977098}, "4": {"effect": -0.00437199464830967, "value": 0.02026869615452839}, "5": {"effect": -0.00632553948304929, "value": -0.9814225308444268}, "6": {"effect": 0.008562145924837339, "value": -1.2362297611990014}, "7": {"effect": -0.008450187138665133, "value": -1.0304638130973318}, "8": {"effect": 0.0037530272205238673, "value": -0.5325118622795606}, "9": {"effect": -0.019725162450910428, "value": -1.046059672148934}, "10": {"effect": 0.0, "value": -1.0549891229048158}, "11": {"effect": 0.0, "value": 0.03867424663537166}, "12": {"effect": 0.005375735404689729, "value": 1.0734927994141015}, "13": {"effect": 0.0, "value": -0.022964973932205802}, "14": {"effect": -0.07868238696862001, "value": -1.4072751357471627}, "15": {"effect": -0.0026375830863771543, "value": -0.05233039668456675}, "16": {"effect": 0.0, "value": 0.5289616629068944}, "17": {"effect": -0.004554670130012831, "value": 0.18945169927955322}, "18": {"effect": 0.006809180101636975, "value": 0.5571367071027632}, "19": {"effect": 0.008668050169944763, "value": 1.0025031328271852}}}, {"outValue": 0.9999999885000994, "simIndex": 21.0, "features": {"0": {"effect": -0.04328252537396149, "value": -0.7137635395617814}, "1": {"effect": 0.0, "value": -0.4058396541037977}, "2": {"effect": 0.026526870438718264, "value": -1.0100505037878158}, "3": {"effect": 0.04834968118653732, "value": 0.36999413071751974}, "4": {"effect": 0.0, "value": -0.9775748068376443}, "5": {"effect": -0.013430154450013429, "value": -0.9814225308444268}, "6": {"effect": 0.062422666631415866, "value": -1.2362297611990014}, "7": {"effect": -0.01743642000511922, "value": -1.0304638130973318}, "8": {"effect": 0.010953447249249307, "value": -0.30198724657412307}, "9": {"effect": 0.09694562598601986, "value": 0.9559684085188823}, "10": {"effect": 0.015344864249648427, "value": 1.3858037249642075}, "11": {"effect": 0.004733047324873112, "value": -0.47084922230273324}, "12": {"effect": 0.0, "value": -0.2369765386295628}, "13": {"effect": 0.015703409888405642, "value": -0.16444336119331898}, "14": {"effect": -0.0986184573591346, "value": -1.0016147095460157}, "15": {"effect": 0.02679816158408911, "value": 0.8991313612166442}, "16": {"effect": -0.051612793190009304, "value": -1.315415696180071}, "17": {"effect": -0.009413871031072246, "value": 0.007832335081059995}, "18": {"effect": 0.04084003691435262, "value": 0.5571367071027632}, "19": {"effect": 0.02517639845609665, "value": 1.0025031328271852}}}, {"outValue": 0.9999999860066517, "simIndex": 38.0, "features": {"0": {"effect": 0.1787447554842312, "value": 0.8375517421176288}, "1": {"effect": 0.07008969451671256, "value": 1.4416844656078578}, "2": {"effect": 0.014460870898123847, "value": -1.0100505037878158}, "3": {"effect": 0.029131497880198916, "value": 1.3046004044467676}, "4": {"effect": 0.004175588000248625, "value": -0.9775748068376443}, "5": {"effect": -0.0030386354383543993, "value": -0.9814225308444268}, "6": {"effect": -0.009233141129690883, "value": 1.568879081575893}, "7": {"effect": 0.0016454170803448251, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": -0.30198724657412307}, "9": {"effect": 0.012832283878688603, "value": 0.9559684085188823}, "10": {"effect": 0.0024032066444098794, "value": -0.3576197377993806}, "11": {"effect": -0.014015704020590295, "value": 1.1709486220533827}, "12": {"effect": -0.005378670420276621, "value": -0.6737996513107842}, "13": {"effect": -0.041371612342122686, "value": -0.9189947599192558}, "14": {"effect": -0.07512359457713177, "value": -1.539404531709822}, "15": {"effect": -0.005440121278346748, "value": -0.05233039668456675}, "16": {"effect": -0.00967650282580375, "value": -0.8543213564083296}, "17": {"effect": 0.0, "value": 1.2791678844705126}, "18": {"effect": 0.003380802275658762, "value": 0.5571367071027632}, "19": {"effect": -0.013586148619651794, "value": -0.9975031172021119}}}, {"outValue": 0.9999999805644383, "simIndex": 42.0, "features": {"0": {"effect": 0.24841680825553536, "value": 1.0476642534190765}, "1": {"effect": -0.033185403492377114, "value": -0.3581762554380179}, "2": {"effect": 0.013896645064101251, "value": -1.0100505037878158}, "3": {"effect": 0.011126061715142646, "value": 0.36999413071751974}, "4": {"effect": 0.0, "value": -1.310189307835035}, "5": {"effect": 0.01324213485385245, "value": 1.0189291243798826}, "6": {"effect": -0.010859012846542074, "value": 1.6908403356095842}, "7": {"effect": 0.0, "value": 0.9704367948586523}, "8": {"effect": 0.002489022964299037, "value": -0.7630364779849981}, "9": {"effect": 0.006375749764094926, "value": 0.9559684085188823}, "10": {"effect": 0.006581405716908781, "value": 1.734488417516925}, "11": {"effect": -0.014279891189260109, "value": 0.9161868875843301}, "12": {"effect": 0.005508433285833211, "value": 1.510315912095323}, "13": {"effect": -0.01574789430144663, "value": -0.2722364181541671}, "14": {"effect": -0.10345283449795128, "value": -1.6390810935763895}, "15": {"effect": -0.004995241891701793, "value": -1.0037921545857778}, "16": {"effect": 0.0, "value": 0.06786732313515309}, "17": {"effect": 0.003317345772134689, "value": -0.9002644859114062}, "18": {"effect": 0.006083232688732232, "value": 0.5571367071027632}, "19": {"effect": 0.005483418703079224, "value": 1.0025031328271852}}}, {"outValue": 0.9999999846787092, "simIndex": 46.0, "features": {"0": {"effect": 0.2988715758446145, "value": 1.6382007389271096}, "1": {"effect": -0.09552937928012041, "value": -1.0527000645679523}, "2": {"effect": 0.014169491014309837, "value": -1.0100505037878158}, "3": {"effect": -0.0055910797625993505, "value": -0.12479742596267034}, "4": {"effect": 0.0, "value": 1.1844194496453966}, "5": {"effect": 0.009372306569680557, "value": 1.0189291243798826}, "6": {"effect": -0.00776718208069951, "value": 1.3249565735085114}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": 0.007770494666775544, "value": -0.30198724657412307}, "9": {"effect": -0.024020678885293502, "value": -1.046059672148934}, "10": {"effect": 0.006452314719853688, "value": 1.3858037249642075}, "11": {"effect": 0.0, "value": 0.2085154029480733}, "12": {"effect": 0.0, "value": 0.1998465740516586}, "13": {"effect": -0.05513671232395605, "value": -1.0222964395067353}, "14": {"effect": -0.016592312251917034, "value": -0.24592728702273622}, "15": {"effect": 0.0082082735153432, "value": 0.4234004822660387}, "16": {"effect": 0.009068833895727657, "value": 0.9900560026786358}, "17": {"effect": 0.0, "value": -0.718645121712913}, "18": {"effect": 0.003277581889388287, "value": 0.5571367071027632}, "19": {"effect": -0.012553542852401733, "value": -0.9975031172021119}}}, {"outValue": 0.9999999849388947, "simIndex": 17.0, "features": {"0": {"effect": -0.08748537955530829, "value": -0.9534954357162965}, "1": {"effect": 0.19901924526828013, "value": 0.8606449390154944}, "2": {"effect": 0.017929364901714998, "value": -1.0100505037878158}, "3": {"effect": -0.05571843112442179, "value": -1.4992184167409761}, "4": {"effect": 0.0006050072329679091, "value": 1.350726700144092}, "5": {"effect": -0.017921706397533613, "value": -0.9814225308444268}, "6": {"effect": -0.01679909352223406, "value": 1.3249565735085114}, "7": {"effect": 0.0, "value": 0.9704367948586523}, "8": {"effect": 0.0, "value": 0.3895866005421895}, "9": {"effect": -0.02117946466707338, "value": -1.046059672148934}, "10": {"effect": 0.012883334292061935, "value": 1.3858037249642075}, "11": {"effect": -0.009372423316536569, "value": 1.2841760595951837}, "12": {"effect": 0.005906426352118458, "value": 0.63666968673288}, "13": {"effect": -0.030351152117463972, "value": -0.472102711269073}, "14": {"effect": 0.06560416611513822, "value": 0.20841239032254838}, "15": {"effect": 0.0328604295279739, "value": 1.3748622401672497}, "16": {"effect": 0.052351180908593614, "value": 1.9122446822221182}, "17": {"effect": -0.009546022539504406, "value": 0.37107106347804647}, "18": {"effect": 0.012386544877077105, "value": 0.5571367071027632}, "19": {"effect": -0.011172041296958923, "value": -0.9975031172021119}}}, {"outValue": 7.081945141429458e-09, "simIndex": 3.0, "features": {"0": {"effect": -0.2195821890574674, "value": -0.6600784045155965}, "1": {"effect": -0.2934047105286768, "value": -1.1525662332010147}, "2": {"effect": -0.032447709635432254, "value": 0.9900495037128095}, "3": {"effect": -0.14006761674097234, "value": -1.3892647374787117}, "4": {"effect": 0.0025039090764191196, "value": 0.02026869615452839}, "5": {"effect": -0.06675038879280504, "value": -0.9814225308444268}, "6": {"effect": -0.014562469903510178, "value": 0.7151503033400559}, "7": {"effect": 0.0006582076834215078, "value": -1.0304638130973318}, "8": {"effect": 0.0006041922981889769, "value": 0.159061984836752}, "9": {"effect": 0.045842363967585675, "value": 0.9559684085188823}, "10": {"effect": -0.003216522287229018, "value": -1.0549891229048158}, "11": {"effect": -0.009777955635508317, "value": 0.9444937469697804}, "12": {"effect": 0.02574001628520295, "value": 1.0734927994141015}, "13": {"effect": -0.14111444692689862, "value": -0.4474001357155453}, "14": {"effect": 0.0, "value": 0.37067656080300715}, "15": {"effect": 0.03123929845303819, "value": 0.6612659217413415}, "16": {"effect": -0.010949689614424385, "value": 0.5289616629068944}, "17": {"effect": 0.0, "value": -1.626741942705379}, "18": {"effect": 0.0, "value": 0.5571367071027632}, "19": {"effect": -0.03471428155899048, "value": -0.9975031172021119}}}, {"outValue": 0.999999982149606, "simIndex": 9.0, "features": {"0": {"effect": -0.033996745209041716, "value": -0.7045074817951977}, "1": {"effect": 0.0, "value": -0.4988967657846059}, "2": {"effect": -0.02474930778900815, "value": 0.9900495037128095}, "3": {"effect": -0.043140787949907416, "value": -1.279311058216447}, "4": {"effect": -0.003438305091955779, "value": 0.3528831971519193}, "5": {"effect": -0.026802511456266477, "value": -0.9814225308444268}, "6": {"effect": 0.0172139433603872, "value": -0.2605397289294728}, "7": {"effect": 0.0, "value": -1.0304638130973318}, "8": {"effect": -0.0180289670363101, "value": 0.620111216247627}, "9": {"effect": -0.06242510451309727, "value": -1.046059672148934}, "10": {"effect": 0.011360079304369233, "value": 0.688434339858772}, "11": {"effect": -0.029860556843421635, "value": 1.4540172159078852}, "12": {"effect": -0.006801013842838155, "value": -1.1106227639920057}, "13": {"effect": 0.16445844717945118, "value": 0.5766339054125119}, "14": {"effect": 0.251520685034132, "value": 1.2608114388672382}, "15": {"effect": -0.03447522535401794, "value": -1.4795230335363831}, "16": {"effect": -0.04323303726293126, "value": -1.0848685262942002}, "17": {"effect": 0.0, "value": 0.5526904276765396}, "18": {"effect": 0.05907527331756843, "value": 0.5571367071027632}, "19": {"effect": -0.036676883697509766, "value": -0.9975031172021119}}}, {"outValue": 0.9999999838002279, "simIndex": 34.0, "features": {"0": {"effect": 0.13834219034578654, "value": 0.6385465001360816}, "1": {"effect": 0.025696757811201277, "value": 0.5973614035283298}, "2": {"effect": 0.016399359056857625, "value": -1.0100505037878158}, "3": {"effect": 0.0012117712781243711, "value": 0.09510993256185858}, "4": {"effect": 0.005620425069705613, "value": 0.8518049486480056}, "5": {"effect": -0.002596222840434169, "value": -0.9814225308444268}, "6": {"effect": -0.0037361530945358573, "value": -0.01661722086209068}, "7": {"effect": -0.0017199279284688812, "value": -1.0304638130973318}, "8": {"effect": 0.0007652002379933808, "value": 1.7727342947748146}, "9": {"effect": 0.008106057792239229, "value": 0.9559684085188823}, "10": {"effect": 0.001085189337784065, "value": 0.688434339858772}, "11": {"effect": -0.0031992867792337704, "value": 0.03867424663537166}, "12": {"effect": 0.00757515105591424, "value": 1.510315912095323}, "13": {"effect": -0.015026436387911492, "value": -0.3081674371411165}, "14": {"effect": -0.03183450017005727, "value": -0.6399974153324218}, "15": {"effect": -0.009962686092482192, "value": -1.2416575940610803}, "16": {"effect": -0.009891314760849035, "value": -0.8543213564083296}, "17": {"effect": 0.001731128031201068, "value": -0.718645121712913}, "18": {"effect": 0.0027222418174006474, "value": 0.5571367071027632}, "19": {"effect": 0.008711040019989014, "value": 1.0025031328271852}}}, {"outValue": 0.9999999803620908, "simIndex": 30.0, "features": {"0": {"effect": 0.0985642911424336, "value": 1.4234601987423703}, "1": {"effect": -0.030050619103521116, "value": -0.5442904787996343}, "2": {"effect": -0.00547398530624401, "value": 0.9900495037128095}, "3": {"effect": 0.010427606685836074, "value": 0.42497097034865194}, "4": {"effect": 0.0, "value": -0.47865305534155794}, "5": {"effect": -0.0075641371104215385, "value": -0.9814225308444268}, "6": {"effect": -0.00834487121009532, "value": 1.568879081575893}, "7": {"effect": 0.0018955686140384037, "value": 0.9704367948586523}, "8": {"effect": 0.008010173865346595, "value": -0.7630364779849981}, "9": {"effect": -0.015089720287849884, "value": -1.046059672148934}, "10": {"effect": 0.0019805374589062508, "value": -1.0549891229048158}, "11": {"effect": 0.0009832493283852828, "value": -0.6689972380008852}, "12": {"effect": 0.0, "value": -0.6737996513107842}, "13": {"effect": 0.023510242168910914, "value": 0.623793367832883}, "14": {"effect": 0.0448439260053361, "value": 1.3604880007338058}, "15": {"effect": 0.0013253753886436626, "value": 0.18553504279073596}, "16": {"effect": 0.0018338649221209535, "value": 0.759508832792765}, "17": {"effect": 0.0, "value": -0.17378702911743324}, "18": {"effect": 0.00314137948311502, "value": 0.5571367071027632}, "19": {"effect": 0.010007098317146301, "value": 1.0025031328271852}}}, {"outValue": 0.9999999849483816, "simIndex": 19.0, "features": {"0": {"effect": -0.025929670187521535, "value": -0.7544901937347492}, "1": {"effect": 0.099821202376367, "value": 0.15704238728255435}, "2": {"effect": 0.021401754013049917, "value": -1.0100505037878158}, "3": {"effect": 0.003409402663007221, "value": 0.04013309293072636}, "4": {"effect": -0.008310246735983198, "value": 0.6854976981493102}, "5": {"effect": -0.022617927363404445, "value": -0.9814225308444268}, "6": {"effect": 0.005731278416827931, "value": -0.13857847489578187}, "7": {"effect": -0.012725442661850541, "value": -1.0304638130973318}, "8": {"effect": 0.01883683446762279, "value": -0.9935610936904357}, "9": {"effect": -0.0271272462088446, "value": -1.046059672148934}, "10": {"effect": 0.0031381008728664722, "value": -0.3576197377993806}, "11": {"effect": 0.025221453953441657, "value": -1.0086795506262884}, "12": {"effect": -0.00980742837506856, "value": -1.547445876673227}, "13": {"effect": 0.06480537130647872, "value": 0.36329348017749996}, "14": {"effect": -0.008285810093930299, "value": -0.5403208534658542}, "15": {"effect": 0.0, "value": 0.18553504279073596}, "16": {"effect": 0.036186714574982654, "value": 1.451150342450377}, "17": {"effect": 0.012131322124770458, "value": 1.4607872486690059}, "18": {"effect": -0.05339888400307319, "value": -1.7948916078429396}, "19": {"effect": 0.017519205808639526, "value": 1.0025031328271852}}}], "plot_cmap": "RdBu", "ordering_keys": null, "ordering_keys_time_format": null}),
-    document.getElementById('iSJHAM5C1U50NP4VQXU20')
+    SHAP.React.createElement(SHAP.AdditiveForceArrayVisualizer, {"outNames": ["f(x)"], "baseValue": 0.7800000000079643, "link": "identity", "featureNames": ["ram", "battery_power", "touch_screen", "int_memory", "pc"], "explanations": [{"outValue": 5.010070114330745e-08, "simIndex": 4.0, "features": {"0": {"effect": -0.6957942809909576, "value": -1.5903122100572478}, "1": {"effect": -0.05665246962259224, "value": -0.05176869258657626}, "2": {"effect": 0.024975064924607382, "value": -1.0100505037878158}, "3": {"effect": -0.04172480314349153, "value": -1.004426860060786}, "4": {"effect": -0.010803461074829102, "value": -0.9775748068376443}}}, {"outValue": 1.0000000346056097, "simIndex": 38.0, "features": {"0": {"effect": 0.20567847686297677, "value": 0.24608965083293727}, "1": {"effect": 0.0006776522575516752, "value": 0.2228632711543455}, "2": {"effect": 0.01401321736263228, "value": -1.0100505037878158}, "3": {"effect": 0.00401574222596543, "value": 0.42497097034865194}, "4": {"effect": -0.004385054111480713, "value": -1.4764965583337306}}}, {"outValue": 1.0000000293983544, "simIndex": 11.0, "features": {"0": {"effect": 0.3452499650067731, "value": 0.4506485274744347}, "1": {"effect": -0.09746972673667983, "value": -1.538412793828756}, "2": {"effect": -0.011214268708313754, "value": 0.9900495037128095}, "3": {"effect": 0.0011683340967610367, "value": 0.4799478099797842}, "4": {"effect": -0.01773427426815033, "value": -0.6449603058402533}}}, {"outValue": 1.0000000338956885, "simIndex": 24.0, "features": {"0": {"effect": 0.295999876844386, "value": -0.1463671984702071}, "1": {"effect": -0.02233334910124532, "value": 0.05036716169723762}, "2": {"effect": -0.012333275129397622, "value": 0.9900495037128095}, "3": {"effect": -0.03066662481675536, "value": -1.4992184167409761}, "4": {"effect": -0.01066659390926361, "value": -1.1438820573363397}}}, {"outValue": 1.0000000216022304, "simIndex": 25.0, "features": {"0": {"effect": 0.2692550006633002, "value": 0.948624435316632}, "1": {"effect": -0.022838420048356012, "value": 0.08441244645850891}, "2": {"effect": -0.009066511069734787, "value": 0.9900495037128095}, "3": {"effect": -0.021136894946296947, "value": -0.4546584637494637}, "4": {"effect": 0.0037868469953536987, "value": 1.018112199146701}}}, {"outValue": 1.000000030329677, "simIndex": 17.0, "features": {"0": {"effect": 0.28455318587736733, "value": -0.07694676522083015}, "1": {"effect": -0.038653973649278514, "value": -0.4171880823575548}, "2": {"effect": -0.011673360135739289, "value": 0.9900495037128095}, "3": {"effect": 0.0028839150295570104, "value": 0.4799478099797842}, "4": {"effect": -0.017109736800193787, "value": 0.02026869615452839}}}, {"outValue": 1.000000031908867, "simIndex": 29.0, "features": {"0": {"effect": 0.21886212546378359, "value": -0.1648793140033743}, "1": {"effect": 0.038862123899161855, "value": 0.7244637999704092}, "2": {"effect": -0.009999962088962311, "value": 0.9900495037128095}, "3": {"effect": -0.022148777296145672, "value": -0.5646121430117281}, "4": {"effect": -0.0055754780769348145, "value": -1.4764965583337306}}}, {"outValue": 3.994928510220319e-08, "simIndex": 6.0, "features": {"0": {"effect": -0.42748639142761613, "value": -1.047907224935449}, "1": {"effect": -0.39530919476722637, "value": -1.1525662332010147}, "2": {"effect": 0.030537462172408603, "value": -1.0100505037878158}, "3": {"effect": 0.06991582301755717, "value": 1.6894382818646934}, "4": {"effect": -0.05765765905380249, "value": 0.02026869615452839}}}, {"outValue": 1.0000000353854068, "simIndex": 39.0, "features": {"0": {"effect": 0.18872024187237058, "value": -0.24355580501933483}, "1": {"effect": 0.005266514356830038, "value": 0.3885503236591991}, "2": {"effect": 0.010984465852777667, "value": -1.0100505037878158}, "3": {"effect": 0.027151697688202553, "value": 1.3595772440779}, "4": {"effect": -0.012122884392738342, "value": 0.02026869615452839}}}, {"outValue": 1.0000000274695626, "simIndex": 32.0, "features": {"0": {"effect": 0.19163142383719473, "value": 1.4142041409757868}, "1": {"effect": 0.021744838201751326, "value": 0.53381020530729}, "2": {"effect": 0.01163142475609985, "value": -1.0100505037878158}, "3": {"effect": 0.00483791039635742, "value": 0.5899014892420487}, "4": {"effect": -0.009845569729804993, "value": -1.310189307835035}}}, {"outValue": 1.0000000324676606, "simIndex": 50.0, "features": {"0": {"effect": -0.2616060538838303, "value": -1.397786208512309}, "1": {"effect": 0.45128388442099043, "value": 1.7049680010950226}, "2": {"effect": -0.013665499910712198, "value": 0.9900495037128095}, "3": {"effect": 0.04172762781381611, "value": 1.3595772440779}, "4": {"effect": 0.002260074019432068, "value": 0.8518049486480056}}}, {"outValue": -1.1223062479359669e-09, "simIndex": 1.0, "features": {"0": {"effect": -0.7718445783478343, "value": -1.647699768210066}, "1": {"effect": 0.116106590194272, "value": 1.4938872355751405}, "2": {"effect": 0.039964664354521784, "value": -1.0100505037878158}, "3": {"effect": -0.15743830433776074, "value": -0.34470478448719927}, "4": {"effect": -0.006788372993469238, "value": -1.642803808832426}}}, {"outValue": 1.000000034858055, "simIndex": 44.0, "features": {"0": {"effect": 0.1153628515390058, "value": 0.6977852698422166}, "1": {"effect": 0.09699710455412663, "value": 1.6595742880799942}, "2": {"effect": 0.013694618176668935, "value": -1.0100505037878158}, "3": {"effect": -0.0046467224135994245, "value": 0.2600404514552553}, "4": {"effect": -0.001407817006111145, "value": -1.4764965583337306}}}, {"outValue": 1.0000000324676606, "simIndex": 41.0, "features": {"0": {"effect": 0.13629759897788357, "value": -0.4286769603510067}, "1": {"effect": 0.05573404630025222, "value": 1.0286016771710995}, "2": {"effect": 0.01828760641316582, "value": -1.0100505037878158}, "3": {"effect": 0.016824293136596738, "value": 1.139669885553371}, "4": {"effect": -0.0071435123682022095, "value": -1.642803808832426}}}, {"outValue": 1.000000029954288, "simIndex": 49.0, "features": {"0": {"effect": -0.034942722119968385, "value": -0.9849660321226806}, "1": {"effect": 0.25611318277840495, "value": 0.5179224057520301}, "2": {"effect": -0.03511121249877541, "value": 0.9900495037128095}, "3": {"effect": -0.07351636426188338, "value": -1.3342878978475794}, "4": {"effect": 0.10745714604854584, "value": -1.642803808832426}}}, {"outValue": 1.6014295001198775e-08, "simIndex": 8.0, "features": {"0": {"effect": -0.3186184886222083, "value": -0.8387203194106598}, "1": {"effect": -0.34525609618673686, "value": -1.159375290153269}, "2": {"effect": -0.023211322848995852, "value": 0.9900495037128095}, "3": {"effect": -0.07304623890668172, "value": -1.5541952563721084}, "4": {"effect": -0.01986783742904663, "value": -1.310189307835035}}}, {"outValue": 1.000000026134667, "simIndex": 34.0, "features": {"0": {"effect": 0.1916285169621308, "value": 1.4595588240320463}, "1": {"effect": 0.02660482656210661, "value": 0.592822032226827}, "2": {"effect": -0.008391406387090586, "value": 0.9900495037128095}, "3": {"effect": 0.016919028945267284, "value": 1.1946467251845032}, "4": {"effect": -0.006760939955711365, "value": 0.3528831971519193}}}, {"outValue": 1.0000000333368948, "simIndex": 33.0, "features": {"0": {"effect": 0.18833057855566332, "value": 0.23775919884301203}, "1": {"effect": 0.028336112014949316, "value": 0.7902846838422004}, "2": {"effect": -0.006666237550477128, "value": 0.9900495037128095}, "3": {"effect": 0.00833047144114979, "value": 0.7548320081354454}, "4": {"effect": 0.0016691088676452637, "value": 1.018112199146701}}}, {"outValue": 1.0000000229371262, "simIndex": 45.0, "features": {"0": {"effect": 0.1427599422323207, "value": 1.4697404875752882}, "1": {"effect": 0.07784303038691479, "value": 1.4757297503691291}, "2": {"effect": 0.012571297368655643, "value": -1.0100505037878158}, "3": {"effect": -0.007423710140089149, "value": 0.2600404514552553}, "4": {"effect": -0.005750536918640137, "value": 0.6854976981493102}}}, {"outValue": 1.0000000323434843, "simIndex": 12.0, "features": {"0": {"effect": 0.35625561202565803, "value": 0.296997968549147}, "1": {"effect": -0.09562294930219634, "value": -1.4952887664644792}, "2": {"effect": -0.009999233918885284, "value": 0.9900495037128095}, "3": {"effect": -0.017366877757012705, "value": -0.289727944856067}, "4": {"effect": -0.013266518712043762, "value": 0.02026869615452839}}}, {"outValue": 5.494331289934706e-08, "simIndex": 2.0, "features": {"0": {"effect": -0.7147706116236572, "value": -1.506082084381337}, "1": {"effect": -0.003219414750469718, "value": 0.8334087112064774}, "2": {"effect": 0.02717659038762149, "value": -1.0100505037878158}, "3": {"effect": -0.08453263801872823, "value": -0.2347511052249348}, "4": {"effect": -0.004653871059417725, "value": 0.5191904476506147}}}, {"outValue": 1.0000000256376962, "simIndex": 22.0, "features": {"0": {"effect": 0.2629206781588664, "value": 0.9597317046365323}, "1": {"effect": -0.028745982298982856, "value": -0.1493651755688873}, "2": {"effect": 0.011241841315825035, "value": -1.0100505037878158}, "3": {"effect": -0.019954937945207696, "value": -0.39968162411833147}, "4": {"effect": -0.005461573600769043, "value": 0.3528831971519193}}}, {"outValue": 1.0000000347338787, "simIndex": 28.0, "features": {"0": {"effect": 0.27941072322428195, "value": -0.42960256612766506}, "1": {"effect": 0.04184309899186095, "value": -0.7326743878120021}, "2": {"effect": -0.03242820135007292, "value": 0.9900495037128095}, "3": {"effect": -0.04658244401216491, "value": -1.3342878978475794}, "4": {"effect": -0.022243142127990723, "value": -0.8112675563389489}}}, {"outValue": 2.6134401087674064e-08, "simIndex": 3.0, "features": {"0": {"effect": -0.7284240250783489, "value": -1.6949056628196422}, "1": {"effect": -0.030091259628268974, "value": -0.1516348612196387}, "2": {"effect": 0.014907942463555868, "value": -1.0100505037878158}, "3": {"effect": -0.022966327766975825, "value": -0.39968162411833147}, "4": {"effect": -0.01342630386352539, "value": -0.3123458048428625}}}, {"outValue": 1.0000000231544348, "simIndex": 26.0, "features": {"0": {"effect": 0.2588623705009617, "value": -0.439784229670907}, "1": {"effect": -0.0020965335890650305, "value": -0.26284945810645827}, "2": {"effect": -0.01978485453873864, "value": 0.9900495037128095}, "3": {"effect": -0.02020574932297059, "value": -0.5096353033805959}, "4": {"effect": 0.003224790096282959, "value": 0.6854976981493102}}}, {"outValue": 1.0000000229060821, "simIndex": 23.0, "features": {"0": {"effect": 0.27279337942600235, "value": 0.6005966632930889}, "1": {"effect": -0.03220665380358688, "value": -0.3445581415335094}, "2": {"effect": 0.012848611113925823, "value": -1.0100505037878158}, "3": {"effect": -0.03215135528395563, "value": -1.6641489356343728}, "4": {"effect": -0.0012839585542678833, "value": 0.8518049486480056}}}, {"outValue": 1.0000000354478928, "simIndex": 14.0, "features": {"0": {"effect": 0.32981505307058473, "value": 1.3614446117062602}, "1": {"effect": -0.08504690167804549, "value": -1.3227926570073711}, "2": {"effect": 0.016870797766993545, "value": -1.0100505037878158}, "3": {"effect": -0.029789271919677562, "value": -1.1143805393230506}, "4": {"effect": -0.011849641799926758, "value": -1.1438820573363397}}}, {"outValue": 1.0000000252654326, "simIndex": 19.0, "features": {"0": {"effect": 0.2794107877959806, "value": 0.5719028842166798}, "1": {"effect": -0.07483720382054634, "value": -1.1026331488844836}, "2": {"effect": 0.008483560383319919, "value": -1.0100505037878158}, "3": {"effect": 0.013493699580431062, "value": 1.0297162062911065}, "4": {"effect": -0.006550818681716919, "value": 0.3528831971519193}}}, {"outValue": 1.0000000212297016, "simIndex": 42.0, "features": {"0": {"effect": 0.1653852648412187, "value": -0.48236209539719155}, "1": {"effect": 0.05691752235094702, "value": 0.8402177681587316}, "2": {"effect": 0.031979695831735974, "value": -1.0100505037878158}, "3": {"effect": -0.032883212963739916, "value": -1.6091720960032405}, "4": {"effect": -0.0013992488384246826, "value": 0.6854976981493102}}}, {"outValue": 1.812529260014628e-08, "simIndex": 7.0, "features": {"0": {"effect": -0.3379361077522238, "value": -0.8812981851369444}, "1": {"effect": -0.33459678236395085, "value": -1.1956902605652917}, "2": {"effect": -0.020205720389882997, "value": 0.9900495037128095}, "3": {"effect": -0.0618942306066555, "value": -1.1693573789541827}, "4": {"effect": -0.025367140769958496, "value": -0.6449603058402533}}}, {"outValue": 5.481436948784335e-08, "simIndex": 5.0, "features": {"0": {"effect": -0.7483159714638526, "value": -1.7134177783528095}, "1": {"effect": -0.048707382574775915, "value": -0.39903059715154343}, "2": {"effect": 0.014662044624552728, "value": -1.0100505037878158}, "3": {"effect": 0.0227670739639807, "value": 0.8647856873977098}, "4": {"effect": -0.020405709743499756, "value": -0.3123458048428625}}}, {"outValue": 1.0000000204846433, "simIndex": 27.0, "features": {"0": {"effect": 0.2876638429239391, "value": -0.416644085254448}, "1": {"effect": 0.004644053739806031, "value": -0.9278673537766242}, "2": {"effect": -0.03563860331972428, "value": 0.9900495037128095}, "3": {"effect": -0.0017764753972489833, "value": -0.5646121430117281}, "4": {"effect": -0.03489279747009277, "value": -0.3123458048428625}}}, {"outValue": 1.0000000285561057, "simIndex": 18.0, "features": {"0": {"effect": 0.28468122587849676, "value": 0.8051555399345863}, "1": {"effect": -0.06006233015408102, "value": -0.7894165290807876}, "2": {"effect": -0.014776643924415037, "value": 0.9900495037128095}, "3": {"effect": 0.026645434771974924, "value": 1.2496235648156355}, "4": {"effect": -0.01648765802383423, "value": -1.4764965583337306}}}, {"outValue": 1.0000000251412562, "simIndex": 37.0, "features": {"0": {"effect": 0.2219536003967125, "value": 0.36549279602186563}, "1": {"effect": -0.021376366975406735, "value": -0.14255611861663303}, "2": {"effect": 0.0086240564162533, "value": -1.0100505037878158}, "3": {"effect": 0.016953600322206858, "value": 0.9197625270288421}, "4": {"effect": -0.006154865026473999, "value": -1.642803808832426}}}, {"outValue": 1.0000000259484023, "simIndex": 47.0, "features": {"0": {"effect": 0.02973869834095247, "value": -0.7776303381512082}, "1": {"effect": 0.24248567180087144, "value": 1.280536784404507}, "2": {"effect": -0.009443173619607975, "value": 0.9900495037128095}, "3": {"effect": -0.024428513025243986, "value": -0.17977426559380258}, "4": {"effect": -0.018352657556533813, "value": -1.310189307835035}}}, {"outValue": 1.0000000336473358, "simIndex": 15.0, "features": {"0": {"effect": 0.3142657080665228, "value": -0.38147106574143036}, "1": {"effect": -0.05913794729858626, "value": -0.9301370394273756}, "2": {"effect": -0.01641213682790585, "value": 0.9900495037128095}, "3": {"effect": -0.005932122531036477, "value": -0.34470478448719927}, "4": {"effect": -0.012783467769622803, "value": 0.18657594665322383}}}, {"outValue": 1.0000000288044584, "simIndex": 13.0, "features": {"0": {"effect": 0.3516585825011131, "value": -0.07139313056088}, "1": {"effect": -0.07833438136925283, "value": -0.9619126385378955}, "2": {"effect": -0.014997550472617027, "value": 0.9900495037128095}, "3": {"effect": -0.025037825914720563, "value": -1.1693573789541827}, "4": {"effect": -0.013288795948028564, "value": 0.18657594665322383}}}, {"outValue": 1.0000000286798842, "simIndex": 36.0, "features": {"0": {"effect": 0.2210044140000147, "value": 1.2716608513703993}, "1": {"effect": 0.004332401105164058, "value": 0.39308969496070195}, "2": {"effect": -0.010667888819773527, "value": 0.9900495037128095}, "3": {"effect": 0.019332069531480894, "value": 0.6448783288731809}, "4": {"effect": -0.014000967144966125, "value": -0.6449603058402533}}}, {"outValue": 1.0000000270659897, "simIndex": 31.0, "features": {"0": {"effect": 0.1915016661708553, "value": -0.17506097754661623}, "1": {"effect": 0.027793760721882194, "value": 0.5792039183223184}, "2": {"effect": 0.00983459192017723, "value": -1.0100505037878158}, "3": {"effect": -0.005139758810400907, "value": 0.3150172910863875}, "4": {"effect": -0.003990232944488525, "value": 0.6854976981493102}}}, {"outValue": 1.0000000327160132, "simIndex": 35.0, "features": {"0": {"effect": 0.20004445525507128, "value": 0.7912714532847109}, "1": {"effect": 0.025956603481123885, "value": 0.5474283192117985}, "2": {"effect": -0.008666947080443216, "value": 0.9900495037128095}, "3": {"effect": 0.015044464667638202, "value": 0.8647856873977098}, "4": {"effect": -0.012378543615341187, "value": 0.02026869615452839}}}, {"outValue": 1.0000000219922218, "simIndex": 40.0, "features": {"0": {"effect": 0.1432458694083228, "value": -0.7137635395617814}, "1": {"effect": 0.03558613244968001, "value": -0.4058396541037977}, "2": {"effect": 0.03827681465190841, "value": -1.0100505037878158}, "3": {"effect": 0.025203459187954053, "value": 0.36999413071751974}, "4": {"effect": -0.022312253713607788, "value": -0.9775748068376443}}}, {"outValue": 1.0000000215401423, "simIndex": 43.0, "features": {"0": {"effect": 0.11366615903874237, "value": 0.8375517421176288}, "1": {"effect": 0.08366713635623449, "value": 1.4416844656078578}, "2": {"effect": 0.008666664610306518, "value": -1.0100505037878158}, "3": {"effect": 0.02699949182569983, "value": 1.3046004044467676}, "4": {"effect": -0.012999430298805237, "value": -0.9775748068376443}}}, {"outValue": 1.00000003261512, "simIndex": 21.0, "features": {"0": {"effect": 0.25853606907185145, "value": 1.0476642534190765}, "1": {"effect": -0.036463170583980686, "value": -0.3581762554380179}, "2": {"effect": 0.011869408539496418, "value": -1.0100505037878158}, "3": {"effect": -0.0008044719385603138, "value": 0.36999413071751974}, "4": {"effect": -0.013137802481651306, "value": -1.310189307835035}}}, {"outValue": 1.0000000311014552, "simIndex": 20.0, "features": {"0": {"effect": 0.29185680796729224, "value": 1.6382007389271096}, "1": {"effect": -0.07304495324664578, "value": -1.0527000645679523}, "2": {"effect": 0.009759124057590232, "value": -1.0100505037878158}, "3": {"effect": -0.012190246023635803, "value": -0.12479742596267034}, "4": {"effect": 0.0036192983388900757, "value": 1.1844194496453966}}}, {"outValue": 1.0000000353237164, "simIndex": 48.0, "features": {"0": {"effect": -0.00646857966979332, "value": -0.9534954357162965}, "1": {"effect": 0.2433115328972536, "value": 0.8606449390154944}, "2": {"effect": 0.026013436851402172, "value": -1.0100505037878158}, "3": {"effect": -0.05137774770458528, "value": -1.4992184167409761}, "4": {"effect": 0.008521392941474915, "value": 1.350726700144092}}}, {"outValue": 3.594459818678786e-08, "simIndex": 9.0, "features": {"0": {"effect": -0.19650580318023758, "value": -0.6600784045155965}, "1": {"effect": -0.3405522665629783, "value": -1.1525662332010147}, "2": {"effect": -0.037421073950827166, "value": 0.9900495037128095}, "3": {"effect": -0.17604131673773127, "value": -1.3892647374787117}, "4": {"effect": -0.029479503631591797, "value": 0.02026869615452839}}}, {"outValue": 4.5413044214015486e-08, "simIndex": 10.0, "features": {"0": {"effect": -0.16301864342143152, "value": -0.7045074817951977}, "1": {"effect": -0.22279468802735197, "value": -0.4988967657846059}, "2": {"effect": -0.14254250784094147, "value": 0.9900495037128095}, "3": {"effect": -0.2163297937872508, "value": -1.279311058216447}, "4": {"effect": -0.035314321517944336, "value": 0.3528831971519193}}}, {"outValue": 1.0000000292032907, "simIndex": 30.0, "features": {"0": {"effect": 0.19280324817798747, "value": 0.6385465001360816}, "1": {"effect": 0.031136166029693935, "value": 0.5973614035283298}, "2": {"effect": 0.007823761343674546, "value": -1.0100505037878158}, "3": {"effect": -0.012176236346645442, "value": 0.09510993256185858}, "4": {"effect": 0.0004130899906158447, "value": 0.8518049486480056}}}, {"outValue": 1.0000000273412937, "simIndex": 16.0, "features": {"0": {"effect": 0.291288835342099, "value": 1.4234601987423703}, "1": {"effect": -0.04237109977963574, "value": -0.5442904787996343}, "2": {"effect": -0.012040010773519724, "value": 0.9900495037128095}, "3": {"effect": 0.000560639751226305, "value": 0.42497097034865194}, "4": {"effect": -0.017438337206840515, "value": -0.47865305534155794}}}, {"outValue": 1.0000000221884147, "simIndex": 46.0, "features": {"0": {"effect": 0.08514915086464453, "value": -0.7544901937347492}, "1": {"effect": 0.13963571414716802, "value": 0.15704238728255435}, "2": {"effect": 0.018390666594836583, "value": -1.0100505037878158}, "3": {"effect": -0.01159896120747178, "value": 0.04013309293072636}, "4": {"effect": -0.011576548218727112, "value": 0.6854976981493102}}}], "plot_cmap": "RdBu", "ordering_keys": null, "ordering_keys_time_format": null}),
+    document.getElementById('iVV26R3RGY59LCU2B9D05')
   );
 </script></div></div>
 </div>
-<p>Shapley Additive exPlanations oder SHAP ist ein Ansatz, der in der Spieltheorie verwendet wird. Mit SHAP wird die Ausgabe seines maschinellen Lernmodells erklärt.</p>
-<p>In dem obigen Modell werden Merkmale aufgezeigt, die dazu beitragen, die Modellausgabe zu steigern. Merkmale bzw. Vorhersagen die sich positiv auswirken werde in Rot dargestellt und Vorhersagen, die sich negativ auswirken werden in Blau dargestellt.</p>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1517,48 +666,28 @@ Set parameter alpha to: original_alpha * np.sqrt(n_samples).
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Mobile_Classification.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Klassifikation (Mobile Dataset)</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="Pr%C3%BCfungsleistung.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Prüfungsleistung</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Jermaine Ley<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      Durch Jermaine Ley<br/>
+    
+        &copy; Urheberrechte © 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

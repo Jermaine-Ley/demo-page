@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Regressionsmodell &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
+    <title>Regressionsmodell 1 &#8212; Das Projekt von JL132 im Modul Data Science &amp; MLOps</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Einleitung
+                    Herzlich Willkommen zu meinem Projekt im Modul Data Science & MLOps!
                 </a>
             </li>
         </ul>
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Regressionsmodell
+   Regressionsmodell 1
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,17 +131,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Mobile_Classification.html">
-   Mobile Classifikation
+   Klassifikation (Mobile Dataset)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="SHAP_Mobile.html">
-   SHAP mit strukturierten Daten (Classification)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Keras_T_Mobile.html">
-   Keras Tuner
+   SHAP mit strukturierten Daten (Classification) Mobile Dataset
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,7 +340,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Regressionsmodell</h1>
+                <h1>Regressionsmodell 1</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -357,8 +352,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="regressionsmodell">
-<h1>Regressionsmodell<a class="headerlink" href="#regressionsmodell" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="regressionsmodell-1">
+<h1>Regressionsmodell 1<a class="headerlink" href="#regressionsmodell-1" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># linear algebra</span>
@@ -376,24 +371,31 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;car_prices.csv&quot;</span><span class="p">,</span><span class="n">nrows</span><span class="o">=</span><span class="mi">400000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;car_prices.csv&#39;</span><span class="p">,</span><span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn_bad_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="c1"># Ausgabe </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        year           make                model          trim         body  \
-0       2015            Kia              Sorento            LX          SUV   
-1       2015            Kia              Sorento            LX          SUV   
-2       2014            BMW             3 Series    328i SULEV        Sedan   
-3       2015          Volvo                  S60            T5        Sedan   
-4       2014            BMW  6 Series Gran Coupe          650i        Sedan   
-...      ...            ...                  ...           ...          ...   
-399995  2012  Mercedes-Benz              C-Class    C250 Sport        Sedan   
-399996  2012  Mercedes-Benz             GL-Class  GL450 4MATIC          SUV   
-399997  2012     Mitsubishi      Outlander Sport            SE          SUV   
-399998  2012  Mercedes-Benz            SLK-Class        SLK350  Convertible   
-399999  2014      Chevrolet       Silverado 1500    Work Truck   Double Cab   
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 408163: expected 16 fields, saw 17\nSkipping line 417837: expected 16 fields, saw 17\nSkipping line 421291: expected 16 fields, saw 17\nSkipping line 424163: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 427042: expected 16 fields, saw 17\nSkipping line 427045: expected 16 fields, saw 17\nSkipping line 434426: expected 16 fields, saw 17\nSkipping line 444503: expected 16 fields, saw 17\nSkipping line 453796: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 461599: expected 16 fields, saw 17\nSkipping line 461614: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 492486: expected 16 fields, saw 17\nSkipping line 497010: expected 16 fields, saw 17\nSkipping line 497013: expected 16 fields, saw 17\nSkipping line 499085: expected 16 fields, saw 17\nSkipping line 501457: expected 16 fields, saw 17\nSkipping line 505301: expected 16 fields, saw 17\nSkipping line 505308: expected 16 fields, saw 17\nSkipping line 520463: expected 16 fields, saw 17\n&#39;
+b&#39;Skipping line 528998: expected 16 fields, saw 17\nSkipping line 529011: expected 16 fields, saw 17\nSkipping line 529015: expected 16 fields, saw 17\nSkipping line 529624: expected 16 fields, saw 17\nSkipping line 548786: expected 16 fields, saw 17\nSkipping line 551224: expected 16 fields, saw 17\nSkipping line 554712: expected 16 fields, saw 17\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        year    make                model         trim       body  \
+0       2015     Kia              Sorento           LX        SUV   
+1       2015     Kia              Sorento           LX        SUV   
+2       2014     BMW             3 Series   328i SULEV      Sedan   
+3       2015   Volvo                  S60           T5      Sedan   
+4       2014     BMW  6 Series Gran Coupe         650i      Sedan   
+...      ...     ...                  ...          ...        ...   
+558806  2015     Kia                 K900       Luxury      Sedan   
+558807  2012     Ram                 2500  Power Wagon   Crew Cab   
+558808  2012     BMW                   X5    xDrive35d        SUV   
+558809  2015  Nissan               Altima        2.5 S      sedan   
+558810  2014    Ford                F-150          XLT  SuperCrew   
 
        transmission                vin state  condition  odometer   color  \
 0         automatic  5xyktca69fg566472    ca        5.0   16639.0   white   
@@ -402,47 +404,47 @@ title="Print to PDF"
 3         automatic  yv1612tb4f1310987    ca        4.1   14282.0   white   
 4         automatic  wba6b2c57ed129731    ca        4.3    2641.0    gray   
 ...             ...                ...   ...        ...       ...     ...   
-399995    automatic  wddgf4hb4cr220211    ca        3.3   27575.0       —   
-399996    automatic  4jgbf7be0ca778155    fl        3.6   46502.0    blue   
-399997    automatic  ja4ar4au6cz009718    mo        4.6   23677.0   black   
-399998    automatic  wddpk5ha4cf014008    ca        4.1   19059.0  silver   
-399999    automatic  1gcrcpeh1ez144245    ga        4.6   23400.0   black   
+558806          NaN  knalw4d4xf6019304    in        4.5   18255.0  silver   
+558807    automatic  3c6td5et6cg112407    wa        5.0   54393.0   white   
+558808    automatic  5uxzw0c58cl668465    ca        4.8   50561.0   black   
+558809    automatic  1n4al3ap0fc216050    ga        3.8   16658.0   white   
+558810    automatic  1ftfw1et2eke87277    ca        3.4   15008.0    gray   
 
-       interior                                  seller    mmr  sellingprice  \
-0         black                 kia motors america, inc  20500         21500   
-1         beige                 kia motors america, inc  20800         21500   
-2         black  financial services remarketing (lease)  31900         30000   
-3         black                 volvo na rep/world omni  27500         27750   
-4         black  financial services remarketing (lease)  66000         67000   
-...         ...                                     ...    ...           ...   
-399995     gray        mercedes-benz financial services  20100         17500   
-399996    black                     tim short chevrolet  34600         35000   
-399997    black                               mmca, inc  15450         16100   
-399998     gray        mercedes-benz financial services  33600         31500   
-399999     gray                            gm financial  21400         22000   
+       interior                                             seller    mmr  \
+0         black                            kia motors america, inc  20500   
+1         beige                            kia motors america, inc  20800   
+2         black             financial services remarketing (lease)  31900   
+3         black                            volvo na rep/world omni  27500   
+4         black             financial services remarketing (lease)  66000   
+...         ...                                                ...    ...   
+558806    black                                   avis corporation  35300   
+558807    black                                    i -5 uhlmann rv  30200   
+558808    black             financial services remarketing (lease)  29800   
+558809    black  enterprise vehicle exchange / tra / rental / t...  15100   
+558810     gray                   ford motor credit company,llc pd  29600   
 
-                                       saledate  
-0       Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
-1       Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
-2       Thu Jan 15 2015 04:30:00 GMT-0800 (PST)  
-3       Thu Jan 29 2015 04:30:00 GMT-0800 (PST)  
-4       Thu Dec 18 2014 12:30:00 GMT-0800 (PST)  
-...                                         ...  
-399995  Thu Jun 04 2015 05:30:00 GMT-0700 (PDT)  
-399996  Tue Mar 10 2015 02:30:00 GMT-0700 (PDT)  
-399997  Tue Mar 10 2015 04:00:00 GMT-0700 (PDT)  
-399998  Thu Jun 04 2015 05:30:00 GMT-0700 (PDT)  
-399999  Tue Mar 10 2015 02:30:00 GMT-0700 (PDT)  
+        sellingprice                                 saledate  
+0              21500  Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
+1              21500  Tue Dec 16 2014 12:30:00 GMT-0800 (PST)  
+2              30000  Thu Jan 15 2015 04:30:00 GMT-0800 (PST)  
+3              27750  Thu Jan 29 2015 04:30:00 GMT-0800 (PST)  
+4              67000  Thu Dec 18 2014 12:30:00 GMT-0800 (PST)  
+...              ...                                      ...  
+558806         33000  Thu Jul 09 2015 07:00:00 GMT-0700 (PDT)  
+558807         30800  Wed Jul 08 2015 09:30:00 GMT-0700 (PDT)  
+558808         34000  Wed Jul 08 2015 09:30:00 GMT-0700 (PDT)  
+558809         11100  Thu Jul 09 2015 06:45:00 GMT-0700 (PDT)  
+558810         26700  Thu May 28 2015 05:30:00 GMT-0700 (PDT)  
 
-[400000 rows x 16 columns]
+[558811 rows x 16 columns]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>        <span class="c1">#Die Funktion head() wird verwendet, um die ersten n Zeilen zu erhalten.</span>
-        <span class="c1">#Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Die Funktion head() wird verwendet, um die ersten n Zeilen zu erhalten.</span>
+<span class="c1">#Diese Funktion gibt die ersten n Zeilen des Objekts auf der Grundlage der Position zurück. Sie ist nützlich, um schnell zu testen, ob das Objekt die richtige Art von Daten enthält.</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -592,7 +594,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(400000, 16)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(558811, 16)
 </pre></div>
 </div>
 </div>
@@ -608,28 +610,28 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 400000 entries, 0 to 399999
+RangeIndex: 558811 entries, 0 to 558810
 Data columns (total 16 columns):
  #   Column        Non-Null Count   Dtype  
 ---  ------        --------------   -----  
- 0   year          400000 non-null  int64  
- 1   make          392910 non-null  object 
- 2   model         392844 non-null  object 
- 3   trim          392581 non-null  object 
- 4   body          390037 non-null  object 
- 5   transmission  355878 non-null  object 
- 6   vin           400000 non-null  object 
- 7   state         400000 non-null  object 
- 8   condition     388207 non-null  float64
- 9   odometer      399914 non-null  float64
- 10  color         399447 non-null  object 
- 11  interior      399447 non-null  object 
- 12  seller        400000 non-null  object 
- 13  mmr           400000 non-null  int64  
- 14  sellingprice  400000 non-null  int64  
- 15  saledate      400000 non-null  object 
+ 0   year          558811 non-null  int64  
+ 1   make          548510 non-null  object 
+ 2   model         548412 non-null  object 
+ 3   trim          548160 non-null  object 
+ 4   body          545616 non-null  object 
+ 5   transmission  493458 non-null  object 
+ 6   vin           558811 non-null  object 
+ 7   state         558811 non-null  object 
+ 8   condition     547017 non-null  float64
+ 9   odometer      558717 non-null  float64
+ 10  color         558062 non-null  object 
+ 11  interior      558062 non-null  object 
+ 12  seller        558811 non-null  object 
+ 13  mmr           558811 non-null  int64  
+ 14  sellingprice  558811 non-null  int64  
+ 15  saledate      558811 non-null  object 
 dtypes: float64(2), int64(3), object(11)
-memory usage: 48.8+ MB
+memory usage: 68.2+ MB
 </pre></div>
 </div>
 </div>
@@ -642,15 +644,15 @@ memory usage: 48.8+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>transmission    44122
-condition       11793
-body             9963
-trim             7419
-model            7156
-make             7090
-color             553
-interior          553
-odometer           86
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>transmission    65353
+body            13195
+condition       11794
+trim            10651
+model           10399
+make            10301
+color             749
+interior          749
+odometer           94
 year                0
 vin                 0
 state               0
@@ -824,7 +826,10 @@ dtype: int64
             135334, 136242, 163868, 166054, 168800, 179448, 191690, 194973,
             240950, 245595, 260722, 260729, 275351, 279980, 290236, 321671,
             321728, 321779, 323274, 338793, 347888, 354485, 361178, 367686,
-            373462, 385365, 385721, 398167],
+            373462, 385365, 385721, 398167, 404788, 406428, 409935, 416793,
+            417515, 418605, 451991, 452007, 452254, 452267, 456527, 462004,
+            462289, 476582, 477244, 485257, 485594, 489822, 490450, 501462,
+            513201, 541011],
            dtype=&#39;int64&#39;)
 </pre></div>
 </div>
@@ -838,7 +843,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230020.1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>226662.4
 </pre></div>
 </div>
 </div>
@@ -861,19 +866,11 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([  1102,   5646,   5676,   5842,   5960,   6459,   6501,   6732,
-              6748,  12948,  29989,  35867,  39437,  42995,  61942,  61989,
-             98574, 110236, 110241, 110244, 110247, 110251, 110255, 110259,
-            110475, 120105, 123677, 125095, 132280, 132317, 132382, 134022,
-            140566, 143887, 146575, 146694, 146917, 147201, 147447, 148296,
-            148560, 160201, 188237, 188725, 194349, 194367, 194738, 211462,
-            217007, 218546, 227370, 239357, 239360, 242835, 248615, 272358,
-            273856, 277051, 282126, 283534, 283536, 283749, 283752, 284502,
-            285421, 288377, 291287, 291293, 292803, 293881, 294281, 296092,
-            298980, 299198, 299208, 301118, 302792, 305669, 305981, 325822,
-            325839, 332450, 336031, 337595, 344905, 351581, 359149, 361923,
-            361925, 362025, 363766, 369467, 373258, 373325, 373811, 373904,
-            398767],
-           dtype=&#39;int64&#39;)
+              6748,  12948,
+            ...
+            553158, 553594, 555815, 556494, 556797, 557544, 557821, 557822,
+            557931, 558790],
+           dtype=&#39;int64&#39;, length=166)
 </pre></div>
 </div>
 </div>
@@ -886,7 +883,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>43250.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44900.0
 </pre></div>
 </div>
 </div>
@@ -981,7 +978,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x22b541c8380&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x27a169aa1c0&gt;
 </pre></div>
 </div>
 </div>
@@ -1025,27 +1022,27 @@ dtype: int64
   <tbody>
     <tr>
       <th>13</th>
-      <td>0.622955</td>
+      <td>0.657821</td>
       <td>mmr</td>
     </tr>
     <tr>
       <th>0</th>
-      <td>0.133290</td>
+      <td>0.141755</td>
       <td>year</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.123088</td>
+      <td>0.107582</td>
       <td>condition</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.076523</td>
+      <td>0.055175</td>
       <td>odometer</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.011210</td>
+      <td>0.012416</td>
       <td>vin</td>
     </tr>
   </tbody>
@@ -1099,7 +1096,7 @@ dtype: int64
       <td>2015</td>
       <td>5.0</td>
       <td>16639.0</td>
-      <td>290586</td>
+      <td>403800</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1107,7 +1104,7 @@ dtype: int64
       <td>2015</td>
       <td>5.0</td>
       <td>9393.0</td>
-      <td>290582</td>
+      <td>403792</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1115,7 +1112,7 @@ dtype: int64
       <td>2014</td>
       <td>4.5</td>
       <td>1331.0</td>
-      <td>363258</td>
+      <td>507007</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1123,7 +1120,7 @@ dtype: int64
       <td>2015</td>
       <td>4.1</td>
       <td>14282.0</td>
-      <td>390906</td>
+      <td>546650</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1131,7 +1128,7 @@ dtype: int64
       <td>2014</td>
       <td>4.3</td>
       <td>2641.0</td>
-      <td>363873</td>
+      <td>508040</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1142,48 +1139,48 @@ dtype: int64
       <td>...</td>
     </tr>
     <tr>
-      <th>399995</th>
-      <td>20100.0</td>
-      <td>2012</td>
-      <td>3.3</td>
-      <td>27575.0</td>
-      <td>379008</td>
+      <th>558806</th>
+      <td>35300.0</td>
+      <td>2015</td>
+      <td>4.5</td>
+      <td>18255.0</td>
+      <td>488919</td>
     </tr>
     <tr>
-      <th>399996</th>
-      <td>34600.0</td>
+      <th>558807</th>
+      <td>30200.0</td>
       <td>2012</td>
-      <td>3.6</td>
-      <td>46502.0</td>
-      <td>246303</td>
+      <td>5.0</td>
+      <td>54393.0</td>
+      <td>289636</td>
     </tr>
     <tr>
-      <th>399997</th>
-      <td>15450.0</td>
+      <th>558808</th>
+      <td>29800.0</td>
       <td>2012</td>
-      <td>4.6</td>
-      <td>23677.0</td>
-      <td>294250</td>
+      <td>4.8</td>
+      <td>50561.0</td>
+      <td>398254</td>
     </tr>
     <tr>
-      <th>399998</th>
-      <td>33600.0</td>
-      <td>2012</td>
-      <td>4.1</td>
-      <td>19059.0</td>
-      <td>384215</td>
+      <th>558809</th>
+      <td>15100.0</td>
+      <td>2015</td>
+      <td>3.8</td>
+      <td>16658.0</td>
+      <td>192494</td>
     </tr>
     <tr>
-      <th>399999</th>
-      <td>21400.0</td>
+      <th>558810</th>
+      <td>29600.0</td>
       <td>2014</td>
-      <td>4.6</td>
-      <td>23400.0</td>
-      <td>97867</td>
+      <td>3.4</td>
+      <td>15008.0</td>
+      <td>82906</td>
     </tr>
   </tbody>
 </table>
-<p>400000 rows × 5 columns</p>
+<p>558811 rows × 5 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1194,6 +1191,370 @@ dtype: int64
 <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Berechnung der paarweisen Korrelation von Spalten unter Ausschluss von NA/Nullwerten.</span>
+<span class="n">cormat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">cormat</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>make</th>
+      <th>model</th>
+      <th>trim</th>
+      <th>body</th>
+      <th>transmission</th>
+      <th>vin</th>
+      <th>state</th>
+      <th>condition</th>
+      <th>odometer</th>
+      <th>color</th>
+      <th>interior</th>
+      <th>seller</th>
+      <th>mmr</th>
+      <th>sellingprice</th>
+      <th>saledate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>year</th>
+      <td>1.00</td>
+      <td>-0.02</td>
+      <td>-0.03</td>
+      <td>0.07</td>
+      <td>0.06</td>
+      <td>-0.09</td>
+      <td>-0.01</td>
+      <td>0.02</td>
+      <td>0.53</td>
+      <td>-0.77</td>
+      <td>0.06</td>
+      <td>-0.22</td>
+      <td>0.00</td>
+      <td>0.58</td>
+      <td>0.60</td>
+      <td>0.03</td>
+    </tr>
+    <tr>
+      <th>make</th>
+      <td>-0.02</td>
+      <td>1.00</td>
+      <td>0.10</td>
+      <td>-0.06</td>
+      <td>0.04</td>
+      <td>0.04</td>
+      <td>0.33</td>
+      <td>-0.03</td>
+      <td>-0.02</td>
+      <td>-0.01</td>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>0.16</td>
+      <td>-0.07</td>
+      <td>-0.07</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>model</th>
+      <td>-0.03</td>
+      <td>0.10</td>
+      <td>1.00</td>
+      <td>0.15</td>
+      <td>-0.01</td>
+      <td>0.01</td>
+      <td>0.09</td>
+      <td>0.02</td>
+      <td>-0.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.04</td>
+      <td>-0.00</td>
+      <td>-0.00</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>trim</th>
+      <td>0.07</td>
+      <td>-0.06</td>
+      <td>0.15</td>
+      <td>1.00</td>
+      <td>-0.01</td>
+      <td>-0.00</td>
+      <td>-0.24</td>
+      <td>0.04</td>
+      <td>0.05</td>
+      <td>-0.02</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>-0.04</td>
+      <td>0.04</td>
+      <td>0.04</td>
+      <td>-0.00</td>
+    </tr>
+    <tr>
+      <th>body</th>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>-0.01</td>
+      <td>-0.01</td>
+      <td>1.00</td>
+      <td>-0.06</td>
+      <td>0.00</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>-0.03</td>
+      <td>-0.00</td>
+      <td>-0.02</td>
+      <td>0.02</td>
+      <td>-0.02</td>
+      <td>-0.02</td>
+      <td>0.07</td>
+    </tr>
+    <tr>
+      <th>transmission</th>
+      <td>-0.09</td>
+      <td>0.04</td>
+      <td>0.01</td>
+      <td>-0.00</td>
+      <td>-0.06</td>
+      <td>1.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>-0.03</td>
+      <td>0.03</td>
+      <td>-0.02</td>
+      <td>-0.02</td>
+      <td>0.00</td>
+      <td>-0.04</td>
+      <td>-0.04</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>vin</th>
+      <td>-0.01</td>
+      <td>0.33</td>
+      <td>0.09</td>
+      <td>-0.24</td>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>1.00</td>
+      <td>-0.07</td>
+      <td>0.03</td>
+      <td>-0.05</td>
+      <td>-0.06</td>
+      <td>-0.02</td>
+      <td>0.08</td>
+      <td>0.11</td>
+      <td>0.11</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>state</th>
+      <td>0.02</td>
+      <td>-0.03</td>
+      <td>0.02</td>
+      <td>0.04</td>
+      <td>0.02</td>
+      <td>0.00</td>
+      <td>-0.07</td>
+      <td>1.00</td>
+      <td>0.03</td>
+      <td>-0.01</td>
+      <td>0.00</td>
+      <td>0.04</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.04</td>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <td>0.53</td>
+      <td>-0.02</td>
+      <td>-0.00</td>
+      <td>0.05</td>
+      <td>0.01</td>
+      <td>-0.03</td>
+      <td>0.03</td>
+      <td>0.03</td>
+      <td>1.00</td>
+      <td>-0.52</td>
+      <td>0.06</td>
+      <td>-0.11</td>
+      <td>-0.03</td>
+      <td>0.46</td>
+      <td>0.54</td>
+      <td>-0.03</td>
+    </tr>
+    <tr>
+      <th>odometer</th>
+      <td>-0.77</td>
+      <td>-0.01</td>
+      <td>0.05</td>
+      <td>-0.02</td>
+      <td>-0.03</td>
+      <td>0.03</td>
+      <td>-0.05</td>
+      <td>-0.01</td>
+      <td>-0.52</td>
+      <td>1.00</td>
+      <td>-0.03</td>
+      <td>0.19</td>
+      <td>0.00</td>
+      <td>-0.52</td>
+      <td>-0.59</td>
+      <td>-0.00</td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td>0.06</td>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>0.02</td>
+      <td>-0.00</td>
+      <td>-0.02</td>
+      <td>-0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>-0.03</td>
+      <td>1.00</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.03</td>
+    </tr>
+    <tr>
+      <th>interior</th>
+      <td>-0.22</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>-0.02</td>
+      <td>-0.02</td>
+      <td>-0.02</td>
+      <td>0.04</td>
+      <td>-0.11</td>
+      <td>0.19</td>
+      <td>0.02</td>
+      <td>1.00</td>
+      <td>-0.01</td>
+      <td>-0.14</td>
+      <td>-0.15</td>
+      <td>-0.02</td>
+    </tr>
+    <tr>
+      <th>seller</th>
+      <td>0.00</td>
+      <td>0.16</td>
+      <td>0.04</td>
+      <td>-0.04</td>
+      <td>0.02</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.01</td>
+      <td>-0.03</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>-0.01</td>
+      <td>1.00</td>
+      <td>-0.02</td>
+      <td>-0.02</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>mmr</th>
+      <td>0.58</td>
+      <td>-0.07</td>
+      <td>-0.00</td>
+      <td>0.04</td>
+      <td>-0.02</td>
+      <td>-0.04</td>
+      <td>0.11</td>
+      <td>0.01</td>
+      <td>0.46</td>
+      <td>-0.52</td>
+      <td>0.01</td>
+      <td>-0.14</td>
+      <td>-0.02</td>
+      <td>1.00</td>
+      <td>0.94</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>sellingprice</th>
+      <td>0.60</td>
+      <td>-0.07</td>
+      <td>-0.00</td>
+      <td>0.04</td>
+      <td>-0.02</td>
+      <td>-0.04</td>
+      <td>0.11</td>
+      <td>0.01</td>
+      <td>0.54</td>
+      <td>-0.59</td>
+      <td>0.01</td>
+      <td>-0.15</td>
+      <td>-0.02</td>
+      <td>0.94</td>
+      <td>1.00</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>saledate</th>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>-0.01</td>
+      <td>-0.00</td>
+      <td>0.07</td>
+      <td>-0.01</td>
+      <td>0.01</td>
+      <td>0.04</td>
+      <td>-0.03</td>
+      <td>-0.00</td>
+      <td>0.03</td>
+      <td>-0.02</td>
+      <td>0.05</td>
+      <td>-0.01</td>
+      <td>-0.01</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cormat</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Reg_Modell1_37_0.png" src="_images/Reg_Modell1_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1231,15 +1592,16 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score -&gt; 0.9113078938814688
-MAE -&gt; 1423.4611111431452
-MSE -&gt; 7767731.391843106
-RMSE -&gt; 2787.065013924703
-Adjusted R2 -&gt; 0.9113067852135124
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score -&gt; 0.9157776532090882
+MAE -&gt; 1454.4627408015326
+MSE -&gt; 7758185.352467652
+RMSE -&gt; 2785.351926142844
+Adjusted R2 -&gt; 0.9157768996157346
 </pre></div>
 </div>
 </div>
 </div>
+<p>Hier interessiert uns überwiegend nur die MAE, sie dient zur Bewertung unseres Regressionsmodells. Der RMSE und MAE sind Metriken, die genaue Vorhersagen treffen und uns sagen, wie groß die Abweichungen von den tatsächlichen Werten sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Streudiagramm der tatsächlichen Werte gegenüber den vorhergesagten Werten</span>
@@ -1251,7 +1613,7 @@ Adjusted R2 -&gt; 0.9113067852135124
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/Reg_Modell1_38_1.png" src="_images/Reg_Modell1_38_1.png" />
+<img alt="_images/Reg_Modell1_41_1.png" src="_images/Reg_Modell1_41_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1264,7 +1626,7 @@ Adjusted R2 -&gt; 0.9113067852135124
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;sellingprice&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/Reg_Modell1_39_1.png" src="_images/Reg_Modell1_39_1.png" />
+<img alt="_images/Reg_Modell1_42_1.png" src="_images/Reg_Modell1_42_1.png" />
 </div>
 </div>
 </section>
